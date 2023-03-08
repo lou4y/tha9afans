@@ -1,0 +1,11 @@
+.list-view .list-cell:filled:selected {
+    -fx-background-color: #1D3557;
+}
+.my-text-field {
+    -fx-text-fill: white;
+}
+.sidebarItem:hover{
+    -fx-background-color: white;
+    -fx-border-color: WHITE;
+    -fx-border-width: 0px 0px 0px 3px;
+}

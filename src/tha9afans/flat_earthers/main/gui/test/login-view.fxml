@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+    <left>
+        <AnchorPane prefHeight="400.0" prefWidth="280.0" style="-fx-background-color: #001A23;" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="290.0" fitWidth="218.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@images/luna.jpg" />
+            </ImageView>
+            <Button fx:id="signupbutton" layoutX="89.0" layoutY="308.0" mnemonicParsing="false" onAction="#passerinscrire" prefHeight="28.0" prefWidth="102.0" style="-fx-background-color: #F1FAEE; -fx-background-radius: 50px;" text="Sign Up" textFill="#001a23">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+            </Button>
+        </AnchorPane>
+    </left>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F1FAEE;" BorderPane.alignment="CENTER">
+            <TextField fx:id="emailfield" layoutX="75.0" layoutY="157.0" prefHeight="40.0" prefWidth="208.0" promptText="UserName" style="-fx-background-color: transparent; -fx-border-color: #001A23; -fx-border-width: 0.5px; -fx-border-radius: 50px; -fx-background-radius: 50px; -fx-padding: 6px;" />
+            <PasswordField fx:id="passwordfield" layoutX="74.0" layoutY="220.0" prefHeight="42.0" prefWidth="210.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #001A23; -fx-border-width: 0.5px; -fx-border-radius: 50px; -fx-background-radius: 50px; -fx-padding: 6px;" />
+            <ImageView fitHeight="27.0" fitWidth="32.0" layoutX="35.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@images/iconuser.png" />
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="35.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@images/icons8-password-key-90.png" />
+            </ImageView>
+            <Button fx:id="loginbutton" layoutX="102.0" layoutY="312.0" mnemonicParsing="false" onAction="#login" prefHeight="38.0" prefWidth="132.0" style="-fx-background-color: #001A23; -fx-background-radius: 50px;" text="Passer" textFill="WHITE">
+
+                <font>
+                    <Font name="Arial Nova Bold" size="18.0" />
+                </font>
+            </Button>
+            <ImageView fitHeight="87.0" fitWidth="96.0" layoutX="115.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@images/logo.png" />
+            </ImageView>
+            <Text fill="#898686" layoutX="127.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font>
+            </Text>
+         <Button fx:id="linkforgotpassword" layoutX="209.0" layoutY="275.0" mnemonicParsing="false" onAction="#gointerfaceforgotpassword" style="-fx-background-color: transparent;" text="Forgot Password?">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+        </AnchorPane>
+    </center>
+</BorderPane>

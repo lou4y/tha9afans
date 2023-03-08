@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="459.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdministrateurController">
+   <children>
+      <ListView fx:id="listview" layoutX="14.0" layoutY="102.0" prefHeight="226.0" prefWidth="632.0" style="-fx-background-color: #F1FAEE;" />
+      <HBox prefHeight="54.0" prefWidth="637.0" style="-fx-background-color: #F1FAEE;">
+         <children>
+            <Button fx:id="btndownloadexcel" mnemonicParsing="false" onAction="#downloadexcel" prefHeight="38.0" prefWidth="199.0" style="-fx-background-color: #001A23;" text="Télécharger" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="15.0" top="8.0" />
+               </HBox.margin>
+            </Button>
+            <ComboBox fx:id="sortCombo" prefHeight="26.0" prefWidth="186.0" style="-fx-background-color: #001A23;">
+               <HBox.margin>
+                  <Insets left="150.0" top="15.0" />
+               </HBox.margin>
+            </ComboBox>
+            <TextField fx:id="searchField" prefHeight="34.0" prefWidth="190.0" promptText="Entrez nom utilisateur" style="-fx-background-radius: 50px; -fx-border-color: #001A23; -fx-border-radius: 50px; -fx-border-width: 0.5px; -fx-background-color: #F1FAEE;">
+               <HBox.margin>
+                  <Insets left="20.0" top="8.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox layoutX="14.0" layoutY="62.0" prefHeight="40.0" prefWidth="627.0" style="-fx-background-color: #001A23;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="54.0" text="Cin" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="8.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="58.0" text="Nom" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="4.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="70.0" text="Prénom" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="8.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets left="20.0" />
+               </opaqueInsets>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="77.0" text="Email" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="8.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="122.0" text="DateDeNaissance " textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="8.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="73.0" text="téléphone" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="8.0" top="8.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="74.0" text="Adresse" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="8.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="42.0" text="Role" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="8.0" top="8.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="deletebutton" layoutX="532.0" layoutY="337.0" mnemonicParsing="false" onAction="#supprimerLigne" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: #001A23;" text="Supprimer" textFill="#f1faee">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonmodifieruser" layoutX="423.0" layoutY="337.0" mnemonicParsing="false" onAction="#modifierUser" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: #001A23;" text="Modifier" textFill="#f1faee">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

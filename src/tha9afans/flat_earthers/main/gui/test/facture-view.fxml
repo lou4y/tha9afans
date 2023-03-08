@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FactureController">
+   <children>
+      <VBox layoutX="18.0" layoutY="14.0" prefHeight="302.0" prefWidth="559.0" styleClass="primary-background" stylesheets="@../values/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label prefHeight="126.0" prefWidth="316.0" text="Consulter Factures" textFill="WHITE">
+               <font>
+                  <Font name="Corbel" size="36.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="58.0" prefWidth="1045.0">
+               <children>
+                  <Button fx:id="btnrecherche" mnemonicParsing="false" prefHeight="35.0" prefWidth="58.0" styleClass="botton" stylesheets="@../values/style.css">
+                     <HBox.margin>
+                        <Insets left="650.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/recherch.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TextField fx:id="textref" onKeyTyped="#recherche" prefHeight="35.0" prefWidth="278.0" promptText="chercher ..." styleClass="input1" stylesheets="@../values/style.css">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <ListView fx:id="listview" prefHeight="312.0" prefWidth="1045.0" styleClass="card1" stylesheets="@../values/style.css">
+               <opaqueInsets>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </ListView>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="50.0" top="50.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="pdfbtn" mnemonicParsing="false" onAction="#telpdf" prefHeight="62.0" prefWidth="49.0" style="-fx-background-color: transprent;" styleClass="botton" stylesheets="@../values/style.css">
+                     <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/pdffile.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="mailpdf" mnemonicParsing="false" onAction="#mailpdf" prefHeight="62.0" prefWidth="49.0" style="-fx-background-color: transprent;" styleClass="botton" stylesheets="@../values/style.css">
+                     <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/mail.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

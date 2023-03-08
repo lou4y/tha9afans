@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-background-color: #001A23;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierUserController">
+    <children>
+        <VBox prefHeight="415.0" prefWidth="622.0" style="-fx-background-color: #001A23;">
+            <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imageprofileuser" fitHeight="108.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Utilisateur" wrappingWidth="242.93668746948242">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" top="60.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+                <HBox prefHeight="70.0" prefWidth="586.0">
+                    <VBox.margin>
+                        <Insets right="15.0" top="10.0" />
+                    </VBox.margin>
+               <children>
+                  <VBox prefHeight="67.0" prefWidth="170.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="49.336666107177734">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="60.0" right="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="fieldnom" prefHeight="34.0" prefWidth="154.0" promptText="Nom" style="-fx-border-radius: 50px; -fx-background-radius: 50px;" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="66.0" prefWidth="174.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" wrappingWidth="72.53667831420898">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="fieldprenom" prefHeight="37.0" prefWidth="182.0" promptText="Prénom" style="-fx-border-radius: 50px; -fx-background-radius: 50px;" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="79.0" prefWidth="186.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="72.53667831420898">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="fieldemail" prefHeight="37.0" prefWidth="116.0" promptText="Email" style="-fx-border-radius: 50px; -fx-background-radius: 50px;" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+                </HBox>
+            <HBox prefHeight="70.0" prefWidth="586.0">
+               <children>
+                  <VBox prefHeight="70.0" prefWidth="176.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" wrappingWidth="89.33666610717773">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" />
+                           </VBox.margin>
+                        </Text>
+                        <PasswordField fx:id="fieldmotdepasse" prefHeight="35.0" prefWidth="169.0" promptText="Mot de passe" style="-fx-background-radius: 50px;" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="70.0" prefWidth="166.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" wrappingWidth="72.53667831420898">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="fieldadresse" prefHeight="37.0" prefWidth="182.0" promptText="Adresse" style="-fx-border-radius: 50px; -fx-background-radius: 50px;">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="70.0" prefWidth="178.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Téléphone" wrappingWidth="72.53667831420898">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="fieldtelephone" prefHeight="37.0" prefWidth="182.0" promptText="Téléphone" style="-fx-border-radius: 50px; -fx-background-radius: 50px;" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="53.0" prefWidth="576.0">
+               <children>
+                  <VBox prefHeight="54.0" prefWidth="174.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" wrappingWidth="128.53661727905273">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <DatePicker fx:id="fielddate" prefHeight="34.0" prefWidth="175.0" promptText="Date de naissance" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="68.0" prefWidth="179.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Carte d'identité " wrappingWidth="125.3366813659668">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="35.0" />
+                           </VBox.margin>
+                        </Text>
+                        <TextField fx:id="cinfield" prefHeight="34.0" prefWidth="186.0" promptText="cin" style="-fx-border-radius: 50px; -fx-background-radius: 50px;" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Button fx:id="modifbutton" mnemonicParsing="false" prefHeight="38.0" prefWidth="146.0" style="-fx-background-radius: 50px;" text="Modifier" textFill="#0d1510">
+                     <HBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="annulerbutton" mnemonicParsing="false" onAction="#retournelistview" prefHeight="38.0" prefWidth="146.0" style="-fx-background-radius: 50px;" text="Annuler" textFill="#0d1510">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="395.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </children>
+
+</AnchorPane>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="container" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.commentairecontroller">
+   <children>
+      <VBox minHeight="128.0" prefHeight="132.0" prefWidth="874.0" style="-fx-background-color: #f1faee; -fx-background-radius: 30;">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="860.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="896.0">
+                     <children>
+                        <HBox prefHeight="40.0" prefWidth="329.0">
+                           <children>
+                              <ImageView fx:id="profile_photo" fitHeight="40.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="comment_owner" prefHeight="40.0" prefWidth="583.0" text="nom" textFill="#001a23">
+                                 <HBox.margin>
+                                    <Insets left="14.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="553.0">
+                           <children>
+                              <Button fx:id="edit_button" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" onAction="#edit_comment" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: BLUE;">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="EDIT" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="delete_button" minHeight="24.0" minWidth="24.0" mnemonicParsing="false" onAction="#delete_comment" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: RED;">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="13.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="78.0" prefWidth="657.0">
+                     <children>
+                        <VBox prefHeight="55.0" prefWidth="798.0">
+                           <HBox.margin>
+                              <Insets left="52.0" />
+                           </HBox.margin>
+                           <children>
+                              <Label fx:id="comment" alignment="TOP_LEFT" prefHeight="68.0" prefWidth="758.0" text="contenu" textFill="#001a23" />
+                              <HBox fx:id="co" alignment="CENTER_RIGHT" prefHeight="3.0" prefWidth="728.0">
+                                 <children>
+                                    <Label fx:id="comment_date" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="216.0" text="date" textFill="#001a23" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" top="20.0" />
+   </padding>
+</VBox>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.chart.PieChart?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.DashboardController"
+            prefHeight="400.0" prefWidth="600.0">
+    <BorderPane layoutX="114.0" layoutY="54.0" prefHeight="459.0" prefWidth="755.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <top>
+            <AnchorPane prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #F1FAEE" BorderPane.alignment="CENTER">
+                <Label fx:id="Menu" layoutX="14.0" layoutY="36.0" prefHeight="22.0" prefWidth="92.0" textFill="#b7b7b7" AnchorPane.bottomAnchor="7.007998687500045" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="618.063980710938" AnchorPane.topAnchor="20.0">
+                    <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@images/menu.png" />
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="MenuClose" layoutX="14.0" layoutY="36.0" prefHeight="39.0" prefWidth="59.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="769.0" AnchorPane.topAnchor="20.0">
+                    <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@images/menu.png" />
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Text fx:id="textusername" layoutX="716.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="119.73681640625">
+                    <font>
+                        <Font name="Akhbar MT Bold" size="19.0" />
+                    </font>
+                </Text>
+            </AnchorPane>
+        </top>
+        <left>
+            <AnchorPane fx:id="slider" prefHeight="330.0" prefWidth="212.0" style="-fx-background-color: #001A23;" BorderPane.alignment="CENTER">
+                <ImageView fitHeight="90.0" fitWidth="96.0" layoutX="31.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="31.0">
+                    <Image url="@images/fonce.png" />
+                </ImageView>
+                <VBox layoutX="14.0" layoutY="35.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
+                    <Button alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="207.0" style="-fx-background-color: #001A23;" text="utilisateurs" textFill="WHITE">
+                        <font>
+                            <Font name="Arial Nova Bold" size="18.0" />
+                        </font>
+                        <graphic>
+                            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@images/icons8-test-account-90.png" />
+                            </ImageView>
+                        </graphic>
+                        <VBox.margin>
+                            <Insets left="5.0" />
+                        </VBox.margin>
+                    </Button>
+                    <Button alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="176.0" style="-fx-background-color: #001A23;" text="Factures" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <graphic>
+                            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@images/icons8-papers-64.png" />
+                            </ImageView>
+                        </graphic>
+                        <VBox.margin>
+                            <Insets left="5.0" />
+                        </VBox.margin>
+                    </Button>
+                    <Button alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="206.0" style="-fx-background-color: #001A23;" styleClass="sidebarItem" text="Dashboard" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <graphic>
+                            <ImageView fitHeight="31.0" fitWidth="32.0">
+
+                                <Image url="@images/statistic.png" />
+                            </ImageView>
+                        </graphic>
+                        <VBox.margin>
+                            <Insets left="5.0" />
+                        </VBox.margin>
+                    </Button>
+                    <Button fx:id="logoutbutton" alignment="BASELINE_LEFT" onAction="#logout" prefHeight="38.0" prefWidth="176.0" style="-fx-background-color: #001A23;" text="Log out" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                        <graphic>
+                            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@images/icons8-exclamation-58.png" />
+                            </ImageView>
+                        </graphic>
+                        <VBox.margin>
+                            <Insets left="5.0" />
+                        </VBox.margin>
+                    </Button>
+
+                </VBox>
+            </AnchorPane>
+        </left>
+        <center>
+            <AnchorPane fx:id="ap" prefHeight="394.0" prefWidth="532.0" BorderPane.alignment="CENTER">
+                <PieChart fx:id="userStatsByRegionPieChart" layoutX="35.0" layoutY="35.0" prefHeight="330.0" prefWidth="530.0" title="Utilisateurs par région" />
+
+            </AnchorPane>
+        </center>
+    </BorderPane>
+
+
+</AnchorPane>

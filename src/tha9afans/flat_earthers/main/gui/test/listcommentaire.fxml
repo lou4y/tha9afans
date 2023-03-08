@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="742.0" prefWidth="970.0" style="-fx-background-color: #001A23; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Listcommentairecontroller">
+   <children>
+      <VBox minWidth="780.0" prefHeight="684.0" prefWidth="909.0">
+         <children>
+            <Label prefHeight="56.0" prefWidth="343.0" text="Event Comments" textFill="#f1faee">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="comment_pane" minHeight="203.0" prefHeight="649.0" prefWidth="909.0">
+               <content>
+                  <VBox fx:id="comment_grid" prefHeight="318.0" prefWidth="892.0" />
+               </content>
+            </ScrollPane>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <TextArea fx:id="comment_content" minHeight="109.0" minWidth="200.0" prefHeight="117.0" prefWidth="909.0" />
+                  <HBox alignment="TOP_RIGHT" prefHeight="59.0" prefWidth="909.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="post_button" alignment="CENTER" mnemonicParsing="false" onAction="#post_comment" prefHeight="26.0" prefWidth="125.0" style="-fx-background-color: #f1faee;" text="Post" />
+                     </children>
+                     <padding>
+                        <Insets top="13.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </VBox.margin>
+      </VBox>
+   </children>
+</VBox>

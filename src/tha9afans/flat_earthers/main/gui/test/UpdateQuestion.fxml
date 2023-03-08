@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateQuestionController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F1FAEE;">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="118.0" style="-fx-background-color: #001423;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <Pane fx:id="submit" layoutX="149.0" layoutY="28.0" prefHeight="344.0" prefWidth="424.0" style="-fx-background-color: #001423; -fx-background-radius: 25;">
+         <children>
+            <Label layoutX="28.0" layoutY="21.0" text="Update Question" textFill="#f1faee">
+               <font>
+                  <Font name="Helvetica Neue" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="question" layoutX="35.0" layoutY="86.0" prefHeight="26.0" prefWidth="359.0" style="-fx-background-color: #f1faee;" />
+            <TextField fx:id="firstPossibleAnswer" layoutX="34.0" layoutY="127.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
+            <TextField fx:id="secondPossibleAnswer" layoutX="220.0" layoutY="127.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
+            <TextField fx:id="thirdPossibleAnswer" layoutX="35.0" layoutY="165.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
+            <TextField fx:id="rightAnswer" layoutX="220.0" layoutY="165.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
+            <ChoiceBox fx:id="timer" layoutX="35.0" layoutY="203.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
+            <Button fx:id="fileChooser" layoutX="365.0" layoutY="204.0" mnemonicParsing="false" onAction="#ButtonAction" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: #f1faee;" text="Choose File">
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Button>
+            <TextField fx:id="image" layoutX="220.0" layoutY="204.0" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #f1faee;" />
+            <Button fx:id="updateQuestion" layoutX="134.0" layoutY="265.0" mnemonicParsing="false" text="Update" />
+            <Pane layoutX="-172.0" layoutY="126.0" prefHeight="200.0" prefWidth="118.0" style="-fx-background-color: #001423;" />
+            <Label layoutX="35.0" layoutY="62.0" text="Question" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

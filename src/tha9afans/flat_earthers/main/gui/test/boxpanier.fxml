@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox prefHeight="134.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BoxpanierController">
+   <children>
+      <HBox fx:id="panier" alignment="CENTER_LEFT" minHeight="124.0" prefHeight="125.0" prefWidth="536.0" spacing="20.0" styleClass="card" stylesheets="@../values/style.css">
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/shopping-cart.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="140.0" prefWidth="126.0" stylesheets="@../values/style.css">
+               <children>
+                  <Label fx:id="produitname" prefHeight="45.0" prefWidth="126.0" styleClass="text" stylesheets="@../values/style.css" text="alf lil w lila" textFill="#040cea">
+                     <font>
+                        <Font name="Corbel Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="144.0" styleClass="add-remove-layout" stylesheets="@../values/style.css">
+               <children>
+                  <Button fx:id="minus" mnemonicParsing="false" onAction="#min" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: transprent;" text="-">
+                     <font>
+                        <Font name="Corbel" size="15.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="qproduit" alignment="CENTER" prefHeight="34.0" prefWidth="79.0" textFill="#0202ff">
+                     <font>
+                        <Font name="Corbel" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="plus" mnemonicParsing="false" onAction="#max" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: transprent;" text="+">
+                     <font>
+                        <Font name="Corbel" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Label fx:id="prixprodu" alignment="CENTER" prefHeight="50.0" prefWidth="100.0" text="10" textFill="#3a04ff">
+               <font>
+                  <Font name="Corbel Light" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="btndelete" defaultButton="true" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="52.0" style="-fx-background-color: transprent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icon_close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" top="5.0" />
+   </padding>
+</HBox>

@@ -1,0 +1,73 @@
+.primary-background{
+    -fx-background-color: #001A23;
+}
+
+
+.secondary-background{
+    -fx-background-color: #1D3557;
+}
+
+.therd-background{
+    -fx-background-color: #FFFFFF;
+}
+.card1{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 2;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0, 0, 10.0);
+}
+.card{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0, 0, 10.0);
+}
+.cardc{
+    -fx-background-color: #001A23;
+    -fx-background-radius: 20;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0, 0, 10.0);
+}
+.add-remove-layout{
+    -fx-border-radius: 50;
+    -fx-border-width: 1;
+    -fx-border-color: #303030;
+}
+
+.rect-round{
+    -fx-background-radius: 20;
+}
+
+.price{
+    -fx-background-color: #F1FAEE;
+    -fx-background-radius: 5;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0, 0, 20.0);
+}
+
+.zit-border{
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-border-color: #001A23;
+}
+
+.input{
+    -fx-border-color: #001A23;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+.botton{
+    -fx-background-color: #F1FAEE;
+    -fx-background-radius: 20;
+    -fx-text-fill: #457B9D;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0, 0, 5.0);
+}
+
+
+.input1{
+    -fx-background-color: #F1FAEE;
+    -fx-background-radius: 5;
+    -fx-text-fill: #457B9D;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0, 0, 5.0);
+}

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="1422.0" prefWidth="1437.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.evenementcontroller">
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <ScrollPane fx:id="SPane" minWidth="1000.0" prefHeight="900.0" prefWidth="1000.0">
+               <content>
+                  <HBox minWidth="1000.0" prefHeight="1400.0" prefWidth="1118.0">
+                     <children>
+                        <VBox prefHeight="914.0" prefWidth="118.0" />
+                        <VBox minWidth="1000.0" prefHeight="914.0" prefWidth="1000.0">
+                           <children>
+                              <VBox style="-fx-background-color: #001A23; -fx-background-radius: 20px;">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="211.0" prefWidth="406.0">
+                                             <children>
+                                                <ImageView fx:id="image_ev" fitHeight="301.0" fitWidth="422.0" pickOnBounds="true" preserveRatio="true" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="303.0" prefWidth="397.0">
+                                             <children>
+                                                <Label fx:id="title" prefHeight="56.0" prefWidth="416.0" text="Title" textFill="#f1faee">
+                                                   <font>
+                                                      <Font size="39.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox>
+                                                   <children>
+                                                      <Label fx:id="like" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="33.0" text="50" textFill="#f1faee" />
+                                                      <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="165.0" text="like" textFill="#f1faee" />
+                                                   </children>
+                                                </HBox>
+                                                <Label fx:id="desc" alignment="TOP_LEFT" prefHeight="172.0" prefWidth="230.0" text="DES" textFill="#f1faee">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefHeight="18.0" prefWidth="54.0" text="location:" textFill="#f1faee" />
+                                                      <Label fx:id="location" prefHeight="18.0" prefWidth="131.0" text="loc" textFill="#f1faee" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefHeight="18.0" prefWidth="54.0" text="Date:" textFill="#f1faee" />
+                                                      <Label fx:id="date" prefHeight="18.0" prefWidth="176.0" text="d" textFill="#f1faee" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefHeight="18.0" prefWidth="54.0" text="Price:" textFill="#f1faee" />
+                                                      <Label fx:id="price" prefHeight="18.0" prefWidth="22.0" text="pr" textFill="#f1faee" />
+                                                      <Label prefHeight="18.0" prefWidth="25.0" text="DT" textFill="#f1faee" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="15.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label prefHeight="18.0" prefWidth="244.0" text="Planning :" textFill="#f1faee">
+                                             <font>
+                                                <Font size="21.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </HBox>
+                                    <VBox fx:id="sessionview">
+                                       <padding>
+                                          <Insets bottom="15.0" top="15.0" />
+                                       </padding>
+                                    </VBox>
+                                    <HBox alignment="CENTER" prefHeight="10.0" prefWidth="430.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="26.0" prefWidth="564.0">
+                                             <children>
+                                                <Button fx:id="like_button" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#like" prefHeight="36.0" prefWidth="36.0" style="-fx-background-radius: 50; -fx-background-color: #f1faee;" text="♥" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="37.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="-13.0" top="-8.0" />
+                                                   </padding>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="26.0" prefWidth="544.0">
+                                             <children>
+                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="126.0" style="-fx-background-color: #f1faee;" text="Participate" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox minHeight="100.0" />
+                              <VBox fx:id="commentlist" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </center>
+   <left>
+      <VBox prefHeight="774.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="b1" mnemonicParsing="false" onAction="#kl" prefHeight="26.0" prefWidth="130.0" text="Return" />
+            <Button mnemonicParsing="false" onAction="#deleteevent" prefHeight="26.0" prefWidth="130.0" text="delete">
+               <VBox.margin>
+                  <Insets top="11.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="b2" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="130.0" text="edit">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
+   </left>
+</BorderPane>

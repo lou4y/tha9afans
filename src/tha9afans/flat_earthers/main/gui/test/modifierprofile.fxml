@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="535.0" prefWidth="900.0" style="-fx-background-color: #F1FAEE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierprofileController">
+   <children>
+      <BorderPane fx:id="bp" prefHeight="535.0" prefWidth="900.0" AnchorPane.leftAnchor="20.0">
+         <left>
+            <VBox prefHeight="497.0" prefWidth="153.0" style="-fx-background-color: #F1FAEE;" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fill="#001a23" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" wrappingWidth="152.53680419921875">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Text>
+                  <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="163.0" prefWidth="126.0" style="-fx-background-color: #F1FAEE;">
+                     <children>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#informationsbutton" prefHeight="41.0" prefWidth="154.0" style="-fx-background-color: #F1FAEE; -fx-border-width: 0px 0px 1px; -fx-border-color: #001A23;" text="Informations" textOverrun="CLIP">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#eventsbutton" prefHeight="41.0" prefWidth="154.0" style="-fx-background-color: #F1FAEE; -fx-border-color: #001A23; -fx-border-width: 0px 0px 1px;" text="Evénements">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#securitebutton" prefHeight="41.0" prefWidth="150.0" style="-fx-background-color: #F1FAEE; -fx-border-color: #001A23; -fx-border-width: 0px 0px 1px;" text="Sécurité">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#storebutton" prefHeight="41.0" prefWidth="153.0" style="-fx-background-color: #F1FAEE; -fx-border-color: #001A23; -fx-border-width: 0px 0px 1px;" text="Store">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="30.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <right>
+            <BorderPane prefHeight="415.0" prefWidth="685.0" BorderPane.alignment="CENTER">
+               <AnchorPane fx:id="ap" prefHeight="394.0" prefWidth="532.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="402.0" prefWidth="490.0">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cin" wrappingWidth="44.74371337890625">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="textfieldcin" prefHeight="34.0" prefWidth="170.0" style="-fx-background-radius: 50px;" />
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="44.74371337890625">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField fx:id="textfieldnom" prefHeight="34.0" prefWidth="170.0" style="-fx-background-radius: 50px;">
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox prefWidth="200.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" wrappingWidth="75.14373779296875">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField fx:id="textfieldprenom" prefHeight="34.0" prefWidth="170.0" style="-fx-background-radius: 50px;">
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="34.0" prefWidth="476.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="75.14373779296875">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="textfieldemail" prefHeight="34.0" prefWidth="170.0" style="-fx-background-radius: 50px;" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Téléphone" wrappingWidth="103.14373779296875">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField fx:id="textfieldtelephone" prefHeight="34.0" prefWidth="170.0" style="-fx-background-radius: 50px;">
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" wrappingWidth="75.14373779296875">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <TextField fx:id="textfieldadresse" prefHeight="34.0" prefWidth="170.0" style="-fx-background-radius: 50px;">
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance" wrappingWidth="147.20000000000005">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <DatePicker fx:id="textfieldbirthdate" prefHeight="34.0" prefWidth="170.0">
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </DatePicker>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="modifierprofileuser" mnemonicParsing="false" prefHeight="45.0" prefWidth="152.0" style="-fx-background-radius: 50px; -fx-background-color: #001A23;" text="Modifier" textFill="#f1faee">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="70.0" top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets bottom="20.0" left="30.0" top="5.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     
+                     <BorderPane.margin>
+                        <Insets top="120.0" />
+                     </BorderPane.margin>
+               </AnchorPane>
+               <BorderPane.margin>
+                  <Insets left="30.0" top="120.0" />
+               </BorderPane.margin>
+               <top>
+
+                                    <ImageView fx:id="profileimageview" fitHeight="106.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@images/download-removebg-preview (1).png" />
+                           </image>
+                        </ImageView>
+               </top>
+            </BorderPane>
+         </right>
+            </BorderPane>
+   </children>
+</AnchorPane>
