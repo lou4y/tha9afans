@@ -1,6 +1,7 @@
 package services;
 
 import entities.Billet;
+import entities.Evenement;
 import utils.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -94,5 +95,16 @@ public class ServiceBillet implements IService<Billet>{
             System.out.println(e);
         }
         return p;
+    }
+    public int getId(Billet billet) {
+        List<Billet> list = getAll();
+        Billet b = list.stream()
+                .filter(e -> e.getEvenement().getId()==(billet.getEvenement().getId()) &&
+                        e.getCode().equals(billet.getCode()) &&
+                        e.getDate_validite().equals(billet.getDate_validite()) &&
+                        e.getPrix()==(billet.getPrix()))
+                .findFirst()
+                .orElse(null);
+        return b != null ? b.getId() : -1;
     }
 }

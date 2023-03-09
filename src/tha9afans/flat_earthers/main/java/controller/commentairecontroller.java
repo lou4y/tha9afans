@@ -50,7 +50,7 @@ public class commentairecontroller {
         evenementcontroller nextController = loader.getController();
         nextController.eventpage(this.ev);
         Stage stage = (Stage) delete_button.getScene().getWindow();
-        Scene scene=new Scene(root,1400,700);
+        Scene scene=new Scene(root,1020,700);
         stage.setScene(scene);
         stage.show();
 
@@ -75,7 +75,8 @@ public class commentairecontroller {
         InputStream stream = new FileInputStream("D:/resources/man.png");
         Image image = new Image(stream);
         profile_photo.setImage(image);
-        comment_owner.setText(String.valueOf(commentaire.getId_user()));
+        this.profile_photo.setImage(new Image(commentaire.getuser().getPhoto()));
+        comment_owner.setText(String.valueOf(commentaire.getuser().getNom()));
         comment.setText(commentaire.getCommentaire());
         comment_date.setText(String.valueOf(commentaire.getDate()));
     }

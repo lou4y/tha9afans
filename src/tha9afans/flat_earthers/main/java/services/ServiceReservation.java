@@ -26,7 +26,7 @@ public class ServiceReservation implements IService<Reservation> {
             ps.setDate(1, p.getDate_reservation());
             ps.setBoolean(2, p.getIspPaid());
             ps.setString(3, p.getPayment_info());
-            ps.setInt(4, userlogged.getIdUser());
+            ps.setInt(4, 0);
             ps.setInt(5, p.getBillet().getId());
             ps.executeUpdate();
             System.out.println("reservation ajoutée");
@@ -52,12 +52,13 @@ public class ServiceReservation implements IService<Reservation> {
     public void modifier(Reservation p) {
         String req = "UPDATE `reservation` SET `date_reservation`=? ,`isPaid`=?," +
                 "`payment_info`=?,`id_user`=?,`id_billet`=? WHERE id=?";
+        System.out.println("modif");
         try {
             PreparedStatement ps = conx.prepareStatement(req);
             ps.setDate(1, p.getDate_reservation());
             ps.setBoolean(2, p.getIspPaid());
             ps.setString(3, p.getPayment_info());
-            ps.setInt(4, userlogged.getIdUser());
+            ps.setInt(4, p.getUser().getId());
             ps.setInt(5, p.getBillet().getId());
             ps.setInt(6, p.getId());
             ps.executeUpdate();
@@ -112,11 +113,36 @@ public class ServiceReservation implements IService<Reservation> {
 
     public boolean billetDisponible(Evenement evenement) {
         List<Billet> billets =getAll().stream()
-                .filter(reservation -> reservation.getUser().getNom() != null)
+                .filter(reservation -> reservation.getUser().getId() == 0)
                 .map(res -> res.getBillet())
                 .filter(billet -> billet.getEvenement().getId() == evenement.getId())
                 .collect(Collectors.toList());
-        return evenement.getNb_participants() > billets.size();
+        return  billets.size() > evenement.getNb_participants() ;
+    }
+    public Billet billetDispo(Evenement evenement) {
+        List<Billet> billets =getAll().stream()
+                .filter(reservation -> reservation.getUser().getId() == 0)
+                .map(res -> res.getBillet())
+                .filter(billet -> billet.getEvenement().getId() == evenement.getId())
+                .collect(Collectors.toList());
+        System.out.println(billets);
+        return billets.get(0);
+    }
+    public Reservation ReservationDispo(Evenement evenement) {
+        List<Reservation> reservations =getAll().stream()
+                .filter(reservation -> reservation.getUser().getId() == 0 && reservation.getBillet().getEvenement().getId()==evenement.getId())
+                .collect(Collectors.toList());
+        System.out.println(reservations.get(0));
+        return reservations.get(0);
+    }
+    public int ReservationDispon(Evenement evenement) {
+        List<Reservation> reservations =getAll().stream()
+                .filter(reservation -> reservation.getUser().getId() == 0 && reservation.getBillet().getEvenement().getId()==evenement.getId())
+                .collect(Collectors.toList());
+        if (reservations.size() == 0)
+            return 0;
+        else
+            return reservations.size();
     }
 
 
@@ -151,17 +177,18 @@ public class ServiceReservation implements IService<Reservation> {
             return eventIsPresent.get().getId();
     }
 
-    public void setAllBillet(Evenement e) {
-        int id_event = findIdEvenement(e);
-        if (id_event == -1) {
+    public void setAllBillet(int id) {
+        ServiceEvenement se= new ServiceEvenement();
+
+        if (id == 0) {
             System.out.println("evenement n'existe pas je suis dans la fonction setAllBillet serviceBillet");
             return;
         }
-        for (int i = 0; i < e.getNb_participants(); i++) {
-            Billet b = new Billet( Integer.toString(i), e.getDate(), e.getPrix(), e);
+        for (int i = 0; i < se.getOneById(id).getNb_participants(); i++) {
+            Billet b = new Billet( Integer.toString(i), se.getOneById(id).getDate(), se.getOneById(id).getPrix(),se.getOneById(id));
             serviceBillet.ajouter(b);
-            Reservation r = new Reservation(Date.valueOf("1990-01-01"), false, "ok",
-                    new Utilisateur("0","null","0","0","0","0","0",null),b);
+           int  idb=serviceBillet.getId(b);
+            Reservation r = new Reservation(Date.valueOf("1990-01-01"), false, "ok", null,serviceBillet.getOneById(idb));
             /*new User(0, "null"), b)*/
             ajouter(r);
         }

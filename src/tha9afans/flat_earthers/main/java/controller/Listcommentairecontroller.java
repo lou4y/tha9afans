@@ -10,7 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
+import services.AuthResponseDTO;
 import services.ServiceCommentaire;
+import services.ServicePersonne;
+import services.UserSession;
+import services.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +24,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Listcommentairecontroller implements Initializable {
+    ServicePersonne sp =new ServicePersonne();
+
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
 
     @FXML
     private ScrollPane comment_pane;
@@ -36,6 +43,7 @@ public class Listcommentairecontroller implements Initializable {
     private Button post_button;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        CommentFilter.applyFilter(comment_content);
         comment_pane.setStyle("-fx-background:   #001A23; -fx-background-color:   #001A23");
     }
 
@@ -57,7 +65,7 @@ public class Listcommentairecontroller implements Initializable {
     void post_comment(ActionEvent event) throws IOException {
 
         ServiceCommentaire sc = new ServiceCommentaire();
-        Commentaire c = new Commentaire(15,ev, comment_content.getText(), Date.valueOf(LocalDate.now()));
+        Commentaire c = new Commentaire(sp.getOneById(userlogged.getIdUser()),ev, comment_content.getText(), Date.valueOf(LocalDate.now()));
         sc.ajouter(c);
         setCommentList(this.ev);
 

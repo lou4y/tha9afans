@@ -6,7 +6,6 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,26 +20,6 @@
         <top>
             <AnchorPane prefHeight="58.0" prefWidth="839.0" style="-fx-background-color: #F1FAEE" BorderPane.alignment="CENTER">
             <ImageView fx:id="profileimageview" fitHeight="50.0" fitWidth="50.0" layoutX="752.0" layoutY="16.0" AnchorPane.leftAnchor="752.0" AnchorPane.topAnchor="16.0" />
-                <Label fx:id="Menu" layoutX="14.0" layoutY="36.0" prefHeight="22.0" prefWidth="92.0" textFill="#b7b7b7" AnchorPane.bottomAnchor="7.007998687500045" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="618.063980710938" AnchorPane.topAnchor="20.0">
-                    <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@images/menu.png" />
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label fx:id="MenuClose" layoutX="14.0" layoutY="36.0" prefHeight="39.0" prefWidth="59.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="769.0" AnchorPane.topAnchor="20.0">
-                    <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@images/menu.png" />
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
                 <Text fx:id="textusername" fill="#001a23" layoutX="816.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.7366943359375" AnchorPane.leftAnchor="816.0" AnchorPane.rightAnchor="21.063305664062455" AnchorPane.topAnchor="24.71826171875">
                     <font>
                         <Font name="AGA Arabesque" size="17.0" />
@@ -86,24 +65,11 @@
                </Button>
                     <Button fx:id="buttonuser" alignment="BASELINE_LEFT" onMouseClicked="#gestionusers" onMouseEntered="#butttonhover2" onMouseExited="#buttondishover2" prefHeight="38.0" prefWidth="207.0" style="-fx-background-color: #001A23; -fx-border-color: white; -fx-border-width: 0px 0px 1px;" styleClass="sidebarItem" text="utilisateurs" textFill="WHITE">
                         <font>
-                            <Font name="Arial Nova Bold" size="18.0" />
-                        </font>
-                        <graphic>
-                            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@images/icons8-test-account-90.png" />
-                            </ImageView>
-                        </graphic>
-                        <VBox.margin>
-                            <Insets left="1.0" />
-                        </VBox.margin>
-                    </Button>
-                    <Button fx:id="buttonfacture" alignment="BASELINE_LEFT" onMouseClicked="#userinterface" onMouseEntered="#butttonhover3" onMouseExited="#buttondishover3" prefHeight="41.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px;" styleClass="sidebarItem" text="Factures" textFill="WHITE">
-                        <font>
                             <Font name="System Bold" size="18.0" />
                         </font>
                         <graphic>
                             <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@images/icons8-papers-64.png" />
+                                <Image url="@images/icons8-test-account-90.png" />
                             </ImageView>
                         </graphic>
                         <VBox.margin>
@@ -117,19 +83,19 @@
                   <graphic>
                      <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@images/icons8-papers-64.png" />
+                           <Image url="@images/icons8-events-64.png" />
                         </image>
                      </ImageView>
                   </graphic>
                </Button>
-               <Button fx:id="quizzbutton" alignment="BASELINE_LEFT" layoutX="11.0" layoutY="30.0" onMouseClicked="#quizz" onMouseEntered="#butttonhoverquizz" onMouseExited="#buttondishoverquizz" prefHeight="40.0" prefWidth="206.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 1px; -fx-border-color: white;" styleClass="sidebarItem" text="Quizz" textFill="WHITE">
+               <Button fx:id="buttonquizz" alignment="BASELINE_LEFT" layoutX="11.0" layoutY="30.0" onMouseClicked="#quizz" onMouseEntered="#butttonhoverquizz" onMouseExited="#buttondishoverquizz" prefHeight="40.0" prefWidth="206.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 1px; -fx-border-color: white;" styleClass="sidebarItem" text="Quizz" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font>
                   <graphic>
                      <ImageView fitHeight="31.0" fitWidth="32.0">
                         <image>
-                           <Image url="@images/statistic.png" />
+                           <Image url="@images/icons8-visual-game-boy-50.png" />
                         </image>
                      </ImageView>
                   </graphic>
