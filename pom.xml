@@ -40,17 +40,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>net.glxn</groupId>
-            <artifactId>qrgen</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>zxing.appspot.com</artifactId>
-            <version>3.5.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.osmdroid</groupId>
             <artifactId>osmdroid-android</artifactId>
             <version>6.1.7</version>
