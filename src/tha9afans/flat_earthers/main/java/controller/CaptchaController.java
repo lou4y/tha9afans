@@ -44,7 +44,7 @@ public class CaptchaController implements Initializable {
                 System.out.println("CAPTCHA verified!");
                 Parent playQuizHome = FXMLLoader.load(getClass().getResource("/test/PlayQuizHome.fxml"));
                 Stage window = (Stage) answerField.getScene().getWindow();
-                window.setScene(new Scene(playQuizHome, 600, 400));
+                window.setScene(new Scene(playQuizHome, 1400, 700));
                 window.setTitle("");
             } else {
 
@@ -58,7 +58,7 @@ public class CaptchaController implements Initializable {
                     alert.showAndWait();
                     Parent quizHome = FXMLLoader.load(getClass().getResource("/test/QuizHome.fxml"));
                     Stage window = (Stage) answerField.getScene().getWindow();
-                    window.setScene(new Scene(quizHome, 600, 400));
+                    window.setScene(new Scene(quizHome, 1400, 700));
                     window.setTitle("");
                     attempts = 0; // reset the attempts counter
                 } else {

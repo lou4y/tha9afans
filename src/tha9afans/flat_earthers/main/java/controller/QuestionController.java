@@ -4,27 +4,31 @@ import entities.Question;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
-import services.ServiceQuizQuestion;
+import services.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 public class QuestionController {
+
+
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
 
     @FXML
     private Button firstPossibleAnswer;
@@ -71,6 +75,7 @@ public class QuestionController {
     private boolean isPaused = false;
 
     private Duration pausedTime;
+    private boolean isGameOver = false;
 
 
 
@@ -150,25 +155,6 @@ public class QuestionController {
         }
     }
 
-    @FXML
-    void pauseGame(ActionEvent event) {
-        if (!isPaused) {
-            isPaused = true;
-            timeline.pause();
-            pausedTime = timeline.getCurrentTime();
-            timer.setText("Paused");
-        } else {
-            isPaused = false;
-            Duration remainingTime = Duration.seconds(Double.parseDouble(timer.getText())).subtract(Duration.millis(pausedTime.toSeconds()));
-            timeline = new Timeline(
-                    new KeyFrame(remainingTime, e -> handleTimeUp())
-            );
-            timeline.setCycleCount(1);
-            timeline.play();
-            timer.setText(String.valueOf((int) remainingTime.toSeconds()));
-        }
-    }
-
 
     public void startTimer() {
         if (!isPaused) {
@@ -209,22 +195,58 @@ public class QuestionController {
 
     @FXML
     void checkAnswer(ActionEvent event) throws IOException {
+        ServicePersonne sp = new ServicePersonne();
+
+
         Button clickedButton = (Button) event.getSource();
         String chosenAnswer = clickedButton.getText();
 
-        if (chosenAnswer.equals(rightAnswer)) {
-            this.scoreCount+=100;
+        if (!isGameOver && chosenAnswer.equals(rightAnswer)) {
+            this.scoreCount += 100;
             this.score.setText("Score: " + this.scoreCount);
+
         }
-        nextQuestionScene();
+
+        // Disable all answer buttons
+        this.firstPossibleAnswer.setDisable(true);
+        this.secondPossibleAnswer.setDisable(true);
+        this.thirdPossibleAnswer.setDisable(true);
+
+        // Check if there are any questions remaining
+        if (this.questions.isEmpty()) {
+            // Game is over, show score alert and go back to PlayQuizHome.fxml
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Quiz Over");
+            alert.setHeaderText("Congratulations!");
+            alert.setContentText("Your score is: " + this.scoreCount);
+            alert.showAndWait();
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/PlayQuizHome.fxml"));
+            Parent root = loader.load();
+            Scene scene = clickedButton.getScene();
+            scene.setRoot(root);
+        } else {
+            nextQuestionScene();
+        }
     }
 
     @FXML
-    void nextQuestion(ActionEvent event) throws IOException {
-        nextQuestionScene();
-
-
+    void quitGame(ActionEvent event) throws IOException {
+        isGameOver = true;
+        if (timeline != null) {
+            timeline.stop();
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/PlayQuizHome.fxml"));
+        Parent root = loader.load();
+        Scene scene = quitGame.getScene();
+        scene.setRoot(root);
     }
+
+
+
+
+
 
     @FXML
     void skipQuestion(ActionEvent event) throws IOException {

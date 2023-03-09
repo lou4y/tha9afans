@@ -49,7 +49,6 @@ public class QuizWidgetController {
         quizName.setText(quiz.getQuiz_name());
         quizDescription.setText(quiz.getQuiz_description());
         numberOfQuestions.setText(String.valueOf(quiz.getNumber_of_questions()) + " Questions");
-        timesPlayed.setText(String.valueOf(quiz.getTimes_played()) + " Times Played");
         VBox.setMargin(text, new Insets(20, 0, 20, 20));
         try (InputStream stream = quiz.getQuiz_cover()) {
             if (stream != null) {
