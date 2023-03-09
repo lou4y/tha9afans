@@ -65,22 +65,6 @@
                </Button>
                     <Button fx:id="buttonuser" alignment="BASELINE_LEFT" onMouseClicked="#gestionusers" onMouseEntered="#butttonhover2" onMouseExited="#buttondishover2" prefHeight="38.0" prefWidth="207.0" style="-fx-background-color: #001A23; -fx-border-color: white; -fx-border-width: 0px 0px 1px;" styleClass="sidebarItem" text="utilisateurs" textFill="WHITE">
                         <font>
-<<<<<<< HEAD
-=======
-                            <Font name="System Bold" size="18.0" />
-                        </font>
-                        <graphic>
-                            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@images/icons8-test-account-90.png" />
-                            </ImageView>
-                        </graphic>
-                        <VBox.margin>
-                            <Insets left="1.0" />
-                        </VBox.margin>
-                    </Button>
-                    <Button fx:id="buttonfacture" alignment="BASELINE_LEFT" onMouseClicked="#userinterface" onMouseEntered="#butttonhover3" onMouseExited="#buttondishover3" prefHeight="41.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 1px;" styleClass="sidebarItem" text="Factures" textFill="WHITE">
-                        <font>
->>>>>>> origin/main
                             <Font name="System Bold" size="18.0" />
                         </font>
                         <graphic>
