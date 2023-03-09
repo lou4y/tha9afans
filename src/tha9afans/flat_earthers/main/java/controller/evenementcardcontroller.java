@@ -42,7 +42,7 @@ public class evenementcardcontroller{
     @FXML
     void moredetails(MouseEvent event) throws IOException {
 
-        InputStream stream = new FileInputStream("D:/resources/tha9afans.png");
+        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/images/logo.png");
         Image image = new Image(stream);
     SidenavbaruserController sidenavbaruserController = new SidenavbaruserController();
 
@@ -52,7 +52,7 @@ public class evenementcardcontroller{
 
 
     public void setevenement(Evenement e) throws FileNotFoundException {
-        InputStream stream = new FileInputStream("D:/resources/tha9afans.png");
+        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/images/logo.png");
         Image image = new Image(stream);
         this.e=e;
         event_name.setText(e.getNom());

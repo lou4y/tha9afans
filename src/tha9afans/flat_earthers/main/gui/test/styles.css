@@ -1,0 +1,14 @@
+.table-view .button {
+    -fx-background-color: #457B9D; /* Green */
+    -fx-border-radius: 8px;
+    -fx-border-color: #457B9D;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 10px;
+}
+
+.table-view .button:hover {
+    -fx-background-color: #2E8B57; /* Darker green */
+    -fx-border-color: #2E8B57;
+}
