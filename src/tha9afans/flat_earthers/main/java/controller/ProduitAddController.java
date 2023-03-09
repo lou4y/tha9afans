@@ -12,8 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.Rating;
+import services.AuthResponseDTO;
 import services.ServiceCategorie;
 import services.ServiceProduit;
+import services.UserSession;
 import utils.DataSource;
 
 import java.io.*;
@@ -49,12 +51,13 @@ public class ProduitAddController implements Initializable {
     @FXML
     private ComboBox<Categorie> cb_categorie= new ComboBox<>();;
     Connection cnx = DataSource.getInstance().getCnx();
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         ServiceCategorie sc=new ServiceCategorie();
         List <Categorie> list = sc.getAll();
-        liste=sp.getAllByUser(2);
+        liste=sp.getAllByUser(userlogged.getIdUser());
         try {
             load();
         } catch (IOException e) {
@@ -71,7 +74,7 @@ public class ProduitAddController implements Initializable {
     }
     private void load() throws IOException {
         product_grid.getChildren().clear();
-        liste=sp.getAllByUser(2);
+        liste=sp.getAllByUser(userlogged.getIdUser());
         System.out.println(liste);
         int col = 0;
         int row = 1;
@@ -112,7 +115,7 @@ public class ProduitAddController implements Initializable {
             Double remise=Double.parseDouble(produitremise.getText());
             Double rate=produitrating.getRating();
             ServiceProduit sp= new ServiceProduit();
-            Produit p = new Produit(nom,description,libelle,2,prix,null,categorie,remise,rate);
+            Produit p = new Produit(nom,description,libelle,userlogged.getIdUser(),prix,null,categorie,remise,rate);
             sp.ajouter(p);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "produit added !", ButtonType.OK);
             alert.showAndWait();
