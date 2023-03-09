@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox prefHeight="134.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BoxpanierController">
    <children>
       <HBox fx:id="panier" alignment="CENTER_LEFT" minHeight="124.0" prefHeight="125.0" prefWidth="536.0" spacing="20.0" styleClass="card" stylesheets="@../values/style.css">
@@ -33,7 +32,7 @@
             </VBox>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="144.0" styleClass="add-remove-layout" stylesheets="@../values/style.css">
                <children>
-                  <Button fx:id="minus" mnemonicParsing="false" onAction="#min" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: transprent;" text="-">
+                  <Button fx:id="minus" mnemonicParsing="false" onAction="#min" prefHeight="29.0" prefWidth="70.0" styleClass="bac-colortransparent" stylesheets="@styles.css" text="-">
                      <font>
                         <Font name="Corbel" size="15.0" />
                      </font>
@@ -43,7 +42,7 @@
                         <Font name="Corbel" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="plus" mnemonicParsing="false" onAction="#max" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: transprent;" text="+">
+                  <Button fx:id="plus" mnemonicParsing="false" onAction="#max" prefHeight="29.0" prefWidth="70.0" styleClass="bac-colortransparent" stylesheets="@styles.css" text="+">
                      <font>
                         <Font name="Corbel" size="15.0" />
                      </font>
@@ -55,7 +54,7 @@
                   <Font name="Corbel Light" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btndelete" defaultButton="true" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="52.0" style="-fx-background-color: transprent;">
+            <Button fx:id="btndelete" defaultButton="true" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="52.0" styleClass="bac-colortransparent" stylesheets="@styles.css">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

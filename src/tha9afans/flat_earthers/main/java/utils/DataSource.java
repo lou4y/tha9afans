@@ -9,7 +9,7 @@ public class DataSource {
     private Connection cnx;
     private static DataSource instance;
 
-    private final String URL = "jdbc:mysql://localhost/tha9afans";
+    private final String URL = "jdbc:mysql://localhost/test123_tha9afans";
     private final String PWD = "";
     private final String USER = "root";
 
