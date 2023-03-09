@@ -1,5 +1,6 @@
 package controller;
 
+import entities.Panier;
 import entities.PanierProduit;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,12 +60,13 @@ public class PanierController implements Initializable {
     MailSender sender = new MailSender();
     SendGrid mail = new SendGrid();
     private int counter = 0;
+    private Panier p ;
 
 
     ServicePanier sp = new ServicePanier();
     ServiceFacture sf = new ServiceFacture();
 
-
+    AuthResponseDTO userlogged=UserSession.getUser_LoggedIn();
 
     public void checkbutton() throws IOException {
         String number = numberfield.getText();
@@ -140,26 +142,36 @@ public class PanierController implements Initializable {
     }
 
     private void setDate () throws IOException {
+        ServicePersonne spp =new ServicePersonne();
         ServicePanierProduit sp = new ServicePanierProduit();
         ServicePanier spanier = new ServicePanier();
-        List<PanierProduit> list = sp.getproduitdanspanier(spanier.getOneById(2));
+        System.out.println(spp.getOneById(userlogged.getIdUser()));
         int row=0;
-        for (PanierProduit p : list){
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/test/boxpanier.fxml"));
-            HBox box = loader.load();
-            BoxpanierController controller = loader.getController();
-            controller.setProduit(p);
-            gridpanier.add(box, 0, row++);
-            GridPane.setMargin(box, new Insets(10));
-
+        if (spanier.panierexiste(spp.getOneById(userlogged.getIdUser()))){
+            Panier panier =spanier.GetPanierByUser(spp.getOneById(userlogged.getIdUser()));
+            this.p=panier;
+            List<PanierProduit> list = sp.getproduitdanspanier(panier);
+            for (PanierProduit p : list){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/test/boxpanier.fxml"));
+                HBox box = loader.load();
+                BoxpanierController controller = loader.getController();
+                controller.setProduit(p);
+                gridpanier.add(box, 0, row++);
+                GridPane.setMargin(box, new Insets(10));
             }
+        }
+        else
+        {
+        spanier.ajouter(new Panier(0,spp.getOneById( userlogged.getIdUser()) ));
+        }
+
         }
 
         public void calculerTotal(){
             ServicePanierProduit spp = new ServicePanierProduit();
             ServicePanier spanier = new ServicePanier();
-            List<PanierProduit> list = spp.getproduitdanspanier(spanier.getOneById(2));
+            List<PanierProduit> list = spp.getproduitdanspanier(this.p);
             int total = 0;
             for (PanierProduit p : list){
                 total += p.getQuantite() * p.getProduit().getPrix();

@@ -11,7 +11,7 @@ public class Evenement {
     private CategorieEvenement categorieEvenement;
     private Date date ;
 
-    private int id_createur;
+    private Personne createur;
     private String localisation;
     private int nb_participants;
 
@@ -20,25 +20,25 @@ public class Evenement {
     public Evenement() {
     }
 
-    public Evenement(String nom, String description, CategorieEvenement categorieEvenement, Date date, int id_createur, String localisation, int nb_participants, int nb_aime, int prix) {
+    public Evenement(String nom, String description, CategorieEvenement categorieEvenement, Date date, Personne createur, String localisation, int nb_participants, int nb_aime, int prix) {
         this.nom = nom;
         this.description = description;
         this.categorieEvenement = categorieEvenement;
         this.date = date;
-        this.id_createur = id_createur;
+        this.createur = createur;
         this.localisation = localisation;
         this.nb_participants = nb_participants;
         this.nb_aime = nb_aime;
         this.prix=prix;
     }
 
-    public Evenement(int id, String nom, String description, CategorieEvenement categorieEvenement, Date date, int id_createur, String localisation, int nb_participants, int nb_aime, int prix) {
+    public Evenement(int id, String nom, String description, CategorieEvenement categorieEvenement, Date date, Personne createur, String localisation, int nb_participants, int nb_aime, int prix) {
         this.id = id;
         this.nom = nom;
         this.description = description;
         this.categorieEvenement = categorieEvenement;
         this.date = date;
-        this.id_createur = id_createur;
+        this.createur = createur;
         this.localisation = localisation;
         this.nb_participants = nb_participants;
         this.nb_aime = nb_aime;
@@ -77,12 +77,12 @@ public class Evenement {
         this.date = date;
     }
 
-    public int getId_createur() {
-        return id_createur;
+    public Personne getcreateur() {
+        return createur;
     }
 
-    public void setId_createur(int id_createur) {
-        this.id_createur = id_createur;
+    public void setcreateur(Personne createur) {
+        this.createur = createur;
     }
 
     public String getLocalisation() {
@@ -124,7 +124,7 @@ public class Evenement {
                 ", description='" + description + '\'' +
                 ", categorie=" + categorieEvenement +
                 ", date=" + date +
-                ", id_createur=" + id_createur +
+                ", createur=" + createur +
                 ", localisation='" + localisation + '\'' +
                 ", nb_participants=" + nb_participants +
                 ", nb_aime=" + nb_aime +

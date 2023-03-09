@@ -11,14 +11,15 @@ public class Produit {
     private InputStream image;
     private Double remise;
 
-    private int rating;
+    private Double rating;
+    private Double prixapresremise;
 
 
 
     public Produit() {
     }
 
-    public Produit(int id, String nom, String description, int libelle, int id_vendeur, double prix, Categorie categorie) {
+    public Produit(int id, String nom, String description, int libelle, int id_vendeur, double prix, Categorie categorie,Double remise,Double rating) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -26,9 +27,11 @@ public class Produit {
         this.id_vendeur = id_vendeur;
         this.prix = prix;
         this.categorie=categorie;
+        this.remise=remise;
+        this.rating=rating;
     }
 
-    public Produit(int id, String nom, String description, int libelle, int id_vendeur, double prix, Categorie categorie,InputStream image, Double remise, int rating) {
+    public Produit(int id, String nom, String description, int libelle, int id_vendeur, double prix, InputStream image,Categorie categorie, Double remise, Double rating, Double prixapresremise) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -38,7 +41,33 @@ public class Produit {
         this.image = image;
         this.categorie = categorie;
         this.remise = remise;
-        this.rating=0;
+        this.rating = rating;
+        this.prixapresremise = prixapresremise;
+    }
+
+    public Produit(String nom, String description, int libelle, int id_vendeur, double prix, InputStream image, Categorie categorie, Double remise, Double rating) {
+        this.nom = nom;
+        this.description = description;
+        this.libelle = libelle;
+        this.id_vendeur = id_vendeur;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.image = image;
+        this.remise = remise;
+        this.rating = rating;
+    }
+
+    public Produit(int id, String nom, String description, int libelle, int id_vendeur, double prix, InputStream image, Categorie categorie, Double remise, Double rating) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.libelle = libelle;
+        this.id_vendeur = id_vendeur;
+        this.prix = prix;
+        this.image = image;
+        this.categorie = categorie;
+        this.remise = remise;
+        this.rating=rating;
     }
     public Produit(int id, String nom, String description, int libelle, int id_vendeur, double prix, Categorie categorie,InputStream image, Double remise) {
         this.id = id;
@@ -154,9 +183,9 @@ public class Produit {
         this.categorie = categorie;
     }
 
-    public int getRating(){ return rating;}
+    public Double getRating(){ return rating;}
 
-    public void setRating(int rating){ this.rating= rating;}
+    public void setRating(Double rating){ this.rating= rating;}
 
     @Override
     public String toString() {
@@ -175,6 +204,14 @@ public class Produit {
     public int hashCode() {
         int hash = 7;
         return hash;
+    }
+
+    public Double getPrixapresremise() {
+        return prixapresremise;
+    }
+
+    public void setPrixapresremise(Double prixapresremise) {
+        this.prixapresremise = prixapresremise;
     }
 
     @Override

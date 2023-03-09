@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="504.0" prefWidth="712.0" style="-fx-background-color: #f1faee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditEvenementListcontroller">
+   <children>
+      <VBox prefHeight="106.0" prefWidth="712.0" />
+      <ScrollPane fx:id="spane" prefHeight="322.0" prefWidth="712.0">
+         <content>
+            <VBox fx:id="listev" prefHeight="316.0" prefWidth="670.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

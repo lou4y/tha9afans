@@ -1,5 +1,6 @@
 package services;
 
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
@@ -29,7 +30,7 @@ public class CommentFilter {
         return inappropriateWords.contains(word.toLowerCase());
     }
 
-    public static void applyFilter(TextField textField) {
+    public static void applyFilter(TextArea textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             for (String word : newValue.split("\\s+")) {
                 if (isProfane(word)) {

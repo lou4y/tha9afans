@@ -1,16 +1,20 @@
 package services;
 
+import entities.Evenement;
 import entities.Panier;
+import entities.Personne;
 import utils.DataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServicePanier implements IService<Panier> {
+
+
     Connection cnx = DataSource.getInstance().getCnx();
     ServicePersonne sp = new ServicePersonne();
-    ServiceProduit sp2 = new ServiceProduit();
 
 
 
@@ -103,19 +107,19 @@ public class ServicePanier implements IService<Panier> {
 
 
 
-public void updatetotal(Panier panier , Double total){
-    try {
-        String req = "UPDATE panier SET`total`=? WHERE  `id`= ?";
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setDouble(1, total);
-        ps.setInt(2, panier.getId());
-        ps.executeUpdate();
+    public void updatetotal(Panier panier , Double total){
+        try {
+            String req = "UPDATE panier SET`total`=? WHERE  `id`= ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setDouble(1, total);
+            ps.setInt(2, panier.getId());
+            ps.executeUpdate();
 
-        System.out.println("panier Updated !");
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
+            System.out.println("panier Updated !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-}
 
 
     public void updateCartTotal(Panier panier ,double total) {
@@ -131,7 +135,18 @@ public void updatetotal(Panier panier , Double total){
             System.err.println(e.getMessage());
         }
     }
-
+    public Panier GetPanierByUser(Personne personne){
+            List<Panier> list = getAll();
+            list= list.stream().filter(e -> e.getPersonne().getId()==personne.getId()).collect(Collectors.toList());
+        System.out.println(list);
+        return list.get(0);
+    }
+    public boolean panierexiste(Personne personne){
+        List<Panier> list = getAll();
+        list= list.stream().filter(e -> e.getPersonne().getId()==personne.getId()).collect(Collectors.toList());
+        System.out.println(list);
+        return list.size()>0?true:false;
+    }
 
 
 }

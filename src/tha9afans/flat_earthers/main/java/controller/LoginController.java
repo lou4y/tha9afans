@@ -60,9 +60,9 @@ public class LoginController implements Initializable {
                     UserSession.getSameInstance(userLoggedIn);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes authentifié avec succés", ButtonType.OK);
                     alert.showAndWait();
-                    Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbaruser.fxml"));
                     Stage window=(Stage) loginbutton.getScene().getWindow();
-                    window.setScene(new Scene(root,600,400));
+                    window.setScene(new Scene(root,1400,700));
                 }else{
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Veuillez vérifier votre email et/ou mot de passe", ButtonType.OK);
                     alert.showAndWait();
@@ -85,7 +85,7 @@ public class LoginController implements Initializable {
     public void passerinscrire() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/test/signup.fxml"));
         Stage window=(Stage) signupbutton.getScene().getWindow();
-        window.setScene(new Scene(root,700,420));
+        window.setScene(new Scene(root,1400,700));
         window.setTitle("Sign Up");
 
 
@@ -93,13 +93,15 @@ public class LoginController implements Initializable {
     public void gointerfaceforgotpassword() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/test/forgotpassword.fxml"));
         Stage window=(Stage) linkforgotpassword.getScene().getWindow();
-        window.setScene(new Scene(root,600,420));
+        window.setScene(new Scene(root,1400,700));
         window.setTitle("forgot password");
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        emailfield.setText("test@gmail.com");
+        passwordfield.setText("test");
 
 
 

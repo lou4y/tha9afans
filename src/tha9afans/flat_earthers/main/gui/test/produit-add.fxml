@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1157.0" style="-fx-background-color: #F1FAEE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProduitAddController">
+   <ScrollPane layoutY="-155.0" prefHeight="678.0" prefWidth="758.0" AnchorPane.bottomAnchor="-123.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+      <content>
+          <BorderPane prefHeight="913.0" prefWidth="849.0">
+            <right>
+                  <AnchorPane fx:id="ap" prefHeight="760.0" prefWidth="838.0" BorderPane.alignment="CENTER">
+                      <BorderPane layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                          <center>
+                              <GridPane fx:id="produitdescription1" alignment="CENTER_RIGHT" prefHeight="332.0" prefWidth="712.0">
+                                  <columnConstraints>
+                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="148.0" />
+                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="603.0" minWidth="10.0" prefWidth="279.0" />
+                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="603.0" minWidth="10.0" prefWidth="140.0" />
+                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="603.0" minWidth="10.0" prefWidth="146.0" />
+                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="603.0" minWidth="10.0" prefWidth="215.0" />
+                              <ColumnConstraints />
+                              <ColumnConstraints />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                  <Label text="Nom produit">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                                  <TextField fx:id="txtAddProductName" prefHeight="38.0" prefWidth="237.0" promptText="product name" GridPane.columnIndex="1" />
+                                  <Label prefHeight="20.0" prefWidth="58.0" text="Prix" GridPane.columnIndex="3">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                                  <TextField fx:id="txtAddProductPrice" prefHeight="37.0" prefWidth="173.0" promptText="0.0" GridPane.columnIndex="4" />
+                                  <Label text="Libelle" GridPane.rowIndex="1">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                                  <TextField fx:id="txtAddProductLibelle" prefHeight="41.0" prefWidth="237.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                  <Label text="Catégorie" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                                  <Label text="Description" GridPane.rowIndex="2">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+      
+                                  <Text fx:id="viewProductResponse" strokeType="OUTSIDE" strokeWidth="0.0" text="Product added!" visible="false" BorderPane.alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                  <Button mnemonicParsing="false" onAction="#btnAddProductOnAction" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #001A23;" styleClass="button, success" text="+ Ajouter Produit" textFill="#fffefe" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                              <font>
+                                 <Font name="System Bold" size="16.0" />
+                              </font>
+                           </Button>
+      
+                                  <ComboBox fx:id="cb_categorie" prefHeight="36.0" prefWidth="166.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                  <TextField fx:id="produitdescription" prefHeight="86.0" prefWidth="237.0" promptText="product decription" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           <Label layoutX="447.0" layoutY="41.0" prefHeight="20.0" prefWidth="58.0" text="Remise" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                              <font>
+                                 <Font size="14.0" />
+                              </font>
+                           </Label>
+                           <TextField fx:id="produitremise" layoutX="113.0" layoutY="176.0" prefHeight="42.0" prefWidth="173.0" promptText="remise" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                           <AnchorPane GridPane.columnSpan="2" GridPane.rowIndex="3">
+                              <children>
+                                 <Rating fx:id="produitrating" layoutY="26.0" prefHeight="4.0" prefWidth="176.0" />
+                              </children>
+                           </AnchorPane>
+                              </GridPane>
+                          </center>
+                          <top>
+                              <Text fill="#001a23" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter  nouveau produit" wrappingWidth="279.8133087158203" BorderPane.alignment="CENTER_LEFT">
+                                  <font>
+                                      <Font size="24.0" />
+                                  </font>
+                              </Text>
+                          </top>
+                      </BorderPane>
+                  <VBox layoutY="439.0" prefHeight="242.0" prefWidth="758.0" style="-fx-background-color: #001A23; -fx-background-radius: 15;">
+                     <children>
+                        <GridPane fx:id="product_grid" prefHeight="288.0" prefWidth="738.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <Text layoutX="27.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes produits" wrappingWidth="216.53673934936523" AnchorPane.topAnchor="390.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  </AnchorPane>
+            </right>
+          </BorderPane>
+      </content>
+   </ScrollPane>
+</AnchorPane>

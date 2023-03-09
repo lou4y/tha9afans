@@ -2,7 +2,6 @@ package entities;
     import java.sql.Time;
 public class Session {
     private int id;
-
     private Evenement evenement;
     private String titre;
     private String description;
