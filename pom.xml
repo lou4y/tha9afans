@@ -39,16 +39,38 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.osmdroid</groupId>
             <artifactId>osmdroid-android</artifactId>
             <version>6.1.7</version>
         </dependency>
         <dependency>
-            <groupId>de.jensd</groupId>
-            <artifactId>fontawesomefx</artifactId>
-            <version>8.9</version>
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-mapsforge</artifactId>
+            <version>6.1.7</version>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-android</artifactId>
+            <version>6.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-mapsforge</artifactId>
+            <version>6.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+        </dependency>
+
         <dependency>
             <groupId>net.glxn</groupId>
             <artifactId>qrgen</artifactId>
@@ -71,6 +93,7 @@
             <version>6.1.7</version>
         </dependency>
         <dependency>
+
             <groupId>com.vaadin.external.google</groupId>
             <artifactId>android-json</artifactId>
             <version>0.0.20131108.vaadin1</version>
@@ -94,7 +117,6 @@
                 <version>0.0.8</version>
                 <executions>
                     <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>flat_earthers.tha9afans/test.Main</mainClass>
