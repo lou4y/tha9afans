@@ -20,6 +20,7 @@
             <artifactId>javafx-controls</artifactId>
             <version>19</version>
         </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -38,7 +39,56 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
 
+=======
+        <dependency>
+            <groupId>net.glxn</groupId>
+            <artifactId>qrgen</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>zxing.appspot.com</artifactId>
+            <version>3.5.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-android</artifactId>
+            <version>6.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-mapsforge</artifactId>
+            <version>6.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+        </dependency>
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-android</artifactId>
+            <version>6.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-mapsforge</artifactId>
+            <version>6.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+        </dependency>
+>>>>>>> origin/main
         <dependency>
             <groupId>net.glxn</groupId>
             <artifactId>qrgen</artifactId>
@@ -56,11 +106,22 @@
             <version>16</version>
         </dependency>
         <dependency>
+<<<<<<< HEAD
+=======
+            <groupId>org.osmdroid</groupId>
+            <artifactId>osmdroid-mapsforge</artifactId>
+            <version>6.1.7</version>
+        </dependency>
+        <dependency>
+>>>>>>> origin/main
             <groupId>com.vaadin.external.google</groupId>
             <artifactId>android-json</artifactId>
             <version>0.0.20131108.vaadin1</version>
         </dependency>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     </dependencies>
 
     <build>

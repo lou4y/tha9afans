@@ -72,6 +72,9 @@ public class commentairecontroller {
     public void setComment(Evenement evenement,Commentaire commentaire) throws FileNotFoundException {
         this.ev= evenement;
         this.commentaire = commentaire;
+        InputStream stream = new FileInputStream("D:/resources/man.png");
+        Image image = new Image(stream);
+        profile_photo.setImage(image);
         this.profile_photo.setImage(new Image(commentaire.getuser().getPhoto()));
         comment_owner.setText(String.valueOf(commentaire.getuser().getNom()));
         comment.setText(commentaire.getCommentaire());

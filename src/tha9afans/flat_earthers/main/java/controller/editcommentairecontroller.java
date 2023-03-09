@@ -13,6 +13,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import services.AuthResponseDTO;
+import services.ServiceCommentaire;
+import services.ServicePersonne;
+import services.UserSession;
 import services.*;
 
 import java.io.IOException;
@@ -32,9 +36,7 @@ public class editcommentairecontroller implements Initializable {
     private ImageView profile_photo;
 
     private Commentaire commentaire;
-
     ServicePersonne sp =new ServicePersonne();
-
     AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
 
     public void editcomment(Commentaire comment){
