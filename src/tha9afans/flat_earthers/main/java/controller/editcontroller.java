@@ -18,9 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalTimeStringConverter;
-import services.ServiceCategorieEvenement;
-import services.ServiceEvenement;
-import services.ServiceSession;
+import services.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,6 +69,8 @@ public class editcontroller implements Initializable {
     private List<Session> listsession=new ArrayList<>();
     private List<Session> listsdb=new ArrayList<>();
     private Evenement ev;
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
+    ServicePersonne sp = new ServicePersonne();
 
 
     @Override
@@ -269,7 +269,7 @@ public class editcontroller implements Initializable {
         } else {
             ServiceEvenement se = new ServiceEvenement();
 
-            Evenement E = new Evenement(ev.getId(),ev_name.getText(),ev_description.getText(),ev_cat.getValue(), Date.valueOf(ev_date.getValue()),1,ev_region.getValue().toString()+", "+ ev_location.getText(),Integer.parseInt(ev_pnb.getValue().toString()),40,Integer.parseInt(ev_price.getText()));
+            Evenement E = new Evenement(ev.getId(),ev_name.getText(),ev_description.getText(),ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString()+", "+ ev_location.getText(),Integer.parseInt(ev_pnb.getValue().toString()),40,Integer.parseInt(ev_price.getText()));
                 se.modifier(E);
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "event edited !", ButtonType.OK);
 

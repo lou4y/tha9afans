@@ -15,10 +15,7 @@ public class Reservation {
     public Reservation(int id, Date date_reservation, boolean ispPaid, String payment_info, Personne personne, Billet billet) {
         this.id = id;
         this.date_reservation = date_reservation;
-        if(billet.getPrix()==0)
-            this.ispPaid = true;
-        else
-            this.ispPaid = ispPaid;
+        this.ispPaid = ispPaid;
         this.payment_info = payment_info;
         this.personne = personne;
         this.billet = billet;
