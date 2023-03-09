@@ -75,6 +75,7 @@ public class commentairecontroller {
         InputStream stream = new FileInputStream("D:/resources/man.png");
         Image image = new Image(stream);
         profile_photo.setImage(image);
+        this.profile_photo.setImage(new Image(commentaire.getuser().getPhoto()));
         comment_owner.setText(String.valueOf(commentaire.getuser().getNom()));
         comment.setText(commentaire.getCommentaire());
         comment_date.setText(String.valueOf(commentaire.getDate()));

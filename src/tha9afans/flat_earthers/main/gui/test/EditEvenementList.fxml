@@ -3,9 +3,22 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
+<<<<<<< HEAD
 
 <ScrollPane prefHeight="322.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditEvenementListcontroller">
    <content>
       <VBox fx:id="listev" prefHeight="316.0" prefWidth="914.0" />
    </content>
 </ScrollPane>
+=======
+<VBox prefHeight="504.0" prefWidth="712.0" style="-fx-background-color: #f1faee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditEvenementListcontroller">
+   <children>
+      <VBox prefHeight="106.0" prefWidth="712.0" />
+      <ScrollPane fx:id="spane" prefHeight="322.0" prefWidth="712.0">
+         <content>
+            <VBox fx:id="listev" prefHeight="316.0" prefWidth="670.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>
+>>>>>>> origin/main

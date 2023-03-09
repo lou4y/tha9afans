@@ -60,9 +60,10 @@ public class LoginController implements Initializable {
                     UserSession.getSameInstance(userLoggedIn);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes authentifié avec succés", ButtonType.OK);
                     alert.showAndWait();
-                    Parent root = FXMLLoader.load(getClass().getResource("/test/loginphone.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbaruser.fxml"));
                     Stage window=(Stage) loginbutton.getScene().getWindow();
-                    window.setScene(new Scene(root,600,450));
+                    window.setScene(new Scene(root,1400,700));
+
                 }else{
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Veuillez vérifier votre email et/ou mot de passe", ButtonType.OK);
                     alert.showAndWait();

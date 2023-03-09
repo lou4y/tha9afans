@@ -287,9 +287,9 @@ public class listevenementcontroller implements Initializable {
             ServiceReservation sr = new ServiceReservation();
             System.out.println(id);
             sr.setAllBillet(id);
-
             this.liste = se.getAll();
             load();
+            sr.setAllBillet(id);
         } catch (IOException ex) {
             Alert a = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
             a.showAndWait();

@@ -166,16 +166,6 @@ public class evenementcontroller implements Initializable {
 
     }
 
-    @FXML
-    void kl(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/listevenement.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) b1.getScene().getWindow();
-        Scene scene = new Scene(root,1400,700);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void eventpage(Evenement e) throws IOException {
         this.ev=e;
         this.j= new jaime(sp.getOneById(userlogged.getIdUser()),ev);
@@ -257,32 +247,8 @@ public class evenementcontroller implements Initializable {
 
     }
 
-    @FXML
-    void deleteevent(ActionEvent event) throws IOException {
 
 
-       List<Session> ls= ss.getAllByEvent(se.getOneById(se.getId(ev)));
-        for (int i = 0; i < ls.size(); i++) {
-            ss.supprimer(ls.get(i).getId());
-        }
-        se.supprimer(se.getId(ev));
-        kl(event);
-        sj.supprimer(j);
-    }
-
-
-    @FXML
-    void edit(ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/edit.fxml"));
-        Parent root = loader.load();
-        editcontroller controller = loader.getController();
-        controller.setevent(ev);
-        Stage stage = (Stage) b2.getScene().getWindow();
-        Scene scene = new Scene(root,1400,700);
-        stage.setScene(scene);
-        stage.show();
-    }
     @FXML
     void like(ActionEvent event) {
         if (sj.existe(this.j)){

@@ -14,6 +14,7 @@ import services.AuthResponseDTO;
 import services.ServiceCommentaire;
 import services.ServicePersonne;
 import services.UserSession;
+import services.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +43,7 @@ public class Listcommentairecontroller implements Initializable {
     private Button post_button;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        CommentFilter.applyFilter(comment_content);
         comment_pane.setStyle("-fx-background:   #001A23; -fx-background-color:   #001A23");
     }
 
