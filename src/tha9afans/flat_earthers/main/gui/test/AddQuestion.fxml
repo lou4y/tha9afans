@@ -5,46 +5,69 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddQuestionController">
+<AnchorPane prefHeight="700.0" prefWidth="1400.0" style="-fx-background-color: #001423;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddQuestionController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F1FAEE;">
-         <children>
-            <Pane prefHeight="200.0" prefWidth="118.0" style="-fx-background-color: #001423;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="submit" layoutX="151.0" layoutY="28.0" prefHeight="344.0" prefWidth="424.0" style="-fx-background-color: #001423; -fx-background-radius: 25;" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="28.0">
-               <children>
-                  <Label layoutX="35.0" layoutY="31.0" text="Add new Question" textFill="#f1faee">
-                     <font>
-                        <Font name="Helvetica Neue" size="19.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="question" layoutX="35.0" layoutY="86.0" prefHeight="26.0" prefWidth="359.0" style="-fx-background-color: #f1faee;" />
-                  <TextField fx:id="firstPossibleAnswer" layoutX="34.0" layoutY="135.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
-                  <TextField fx:id="secondPossibleAnswer" layoutX="220.0" layoutY="135.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
-                  <TextField fx:id="thirdPossibleAnswer" layoutX="35.0" layoutY="185.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
-                  <TextField fx:id="rightAnswer" layoutX="220.0" layoutY="185.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
-                  <ChoiceBox fx:id="timer" layoutX="35.0" layoutY="233.0" prefHeight="26.0" prefWidth="175.0" style="-fx-background-color: #f1faee;" />
+      <Label layoutX="325.0" layoutY="70.0" text="Add new Question" textFill="#f1faee">
+         <font>
+            <Font name="Helvetica Neue" size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="question" layoutX="323.0" layoutY="169.0" prefHeight="50.0" prefWidth="727.0" style="-fx-background-color: #f1faee;" />
+      <TextField fx:id="firstPossibleAnswer" layoutX="319.0" layoutY="284.0" prefHeight="50.0" prefWidth="365.0" style="-fx-background-color: #f1faee;" />
+      <TextField fx:id="secondPossibleAnswer" layoutX="702.0" layoutY="284.0" prefHeight="50.0" prefWidth="351.0" style="-fx-background-color: #f1faee;" />
+      <TextField fx:id="thirdPossibleAnswer" layoutX="316.0" layoutY="398.0" prefHeight="50.0" prefWidth="366.0" style="-fx-background-color: #f1faee;" />
+      <TextField fx:id="rightAnswer" layoutX="701.0" layoutY="398.0" prefHeight="50.0" prefWidth="351.0" style="-fx-background-color: #f1faee;" />
+      <ChoiceBox fx:id="timer" layoutX="319.0" layoutY="518.0" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #f1faee;" />
 
-                  <TextField fx:id="image" layoutX="220.0" layoutY="233.0" prefHeight="26.0" prefWidth="138.0" style="-fx-background-color: #f1faee;" />
-                  <Button layoutX="354.0" layoutY="232.0" onAction="#ButtonAction" prefHeight="27.0" prefWidth="41.0" style="-fx-background-color: #f1faee;" text="Select Image">
-                     <font>
-                        <Font size="6.0" />
-                     </font></Button>
+      <TextField fx:id="image" layoutX="643.0" layoutY="519.0" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #f1faee;" />
+      <Button layoutX="942.0" layoutY="515.0" onAction="#ButtonAction" prefHeight="58.0" prefWidth="108.0" style="-fx-background-color: #f1faee;" text="Select Image">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
 
 
-                  <Button fx:id="submitButton" layoutX="340.0" layoutY="284.0" mnemonicParsing="false" onAction="#AddQuestion" style="-fx-background-color: #f1faee;" text="Submit" />
-                  <Label layoutX="35.0" layoutY="69.0" text="Question" textFill="#f1faee" />
-                  <Label layoutX="34.0" layoutY="118.0" text="First Possible Question" textFill="#f1faee" />
-                  <Label layoutX="220.0" layoutY="118.0" text="Second Possible Answer" textFill="#f1faee" />
-                  <Label layoutX="35.0" layoutY="168.0" text="Third Possible Answer" textFill="#f1faee" />
-                  <Label layoutX="220.0" layoutY="168.0" text="Right Answer" textFill="#f1faee" />
-                  <Label layoutX="35.0" layoutY="216.0" text="Timer" textFill="#f1faee" />
-                  <Label layoutX="220.0" layoutY="215.0" text="Image" textFill="#f1faee" />
-               </children>
-            </Pane>
-         </children>
-      </AnchorPane>
+      <Button fx:id="submitButton" layoutX="969.0" layoutY="612.0" mnemonicParsing="false" onAction="#AddQuestion" style="-fx-background-color: #f1faee;" text="Submit">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Label layoutX="324.0" layoutY="120.0" text="Question" textFill="#f1faee">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="319.0" layoutY="237.0" text="First Possible Answer" textFill="#f1faee">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="703.0" layoutY="238.0" text="Second Possible Answer" textFill="#f1faee">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="317.0" layoutY="351.0" text="Third Possible Answer" textFill="#f1faee">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="701.0" layoutY="355.0" text="Right Answer" textFill="#f1faee">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="321.0" layoutY="469.0" text="Timer" textFill="#f1faee">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="644.0" layoutY="471.0" text="Image" textFill="#f1faee">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
