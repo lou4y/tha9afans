@@ -1,3 +1,4 @@
+
 package test;
 
 import javafx.application.Application;
@@ -10,7 +11,10 @@ public class MainFx extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
         Scene scene = new Scene(fxmlLoader.load(), 1400, 700);
         stage.setTitle("Sign in!");
         stage.setScene(scene);
