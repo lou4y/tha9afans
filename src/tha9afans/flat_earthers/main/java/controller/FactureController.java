@@ -10,9 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
-import services.GeneratePdf;
-import services.SendGrid;
-import services.ServiceFacture;
+import services.*;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -31,11 +29,13 @@ public class FactureController implements Initializable {
     @FXML
     private ListView<Facture> listview = new ListView<>();
 
-
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ServiceFacture sp = new ServiceFacture();
-        ObservableList<Facture> factures = FXCollections.observableArrayList(sp.getAll());
+        ServiceFacture sf = new ServiceFacture();
+        ServicePersonne sp = new ServicePersonne();
+
+        ObservableList<Facture> factures = FXCollections.observableArrayList(sf.getAllByUser(sp.getOneById(userlogged.getIdUser())));
         listview.setItems(factures);
         listview.setCellFactory(new Callback<ListView<Facture>, ListCell<Facture>>() {
             @Override

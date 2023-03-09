@@ -2,6 +2,7 @@ package controller;
 
 import entities.CategorieEvenement;
 import entities.Evenement;
+import entities.Personne;
 import entities.Session;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,9 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalTimeStringConverter;
-import services.ServiceCategorieEvenement;
-import services.ServiceEvenement;
-import services.ServiceSession;
+import services.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,12 +85,17 @@ public class listevenementcontroller implements Initializable {
 
     private List<Session> listsession = new ArrayList<>();
     private List<Evenement> liste = new ArrayList<>();
+    private Evenement ev;
 
 
     ///////////////////////////////////services////////////////////////////////////////////////////////////////////////
     ServiceCategorieEvenement sc = new ServiceCategorieEvenement();
     ServiceEvenement se = new ServiceEvenement();
     ServiceSession ss = new ServiceSession();
+    ServicePersonne sp =new ServicePersonne();
+
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -218,7 +222,8 @@ public class listevenementcontroller implements Initializable {
             InputTest();
         } else {
             ServiceEvenement se = new ServiceEvenement();
-            Evenement E = new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), 1, ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40,Integer.parseInt(ev_price.getText()));
+            Evenement E = new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()),sp.getOneById(userlogged.getIdUser()) , ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40,Integer.parseInt(ev_price.getText()));
+            this.ev=E;
             if (se.existe(E) == 1) {
                 Alert a = new Alert(Alert.AlertType.ERROR, "event already exists ", ButtonType.OK);
                 a.showAndWait();
@@ -278,6 +283,11 @@ public class listevenementcontroller implements Initializable {
         try {
             ajouterevenement(event);
             savesession();
+            int id = se.getId(this.ev);
+            ServiceReservation sr = new ServiceReservation();
+            System.out.println(id);
+            sr.setAllBillet(id);
+
             this.liste = se.getAll();
             load();
         } catch (IOException ex) {
@@ -376,7 +386,7 @@ public class listevenementcontroller implements Initializable {
     }
 
     private void savesession() {
-        int id = se.getId(new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), 1, ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40,Integer.parseInt(ev_price.getText())));
+        int id = se.getId(new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40,Integer.parseInt(ev_price.getText())));
         for (Session s : listsession) {
             s.setEvenement(se.getOneById(id));
             ss.ajouter(s);

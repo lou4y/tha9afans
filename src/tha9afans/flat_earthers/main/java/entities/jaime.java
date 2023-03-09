@@ -1,19 +1,19 @@
 package entities;
 
 public class jaime {
-    private int id_user;
+    private Personne user;
     private Evenement evenement;
 
     public jaime() {
     }
 
-    public jaime(int id_user, Evenement evenement) {
-        this.id_user = id_user;
+    public jaime(Personne user, Evenement evenement) {
+        this.user = user;
         this.evenement = evenement;
     }
 
-    public int getId_user() {
-        return id_user;
+    public Personne getUser() {
+        return user;
     }
 
     public Evenement getEvenement() {
@@ -23,7 +23,7 @@ public class jaime {
     @Override
     public String toString() {
         return "jaime{" +
-                "id_user=" + id_user +
+                "user=" + user +
                 ", evenement=" + evenement +
                 '}';
     }

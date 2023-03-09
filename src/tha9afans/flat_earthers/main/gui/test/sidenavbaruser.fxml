@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,38 +11,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1130.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SidenavbaruserController">
+<AnchorPane prefHeight="700.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SidenavbaruserController">
    <children>
-      <BorderPane fx:id="bp" prefHeight="700.0" prefWidth="1130.0">
+      <BorderPane fx:id="bp" prefHeight="700.0" prefWidth="1400.0">
          <top>
-            <AnchorPane prefHeight="20.0" prefWidth="1130.0" style="-fx-background-color: #F1FAEE" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="66.0" prefWidth="1404.0" style="-fx-background-color: #F1FAEE" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="profileimageview" fitHeight="50.0" fitWidth="50.0" layoutX="752.0" layoutY="16.0" AnchorPane.leftAnchor="752.0" AnchorPane.topAnchor="16.0" />
-                  <Label fx:id="Menu" layoutX="14.0" layoutY="36.0" prefHeight="22.0" prefWidth="92.0" textFill="#b7b7b7" AnchorPane.bottomAnchor="7.007998687500045" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="618.063980710938" AnchorPane.topAnchor="20.0">
-                     <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/menu.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="MenuClose" layoutX="14.0" layoutY="36.0" prefHeight="39.0" prefWidth="59.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="769.0" AnchorPane.topAnchor="20.0">
-                     <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/menu.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Text fx:id="textusername" fill="#001a23" layoutX="816.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.7366943359375" AnchorPane.leftAnchor="816.0" AnchorPane.rightAnchor="21.063305664062455" AnchorPane.topAnchor="24.71826171875">
+                  <ImageView fx:id="profileimageview" fitHeight="50.0" fitWidth="50.0" layoutX="1118.0" layoutY="8.0" AnchorPane.leftAnchor="1118.0" AnchorPane.topAnchor="8.0" />
+                  <Text fx:id="textusername" fill="#001a23" layoutX="1182.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.7366943359375" AnchorPane.leftAnchor="1182.0" AnchorPane.rightAnchor="50.2633056640625" AnchorPane.topAnchor="16.6552734375">
                      <font>
                         <Font name="AGA Arabesque" size="17.0" />
                      </font>
@@ -52,7 +27,7 @@
             </AnchorPane>
          </top>
          <left>
-            <AnchorPane fx:id="slider" prefHeight="330.0" prefWidth="212.0" style="-fx-background-color: #001A23;" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="slider" prefHeight="669.0" prefWidth="212.0" style="-fx-background-color: #001A23;" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="106.0" fitWidth="104.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
                      <image>
@@ -68,7 +43,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-papers-64.png" />
+                                    <Image url="@images/icons8-events-64.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -78,9 +53,9 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-papers-64.png" />
+                                    <Image url="@images/icons8-online-store-100.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -95,7 +70,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-test-account-90.png" />
+                                    <Image url="@images/icons8-wicker-basket-100.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -110,7 +85,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-test-account-90.png" />
+                                    <Image url="@images/icons8-visual-game-boy-50.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -153,7 +128,7 @@
          <center>
             <ScrollPane style="-fx-background-color: #001A23;" BorderPane.alignment="CENTER">
                <content>
-                  <BorderPane prefHeight="830.0" prefWidth="791.0" style="-fx-background-color: #F1FAEE;">
+                  <BorderPane prefHeight="830.0" prefWidth="1170.0" style="-fx-background-color: #F1FAEE;">
                      <children>
                         <AnchorPane fx:id="ap" prefHeight="394.0" prefWidth="532.0" BorderPane.alignment="CENTER">
 

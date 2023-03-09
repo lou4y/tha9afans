@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceCommande implements IService<Commande> {
+
+
     Connection cnx = DataSource.getInstance().getCnx();
     ServiceProduit spo = new ServiceProduit();
     ServicePersonne sp = new ServicePersonne();

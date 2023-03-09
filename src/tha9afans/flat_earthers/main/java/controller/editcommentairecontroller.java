@@ -10,7 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import services.AuthResponseDTO;
 import services.ServiceCommentaire;
+import services.ServicePersonne;
+import services.UserSession;
 
 import java.io.IOException;
 
@@ -25,16 +28,18 @@ public class editcommentairecontroller {
     private Button confirm;
 
     private Commentaire commentaire;
+    ServicePersonne sp =new ServicePersonne();
 
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
 
     public void editcomment(Commentaire comment){
         this.commentaire =comment;
         this.comment.setText(comment.getCommentaire());
-        this.comment_owner.setText(String.valueOf(comment.getId_user()));
+        this.comment_owner.setText(String.valueOf(comment.getuser().getNom()));
     }
     @FXML
     void confirm(ActionEvent event) throws IOException {
-        Commentaire c = new Commentaire(this.commentaire.getId(),this.commentaire.getId(),this.commentaire.getEvenement(),this.comment.getText(),this.commentaire.getDate());
+        Commentaire c = new Commentaire(this.commentaire.getId(),sp.getOneById(userlogged.getIdUser()),this.commentaire.getEvenement(),this.comment.getText(),this.commentaire.getDate());
         ServiceCommentaire sc = new ServiceCommentaire();
         sc.modifier(c);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/evenement.fxml"));

@@ -1,11 +1,14 @@
 package services;
 
+import entities.Evenement;
 import entities.Facture;
+import entities.Personne;
 import utils.DataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServiceFacture implements IService<Facture> {
     Connection cnx = DataSource.getInstance().getCnx();
@@ -94,6 +97,8 @@ public class ServiceFacture implements IService<Facture> {
 
         return e;
     }
-
-
+    public List<Facture> getAllByUser(Personne personne) {
+        List<Facture> list = new ArrayList<>();
+        return list.stream().filter(e -> e.getCommande().getPersonne().getId() == personne.getId()).collect(Collectors.toList());
+    }
 }

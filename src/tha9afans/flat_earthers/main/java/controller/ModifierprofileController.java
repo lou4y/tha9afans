@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -134,6 +135,7 @@ public class ModifierprofileController implements Initializable {
     public void informationsbutton(MouseEvent event) {
         ap.setVisible(true);
         bp.setCenter(ap);
+
     }
 
     public void eventsbutton(MouseEvent event) throws IOException {
@@ -155,5 +157,15 @@ public class ModifierprofileController implements Initializable {
     public void storebutton(MouseEvent event) throws IOException {
         ap.setVisible(false);
         loadPage("/test/securiteprofile");
+    }
+
+    public void Reservationsbutton(MouseEvent mouseEvent) throws IOException {
+        ap.setVisible(false);
+        loadPage("/test/reservations");
+    }
+
+    public void Facturesbutton(MouseEvent mouseEvent) throws IOException {
+        ap.setVisible(false);
+        loadPage("/test/facture-view");
     }
 }

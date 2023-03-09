@@ -69,7 +69,7 @@ public class SidenavbaruserController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/test/login-view.fxml"));
         Stage window=(Stage) logoutbutton.getScene().getWindow();
-        window.setScene(new Scene(root,600,420));
+        window.setScene(new Scene(root,1400,700));
 
     }
     private static final Map<Image, ImageView> imageCache = new HashMap<>();
@@ -138,7 +138,7 @@ public class SidenavbaruserController implements Initializable {
 
         // Load the image when the interface is loaded
         loadImage();
-        slider.setTranslateX(-176);
+      /*  slider.setTranslateX(-176);
         Menu.setOnMouseClicked(event -> {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
@@ -170,7 +170,7 @@ public class SidenavbaruserController implements Initializable {
                 MenuClose.setVisible(false);
             });
         });
-
+*/
 
 
     }
@@ -181,11 +181,6 @@ public class SidenavbaruserController implements Initializable {
     }*/
 
 
-    public void storeinterface(MouseEvent event) throws IOException {
-        ap.setVisible(false);
-        loadPage("/test/utilisateur-view");
-
-    }
 
 
     public void setModifierUserController(ModifierUserController modifierUserController) {
@@ -198,7 +193,7 @@ public class SidenavbaruserController implements Initializable {
 
     public void interfacepanier(MouseEvent event) throws IOException {
         ap.setVisible(false);
-        loadPage("/test/administrateur-view");
+        loadPage("/test/panier-view");
     }
     public void profile(MouseEvent event) throws IOException {
         ap.setVisible(false);
@@ -219,7 +214,7 @@ public class SidenavbaruserController implements Initializable {
 
 
     public void butttonhover(MouseEvent event) {
-        dashboardbutton.setStyle("-fx-background-color:#1D3557");
+        dashboardbutton.setStyle("-fx-background-color:#1D3557;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
 
 
 
@@ -228,46 +223,46 @@ public class SidenavbaruserController implements Initializable {
     }
 
     public void buttondishover(MouseEvent event) {
-        dashboardbutton.setStyle("-fx-background-color:transparent");
+        dashboardbutton.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
     public void butttonhover3(MouseEvent event) {
-        buttonfacture.setStyle("-fx-background-color:#1D3557");
+        buttonfacture.setStyle("-fx-background-color:#1D3557;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
     public void butttonhoverprofile(MouseEvent event) {
-        profilebutton.setStyle("-fx-background-color:#1D3557");
+        profilebutton.setStyle("-fx-background-color:#1D3557;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
     public void butttonhover2(MouseEvent event) {
-        buttonuser.setStyle("-fx-background-color:#1D3557");
+        buttonuser.setStyle("-fx-background-color:#1D3557;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
     public void butttonhover4(MouseEvent event) {
-        logoutbutton.setStyle("-fx-background-color:#1D3557");
+        logoutbutton.setStyle("-fx-background-color:#1D3557;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
     public void buttondishover3(MouseEvent event) {
-        buttonfacture.setStyle("-fx-background-color:transparent");
+        buttonfacture.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
     public void buttondishover4(MouseEvent event) {
-        logoutbutton.setStyle("-fx-background-color:transparent");
+        logoutbutton.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
     public void buttondishover2(MouseEvent event) {
-        buttonuser.setStyle("-fx-background-color:transparent");
+        buttonuser.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
     public void buttondishoverprofile(MouseEvent event) {
-        profilebutton.setStyle("-fx-background-color:transparent");
+        profilebutton.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
 
     public void buttonhoverevents(MouseEvent mouseEvent) {
-        buttonevents.setStyle("-fx-background-color:#1D3557");
+        buttonevents.setStyle("-fx-background-color:#1D3557;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
 
     }
 
-    public void buttondishoverevents(MouseEvent mouseEvent) {buttonevents.setStyle("-fx-background-color:transparent");
+    public void buttondishoverevents(MouseEvent mouseEvent) {buttonevents.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
     
 
@@ -277,10 +272,15 @@ public class SidenavbaruserController implements Initializable {
     }
 
     public void butthonhoverquizz(MouseEvent mouseEvent) {
-        buttonquizz.setStyle("-fx-background-color:#1D3557");
+        buttonquizz.setStyle("-fx-background-color:#1D3557;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
 
     public void buttondishoverquizz(MouseEvent mouseEvent) {
-        buttonquizz.setStyle("-fx-background-color:transparent");
+        buttonquizz.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
+    }
+
+    public void storeinterface(MouseEvent mouseEvent) throws IOException {
+        ap.setVisible(false);
+        loadPage("/test/produitachat");
     }
 }
