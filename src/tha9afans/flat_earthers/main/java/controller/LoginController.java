@@ -63,6 +63,7 @@ public class LoginController implements Initializable {
                     Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbaruser.fxml"));
                     Stage window=(Stage) loginbutton.getScene().getWindow();
                     window.setScene(new Scene(root,1400,700));
+
                 }else{
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Veuillez vérifier votre email et/ou mot de passe", ButtonType.OK);
                     alert.showAndWait();

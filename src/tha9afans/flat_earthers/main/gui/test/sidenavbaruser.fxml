@@ -43,7 +43,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-papers-64.png" />
+                                    <Image url="@images/icons8-events-64.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -53,9 +53,9 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-papers-64.png" />
+                                    <Image url="@images/icons8-online-store-100.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -70,7 +70,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-test-account-90.png" />
+                                    <Image url="@images/icons8-wicker-basket-100.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -85,7 +85,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/icons8-test-account-90.png" />
+                                    <Image url="@images/icons8-visual-game-boy-50.png" />
                                  </image>
                               </ImageView>
                            </graphic>
