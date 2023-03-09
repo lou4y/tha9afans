@@ -143,28 +143,21 @@ public class SidenavbaruserController implements Initializable {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
             slide.setNode(slider);
-
             slide.setToX(0);
             slide.play();
-
             slider.setTranslateX(-176);
-
             slide.setOnFinished((ActionEvent e) -> {
                 Menu.setVisible(false);
                 MenuClose.setVisible(true);
             });
         });
-
         MenuClose.setOnMouseClicked(event -> {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.4));
             slide.setNode(slider);
-
             slide.setToX(-176);
             slide.play();
-
             slider.setTranslateX(0);
-
             slide.setOnFinished((ActionEvent e) -> {
                 Menu.setVisible(true);
                 MenuClose.setVisible(false);
@@ -264,7 +257,7 @@ public class SidenavbaruserController implements Initializable {
 
     public void buttondishoverevents(MouseEvent mouseEvent) {buttonevents.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-width: 0px 0px 1px 0px");
     }
-    
+
 
     public void interfacequizz(MouseEvent mouseEvent) throws IOException {
         ap.setVisible(false);

@@ -62,6 +62,11 @@
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0, 0, 0, 5.0);
 }
 
+.bac-colortransparent{
+    -fx-background-color: transparent;
+}
+
+
 
 .input1{
     -fx-background-color: #F1FAEE;

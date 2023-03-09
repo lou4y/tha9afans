@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import services.ServicePanierProduit;
 
+import test.MainFx;
+
 import java.io.IOException;
 
 public class BoxpanierController  {
@@ -69,14 +71,14 @@ public class BoxpanierController  {
 
 
     public void load()throws IOException {
-      /*  FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("panier-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFx.class.getResource("panier-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1105, 660);
         Stage stage = (Stage)minus.getScene().getWindow();
 
         stage.setTitle("Panier");
         stage.setScene(scene);
 
-        stage.show();*/
+        stage.show();
 
     }
 
