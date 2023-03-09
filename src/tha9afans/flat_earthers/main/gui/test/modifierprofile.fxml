@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="535.0" prefWidth="900.0" style="-fx-background-color: #F1FAEE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierprofileController">
    <children>
-      <BorderPane fx:id="bp" prefHeight="535.0" prefWidth="900.0" AnchorPane.leftAnchor="20.0">
+      <BorderPane fx:id="bp" layoutX="6.0" prefHeight="535.0" prefWidth="914.0" AnchorPane.leftAnchor="6.0">
          <left>
             <VBox prefHeight="497.0" prefWidth="153.0" style="-fx-background-color: #F1FAEE;" BorderPane.alignment="CENTER">
                <children>
@@ -38,6 +38,16 @@
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#Reservationsbutton" prefHeight="41.0" prefWidth="154.0" style="-fx-background-color: #F1FAEE; -fx-border-color: #001A23; -fx-border-width: 0px 0px 1px;" text="Reservations">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#Facturesbutton" prefHeight="41.0" prefWidth="154.0" style="-fx-background-color: #F1FAEE; -fx-border-color: #001A23; -fx-border-width: 0px 0px 1px;" text="Factures">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -66,8 +76,8 @@
                </BorderPane.margin>
             </VBox>
          </left>
-         <right>
-            <BorderPane prefHeight="415.0" prefWidth="685.0" BorderPane.alignment="CENTER">
+         <center>
+            <BorderPane prefHeight="415.0" prefWidth="844.0" BorderPane.alignment="CENTER">
                <AnchorPane fx:id="ap" prefHeight="394.0" prefWidth="532.0" BorderPane.alignment="CENTER">
                         <VBox prefHeight="402.0" prefWidth="490.0">
                            <children>
@@ -209,7 +219,7 @@
                         </ImageView>
                </top>
             </BorderPane>
-         </right>
+         </center>
             </BorderPane>
    </children>
 </AnchorPane>

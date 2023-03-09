@@ -121,7 +121,7 @@ public class SignupController implements Initializable {
     public void goSignIn() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/test/login-view.fxml"));
         Stage window=(Stage) signinbutton.getScene().getWindow();
-        window.setScene(new Scene(root,600,420));
+        window.setScene(new Scene(root,1400,700));
     }
 
     @Override

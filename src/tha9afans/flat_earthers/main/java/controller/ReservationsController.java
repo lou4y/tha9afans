@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.web.WebEngine;
 import org.json.JSONArray;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
@@ -66,111 +67,9 @@ public class ReservationsController implements Initializable {
     @FXML
     private Button Modifier;
 
-    @FXML
-    private WebView webView;
-
-    private WebView mapWebView;
-
-
-
-    private String encodeString(String string) {
-        try {
-            return URLEncoder.encode(string, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
-
-    private String getMapUrl(String address) {
-        String url = "https://www.openstreetmap.org/export/embed.html?bbox=";
-        String query = encodeString(address);
-        String apiUrl = "https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&addressdetails=1&limit=1";
-
-        try {
-            URL apiUrlObj = new URL(apiUrl);
-            HttpURLConnection con = (HttpURLConnection) apiUrlObj.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            JSONArray jsonArray = new JSONArray(response.toString());
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
-
-            String lat = jsonObject.getString("lat");
-            String lon = jsonObject.getString("lon");
-
-            double latitude = Double.parseDouble(lat);
-            double longitude = Double.parseDouble(lon);
-
-            // Set the delta value to adjust the size of the bounding box
-            double delta = 0.02;
-
-            // Calculate the coordinates of the bounding box
-            double left = longitude - delta;
-            double bottom = latitude - delta;
-            double right = longitude + delta;
-            double top = latitude + delta;
-
-            // Add the bounding box to the URL
-            url += left + "," + bottom + "," + right + "," + top;
-
-            // Add a marker for the exact location
-            url += "&marker=" + latitude + "," + longitude + ",red";
-
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return url;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-//        String address = "Tunisia, Kerkennah ";
-//        String mapUrl = getMapUrl(address);
-//        WebEngine webEngine = webView.getEngine();
-//        webEngine.load(mapUrl);
-//
-//        webView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                // Get the coordinates of the mouse click
-//                double mouseX = event.getX();
-//                double mouseY = event.getY();
-//
-//                // Get the size of the WebView
-//                double webViewWidth = webView.getWidth();
-//                double webViewHeight = webView.getHeight();
-//
-//                // Calculate the coordinates of the click in the map's coordinate system
-//                try {
-//                    double left = (double) webEngine.executeScript("window.map.getBounds().getWest()");
-//                    double top = (double) webEngine.executeScript("window.map.getBounds().getNorth()");
-//                    double right = (double) webEngine.executeScript("window.map.getBounds().getEast()");
-//                    double bottom = (double) webEngine.executeScript("window.map.getBounds().getSouth()");
-//                    double longitude = left + (right - left) * mouseX / webViewWidth;
-//                    double latitude = top + (bottom - top) * mouseY / webViewHeight;
-//
-//                    // Print the coordinates of the click
-//                    System.out.println("Latitude: " + latitude + ", Longitude: " + longitude);
-//                } catch (JSException e) {
-//                    System.err.println("Error executing script: " + e.getMessage());
-//                }
-//
-//            }
-//        });
         style();
         nomEvenCol.setCellValueFactory(new PropertyValueFactory<Element,String>("nom"));
         dateResCol.setCellValueFactory(new PropertyValueFactory<Element,Date>("date"));
@@ -183,8 +82,11 @@ public class ReservationsController implements Initializable {
         ServiceReservation serviceReservation = new ServiceReservation();
         ServicePersonne serviceUser = new ServicePersonne();
         List<Reservation> list= serviceReservation.getAllReservationsByUser(serviceUser.getOneById(userlogged.getIdUser()));
+
         for (Reservation r: list) {
+            System.out.println(r);
             Date dateRes=r.getDate_reservation();
+            System.out.println(r.getBillet());
             String nomEvent=r.getBillet().getEvenement().getNom();
             String payment=(r.getIspPaid()) ? "FREE": String.valueOf(r.getBillet().getPrix()+" DT");
             Element row = new Element(nomEvent,dateRes,payment,r.getBillet(),r.getUser(),r);

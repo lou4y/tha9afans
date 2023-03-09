@@ -54,12 +54,12 @@ public class LoginPhoneController implements Initializable {
             if (userlogged.getRole().equals("utilisateur")){
                 Parent root = FXMLLoader.load(getClass().getResource("/test/utilisateur-view.fxml"));
                 Stage window=(Stage) verifcodesmsbutton.getScene().getWindow();
-                window.setScene(new Scene(root,700,550));
+                window.setScene(new Scene(root,1400,700));
             }
             else if(userlogged.getRole().equals("administrateur")){
                 Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
                 Stage window=(Stage) verifcodesmsbutton.getScene().getWindow();
-                window.setScene(new Scene(root,900,450));
+                window.setScene(new Scene(root,1400,700));
 
             }
         }else{
@@ -78,6 +78,6 @@ public class LoginPhoneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/test/login-view.fxml"));
         Stage window=(Stage) backloginbutton.getScene().getWindow();
-        window.setScene(new Scene(root,600,420));
+        window.setScene(new Scene(root,1400,700));
     }
 }
