@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
                     UserSession.getSameInstance(userLoggedIn);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes authentifié avec succés", ButtonType.OK);
                     alert.showAndWait();
-                    Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbaruser.fxml"));
                     Stage window=(Stage) loginbutton.getScene().getWindow();
                     window.setScene(new Scene(root,600,400));
                 }else{
