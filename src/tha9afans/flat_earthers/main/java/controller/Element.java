@@ -1,6 +1,7 @@
 package controller;
 
 import com.google.zxing.WriterException;
+//import com.itextpdf.text.pdf.qrcode.WriterException;
 import entities.Billet;
 import entities.Personne;
 import entities.Reservation;
@@ -42,9 +43,7 @@ public class Element {
                 stage.show();
                 BilletController controller= fxmlLoader.getController();
                 controller.getElements(billet,user);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            } catch (WriterException ex) {
+            } catch (IOException | WriterException ex) {
                 ex.printStackTrace();
             }
         });
