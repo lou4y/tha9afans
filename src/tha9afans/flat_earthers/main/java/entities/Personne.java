@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import java.io.InputStream;
 import java.sql.Date;
 
-public abstract class Personne {
+public class Personne {
     private int id;
     private String cin,nom,prenom,email,password,telephone,adresse,role;
     private Date dateNaissance;

@@ -13,27 +13,6 @@ public class ServicesQuestion implements Services<Question> {
 
     Connection cnx = DataSource.getInstance().getCnx();
 
-//    @Override
-//    public void add(Question p) {
-//        try {
-//            String req = "INSERT INTO question( `question`, `answer`, `timer`, `first_possible_answer`, `second_possible_answer`, `third_possible_answer`, `image`) VALUES (?,?,?,?,?,?,?)";
-//            PreparedStatement ps = cnx.prepareStatement(req);
-//            ps.setString(1, p.getQuestion());
-//            ps.setString(2, p.getRight_answer());
-//            ps.setInt(3, p.getTimer());
-//            ps.setString(4, p.getFirst_possible_answer());
-//            ps.setString(5, p.getSecond_possible_answer());
-//            ps.setString(6, p.getThird_possible_answer());
-//            if (p.getQuestion_image() != null) {
-//                ps.setBlob(7, p.getQuestion_image());
-//            } else {
-//                ps.setNull(7, Types.BLOB);
-//            }
-//            ps.executeUpdate();
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
 
     @Override
     public void add(Question p) {
@@ -106,7 +85,7 @@ public class ServicesQuestion implements Services<Question> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Question q = new Question(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), null, rs.getInt(4));
+                Question q = new Question(rs.getInt(1), rs.getString("question"), rs.getString("answer"), rs.getInt("timer"), rs.getString("first_possible_answer"), rs.getString("second_possible_answer"), rs.getString("third_possible_answer"), null);
                 Blob blob = rs.getBlob(8);
                 if (blob != null) {
                     InputStream inputStream = blob.getBinaryStream();
@@ -128,7 +107,9 @@ public class ServicesQuestion implements Services<Question> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                q = new Question(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(6), rs.getString(7), (InputStream) rs.getBinaryStream(8), rs.getInt(4));
+                Blob blob = rs.getBlob("image");
+                InputStream inputStream = blob.getBinaryStream();
+                q = new Question(rs.getInt(1), rs.getString("question"), rs.getString("answer"), rs.getInt("timer"), rs.getString("first_possible_answer"), rs.getString("second_possible_answer"), rs.getString("third_possible_answer"), inputStream);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

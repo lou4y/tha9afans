@@ -15,6 +15,10 @@ public class Score {
         this.times_played = times_played;
     }
 
+
+    public Score() {
+    }
+
     public Personne getPersonne() {
         return personne;
     }

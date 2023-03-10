@@ -36,7 +36,7 @@ public class PlayQuizHome implements Initializable {
 
                 // Update the row and column indices
                 column++;
-                if (column > 2) {
+                if (column > 3) {
                     column = 0;
                     row++;
                 }
