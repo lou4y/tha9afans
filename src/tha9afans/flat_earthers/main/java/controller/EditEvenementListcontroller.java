@@ -42,7 +42,15 @@ public class EditEvenementListcontroller implements Initializable {
 
     private void load() throws IOException {
         listev.getChildren().clear();
-
+            if (liste.size()==0){
+                HBox b =new HBox();
+                Label label=new Label("No events");
+                b.setAlignment(Pos.CENTER);
+                b.setPadding(new Insets(10));
+                b.getChildren().add(label);
+                listev.getChildren().add(b);
+            }
+            else {
             for (int i = 0; i < liste.size(); i++) {
                 Evenement ev =liste.get(i);
                 VBox b1 =new VBox();
@@ -61,6 +69,8 @@ public class EditEvenementListcontroller implements Initializable {
                 b2.getChildren().add(edit);
                 b3.getChildren().add(delete);
                 b4.getChildren().addAll(b1,b2,b3);
+                b4.setPadding(new Insets(10));
+                b4.setStyle("-fx-background-color:  #f1faee;-fx-border-color: #001A23; -fx-border-width: 2px;");
                 listev.getChildren().add(b4);
                 int finalI = i;
                 edit.setOnAction(e -> {
@@ -91,7 +101,7 @@ public class EditEvenementListcontroller implements Initializable {
                         throw new RuntimeException(ex);
                     }
                 });
-            }
+            }}
     }
 
 
