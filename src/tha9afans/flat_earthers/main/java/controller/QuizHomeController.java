@@ -61,6 +61,17 @@ public class QuizHomeController implements Initializable {
 
     }
 
+    public void switchToShowRank() throws IOException{
+        Scene scene;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/Rank.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        scene=new Scene(root,1400,700);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     public void switchToPlayQuiz() throws IOException {
         Scene scene;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/captcha.fxml"));

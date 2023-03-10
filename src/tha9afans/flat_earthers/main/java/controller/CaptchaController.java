@@ -46,7 +46,7 @@ public class CaptchaController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/PlayQuizHome.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
-                scene=new Scene(root,1020,700);
+                scene=new Scene(root,1276,700);
                 stage.setScene(scene);
                 stage.show();
 

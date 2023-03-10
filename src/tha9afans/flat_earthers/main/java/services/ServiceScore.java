@@ -1,7 +1,6 @@
 package services;
 
 import entities.Personne;
-import entities.Question;
 import entities.Quiz;
 import entities.Score;
 import utils.DataSource;
@@ -130,6 +129,30 @@ public class ServiceScore implements Services<Score> {
         }
         return s;
     }
+    public List<Score> getTop3UsersByScore() {
+        ServicePersonne servicePersonne = new ServicePersonne();
+        ServicesQuiz serviceQuiz = new ServicesQuiz();
+        List<Score> topScores = new ArrayList<>();
+        try {
+            String req = "SELECT id_user, score FROM `score` ORDER BY score DESC LIMIT 3";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Score s = new Score(servicePersonne.getOneById(rs.getInt("id_user")), rs.getInt("score"));
+                String nom = s.getPersonne().getNom();
+                String prenom = s.getPersonne().getPrenom();
+                int score = s.getScore();
+                topScores.add(s);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(topScores);
+        return topScores;
+    }
+
+
+
 
 }
 
