@@ -47,8 +47,7 @@ public class CommentFilter {
                             i = j + word.length();
                         }
                     }
-                    JOptionPane.showMessageDialog(null,
-                            "Please stop writing inappropriate language. Your comment has been filtered.");
+                    JOptionPane.showMessageDialog(null, "Please stop writing inappropriate language. Your comment has been filtered.");
                     textField.setText(filteredText.toString());
                     break;
                 }

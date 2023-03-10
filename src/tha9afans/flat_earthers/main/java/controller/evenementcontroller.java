@@ -170,7 +170,9 @@ public class evenementcontroller implements Initializable {
     public void eventpage(Evenement e) throws IOException {
         this.ev=e;
         this.j= new jaime(sp.getOneById(userlogged.getIdUser()),ev);
-        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/test/images/logo.png");
+
+        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/images/th9afans.png");
+
         Image image = new Image(stream);
         image_ev.setImage(image);
         title.setText(e.getNom());
