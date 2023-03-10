@@ -15,6 +15,10 @@ public class Score {
         this.times_played = times_played;
     }
 
+    public Score(Personne personne, int score) {
+        this.personne = personne;
+        this.score = score;
+    }
 
     public Score() {
     }
