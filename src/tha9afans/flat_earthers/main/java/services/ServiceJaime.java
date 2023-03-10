@@ -1,8 +1,7 @@
 package services;
 
 
-import entities.Evenement;
-import entities.jaime;
+import entities.Jaime;
 import utils.DataSource;
 
 import java.sql.*;
@@ -15,7 +14,7 @@ public class ServiceJaime  {
     Connection cnx = DataSource.getInstance().getCnx();
 
 
-    public void ajouter(jaime jaime) {
+    public void ajouter(Jaime jaime) {
     try {
             String req = "INSERT INTO `jaime` (`id_user`, `id_event`) VALUES (?, ?)";
         PreparedStatement ps = cnx.prepareStatement(req);
@@ -28,7 +27,7 @@ public class ServiceJaime  {
 
     }
 
-    public void supprimer(jaime jaime) {
+    public void supprimer(Jaime jaime) {
         try {
             String req = "DELETE FROM `jaime` WHERE id_user = " + jaime.getUser().getId() + " AND id_event = " + jaime.getEvenement().getId();
             Statement st = cnx.createStatement();
@@ -39,23 +38,23 @@ public class ServiceJaime  {
         }
 
     }
-    public List<jaime> getAll(){
-        List<jaime> list = new ArrayList<>();
+    public List<Jaime> getAll(){
+        List<Jaime> list = new ArrayList<>();
         try {
             String req = "SELECT * FROM `jaime`";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                list.add(new jaime(sp.getOneById(rs.getInt("id_user")), se.getOneById(rs.getInt("id_event"))) );
+                list.add(new Jaime(sp.getOneById(rs.getInt("id_user")), se.getOneById(rs.getInt("id_event"))) );
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return list;
     }
-    public boolean existe(jaime jaime) {
-        List<jaime> list = getAll();
-        jaime ev = list.stream()
+    public boolean existe(Jaime jaime) {
+        List<Jaime> list = getAll();
+        Jaime ev = list.stream()
                 .filter(e -> e.getUser().getId() == jaime.getUser().getId() && e.getEvenement().getId() == jaime.getEvenement().getId())
                 .findFirst()
                 .orElse(null);

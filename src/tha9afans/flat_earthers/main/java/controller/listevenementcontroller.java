@@ -1,9 +1,6 @@
 package controller;
 
-import entities.CategorieEvenement;
-import entities.Evenement;
-import entities.Personne;
-import entities.Session;
+import entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,10 +13,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalTimeStringConverter;
 import services.*;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -52,7 +52,8 @@ public class listevenementcontroller implements Initializable {
     @FXML
     private TextField ev_price;
 
-
+    @FXML
+    private TextField image;
     @FXML
     private GridPane event_grid;
 
@@ -82,6 +83,7 @@ public class listevenementcontroller implements Initializable {
 
     @FXML
     private VBox add_event_b;
+    private File selectedImage;
 
     private List<Session> listsession = new ArrayList<>();
     private List<Evenement> liste = new ArrayList<>();
@@ -92,9 +94,10 @@ public class listevenementcontroller implements Initializable {
     ServiceCategorieEvenement sc = new ServiceCategorieEvenement();
     ServiceEvenement se = new ServiceEvenement();
     ServiceSession ss = new ServiceSession();
-    ServicePersonne sp =new ServicePersonne();
+    ServicePersonne sp = new ServicePersonne();
+    ServiceGalerie sg =new ServiceGalerie();
 
-    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
+    AuthResponseDTO userlogged = UserSession.getUser_LoggedIn();
 
 
     @Override
@@ -218,12 +221,12 @@ public class listevenementcontroller implements Initializable {
     }
 
     private void ajouterevenement(ActionEvent event) throws IOException {
-        if (ev_name.getText().isEmpty()||ev_description.getText().isEmpty()||ev_location.getText().isEmpty()||ev_price.getText().isEmpty()||ev_cat.getValue()==null||ev_region.getValue()==null||ev_pnb.getValue()==null||ev_date.getValue()==null){
+        if (ev_name.getText().isEmpty() || ev_description.getText().isEmpty() || ev_location.getText().isEmpty() || ev_price.getText().isEmpty() || ev_cat.getValue() == null || ev_region.getValue() == null || ev_pnb.getValue() == null || ev_date.getValue() == null) {
             InputTest();
         } else {
             ServiceEvenement se = new ServiceEvenement();
-            Evenement E = new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()),sp.getOneById(userlogged.getIdUser()) , ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40,Integer.parseInt(ev_price.getText()));
-            this.ev=E;
+            Evenement E = new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40, Integer.parseInt(ev_price.getText()));
+            this.ev = E;
             if (se.existe(E) == 1) {
                 Alert a = new Alert(Alert.AlertType.ERROR, "event already exists ", ButtonType.OK);
                 a.showAndWait();
@@ -236,48 +239,49 @@ public class listevenementcontroller implements Initializable {
         }
     }
 
-    private void InputTest(){
+    private void InputTest() {
 
-       if (ev_name.getText().isEmpty() ){
+        if (ev_name.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.WARNING, "add name ", ButtonType.OK);
             a.showAndWait();
 
-       }
-       if (ev_date.getValue()==null){
+        }
+        if (ev_date.getValue() == null) {
             Alert a = new Alert(Alert.AlertType.WARNING, "add date ", ButtonType.OK);
             a.showAndWait();
 
-       }
-        if (ev_region.getValue()==null){
+        }
+        if (ev_region.getValue() == null) {
             Alert a = new Alert(Alert.AlertType.WARNING, "Select region ", ButtonType.OK);
             a.showAndWait();
 
         }
-        if (ev_location.getText().isEmpty()){
+        if (ev_location.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.WARNING, "add location ", ButtonType.OK);
             a.showAndWait();
 
         }
-        if (ev_price.getText().isEmpty()){
+        if (ev_price.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.WARNING, "add price ", ButtonType.OK);
             a.showAndWait();
 
         }
-        if (ev_pnb.getValue()==null){
+        if (ev_pnb.getValue() == null) {
             Alert a = new Alert(Alert.AlertType.WARNING, "add number of participants ", ButtonType.OK);
             a.showAndWait();
 
         }
-        if (ev_cat.getValue()== null){
+        if (ev_cat.getValue() == null) {
             Alert a = new Alert(Alert.AlertType.WARNING, "Select category ", ButtonType.OK);
             a.showAndWait();
 
         }
-        if (ev_description.getText().isEmpty()){
+        if (ev_description.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.WARNING, "add description ", ButtonType.OK);
             a.showAndWait();
-            }
+        }
     }
+
     @FXML
     void confirmer(ActionEvent event) {
         try {
@@ -286,6 +290,10 @@ public class listevenementcontroller implements Initializable {
             int id = se.getId(this.ev);
             ServiceReservation sr = new ServiceReservation();
             System.out.println(id);
+            if (selectedImage != null) {
+                sg.ajouter(new Galerie(se.getOneById(id),new FileInputStream(selectedImage)));
+            }
+
             this.liste = se.getAll();
             load();
             sr.setAllBillet(id);
@@ -332,44 +340,51 @@ public class listevenementcontroller implements Initializable {
         label2.setPadding(new Insets(5, 5, 5, 5));
         Spinner<LocalTime> debit = new Spinner<>();
         debit.setValueFactory(new SpinnerValueFactory<LocalTime>() {
-            {   setValue(Time.valueOf("8:00:00").toLocalTime());
+            {
+                setValue(Time.valueOf("8:00:00").toLocalTime());
                 setConverter(new LocalTimeStringConverter(TIME_FORMATTER, null));
             }
+
             @Override
             public void decrement(int steps) {
                 setValue(getValue().minusMinutes(steps));
             }
+
             @Override
             public void increment(int steps) {
                 setValue(getValue().plusMinutes(steps));
             }
         });
         Spinner<LocalTime> fin = new Spinner<>();
-        fin.setValueFactory(new SpinnerValueFactory<LocalTime>() {{
+        fin.setValueFactory(new SpinnerValueFactory<LocalTime>() {
+            {
                 setValue(Time.valueOf("8:00:00").toLocalTime());
                 setConverter(new LocalTimeStringConverter(TIME_FORMATTER, null));
             }
+
             @Override
             public void decrement(int steps) {
                 setValue(getValue().minusMinutes(steps));
             }
+
             @Override
             public void increment(int steps) {
                 setValue(getValue().plusMinutes(steps));
-            }});
+            }
+        });
         box1.getChildren().add(field1);
         box2.getChildren().add(field2);
         box3.getChildren().add(field3);
         box4.getChildren().add(btn);
         box5.getChildren().add(btn2);
-        box6.getChildren().addAll(label1,debit);
-        box7.getChildren().addAll(label2,fin);
+        box6.getChildren().addAll(label1, debit);
+        box7.getChildren().addAll(label2, fin);
         btn2.setOnAction(e -> {
             if (btn2.isSelected()) {
                 Session s = new Session(null, field1.getText(), field2.getText(), field3.getText(), Time.valueOf(debit.getValue()), Time.valueOf(fin.getValue()));
                 this.listsession.add(s);
             } else {
-                Session s = new Session(null, field1.getText(), field2.getText(), field3.getText(),Time.valueOf(debit.getValue()), Time.valueOf(fin.getValue()));
+                Session s = new Session(null, field1.getText(), field2.getText(), field3.getText(), Time.valueOf(debit.getValue()), Time.valueOf(fin.getValue()));
                 this.listsession.remove(s);
             }
         });
@@ -379,13 +394,13 @@ public class listevenementcontroller implements Initializable {
             this.listsession.remove(s);
         });
 
-        hbox.getChildren().addAll(box1, box2, box3, box6, box7,box5, box4);
+        hbox.getChildren().addAll(box1, box2, box3, box6, box7, box5, box4);
         sessionlist.getChildren().add(hbox);
 
     }
 
     private void savesession() {
-        int id = se.getId(new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40,Integer.parseInt(ev_price.getText())));
+        int id = se.getId(new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40, Integer.parseInt(ev_price.getText())));
         for (Session s : listsession) {
             s.setEvenement(se.getOneById(id));
             ss.ajouter(s);
@@ -443,6 +458,7 @@ public class listevenementcontroller implements Initializable {
             System.out.println(liste);
         }
     }
+
     @FXML
     void add_event(ActionEvent event) {
         if (add_event_b.isVisible()) {
@@ -455,6 +471,27 @@ public class listevenementcontroller implements Initializable {
 
         }
     }
+
+    public void ButtonAction(ActionEvent actionEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        selectedImage = fileChooser.showOpenDialog(null);
+        if (selectedImage != null) {
+            image.setText(selectedImage.getAbsolutePath());
+        } else {
+            image.setText("File is not valid!");
+        }
+
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+         File selectedFile = fileChooser.showOpenDialog(null);
+            if (selectedImage != null) {
+            image.setText(selectedImage.getAbsolutePath());
+            } else {
+            image.setText("File is not valid!");
+            }
+        }
 }
 
 

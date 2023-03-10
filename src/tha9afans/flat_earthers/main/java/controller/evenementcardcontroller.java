@@ -1,24 +1,23 @@
 package controller;
 
 import entities.Evenement;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+import services.AuthResponseDTO;
+import services.ServiceGalerie;
+import services.ServicePersonne;
+import services.UserSession;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -41,7 +40,10 @@ public class evenementcardcontroller{
 
     private Evenement e;
     private Scene scene;
+    ServicePersonne sp =new ServicePersonne();
+    ServiceGalerie sg = new ServiceGalerie();
 
+    AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
     @FXML
     void moredetails(MouseEvent event) throws IOException {
         Scene scene;
@@ -59,9 +61,14 @@ public class evenementcardcontroller{
     }
 
 
-    public void setevenement(Evenement e) throws FileNotFoundException {
-        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/images/logo.png");
+    public void setevenement(Evenement e) throws IOException {
+        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/images/th9afans.png");
+        if (sg.getallbyevent(e.getId()).size()!=0){
+            System.out.println(sg.getallbyevent(e.getId()).size());
+            stream=sg.getallbyevent(e.getId()).get(0).getPhoto();
+        }
         Image image = new Image(stream);
+
         this.e=e;
         event_name.setText(e.getNom());
         event_desc.setText(e.getDescription());

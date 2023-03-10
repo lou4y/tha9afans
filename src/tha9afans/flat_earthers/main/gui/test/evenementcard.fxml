@@ -16,11 +16,15 @@
                <children>
                   <VBox>
                      <children>
-                        <ImageView fx:id="event_img" fitHeight="166.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/logo.png" />
-                           </image>
-                        </ImageView>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView fx:id="event_img" fitHeight="166.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logo.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
                         <Label fx:id="event_name" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="191.0" text="Event Name">
                            <font>
                               <Font size="23.0" />

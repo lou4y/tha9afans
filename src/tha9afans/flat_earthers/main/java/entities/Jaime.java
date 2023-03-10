@@ -1,13 +1,13 @@
 package entities;
 
-public class jaime {
+public class Jaime {
     private Personne user;
     private Evenement evenement;
 
-    public jaime() {
+    public Jaime() {
     }
 
-    public jaime(Personne user, Evenement evenement) {
+    public Jaime(Personne user, Evenement evenement) {
         this.user = user;
         this.evenement = evenement;
     }
