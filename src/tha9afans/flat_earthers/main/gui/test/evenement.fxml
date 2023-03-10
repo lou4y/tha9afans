@@ -22,7 +22,11 @@
                            <children>
                               <VBox prefHeight="211.0" prefWidth="406.0">
                                  <children>
-                                    <ImageView fx:id="image_ev" fitHeight="301.0" fitWidth="422.0" pickOnBounds="true" preserveRatio="true" />
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="image_ev" fitHeight="301.0" fitWidth="489.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </VBox>
                               <VBox prefHeight="303.0" prefWidth="397.0">
@@ -38,7 +42,7 @@
                                           <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="165.0" text="like" textFill="#f1faee" />
                                        </children>
                                     </HBox>
-                                    <Label fx:id="desc" alignment="TOP_LEFT" prefHeight="172.0" prefWidth="230.0" text="DES" textFill="#f1faee">
+                                    <Label fx:id="desc" alignment="TOP_LEFT" prefHeight="172.0" prefWidth="423.0" text="DES" textFill="#f1faee">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

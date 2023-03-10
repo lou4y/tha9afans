@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,9 +77,10 @@ public class evenementcontroller implements Initializable {
     ServiceJaime sj = new ServiceJaime();
     ServiceReservation sr = new ServiceReservation();
     ServicePersonne sp =new ServicePersonne();
+    ServiceGalerie sg = new ServiceGalerie();
 
     AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
-    private jaime j = new jaime();
+    private Jaime j = new Jaime();
 
 
 
@@ -161,6 +159,7 @@ public class evenementcontroller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         EPane.setStyle("-fx-background:  #f1faee; -fx-background-color:  #f1faee");
+        this.desc.setWrapText(true);
 
 
 
@@ -169,9 +168,13 @@ public class evenementcontroller implements Initializable {
 
     public void eventpage(Evenement e) throws IOException {
         this.ev=e;
-        this.j= new jaime(sp.getOneById(userlogged.getIdUser()),ev);
+        this.j= new Jaime(sp.getOneById(userlogged.getIdUser()),ev);
+        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/images/tha9afans1.png");
 
-        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/images/th9afans.png");
+        if (sg.getallbyevent(e.getId()).size()!=0){
+            stream=sg.getallbyevent(e.getId()).get(0).getPhoto();
+        }
+        stream.reset();
 
         Image image = new Image(stream);
         image_ev.setImage(image);
