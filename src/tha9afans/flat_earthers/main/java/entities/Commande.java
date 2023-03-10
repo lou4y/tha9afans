@@ -8,7 +8,6 @@ public class Commande {
 
     private Timestamp dateCommande;
 
-    private Produit produit;
 
     private Double total;
 
@@ -17,17 +16,15 @@ public class Commande {
     public Commande() {
     }
 
-    public Commande(int id, Timestamp dateCommande, Produit produit, Double total, Personne personne) {
+    public Commande(int id, Timestamp dateCommande, Double total, Personne personne) {
         this.id = id;
         this.dateCommande = dateCommande;
-        this.produit = produit;
         this.total = total;
         this.personne = personne;
     }
 
-    public Commande(Timestamp dateCommande, Produit produit, Double total, Personne personne) {
+    public Commande(Timestamp dateCommande,  Double total, Personne personne) {
         this.dateCommande = dateCommande;
-        this.produit = produit;
         this.total = total;
         this.personne = personne;
     }
@@ -48,13 +45,6 @@ public class Commande {
         this.dateCommande = dateCommande;
     }
 
-    public Produit getProduit() {
-        return produit;
-    }
-
-    public void setProduit(Produit produit) {
-        this.produit = produit;
-    }
 
     public Double getTotal() {
         return total;
@@ -76,12 +66,12 @@ public class Commande {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Commande commande)) return false;
-        return getId() == commande.getId() && Objects.equals(getDateCommande(), commande.getDateCommande()) && Objects.equals(getProduit(), commande.getProduit()) && Objects.equals(getTotal(), commande.getTotal()) && Objects.equals(getPersonne(), commande.getPersonne());
+        return getId() == commande.getId() && Objects.equals(getDateCommande(), commande.getDateCommande()) && Objects.equals(getTotal(), commande.getTotal()) && Objects.equals(getPersonne(), commande.getPersonne());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDateCommande(), getProduit(), getTotal(), getPersonne());
+        return Objects.hash(getId(), getDateCommande(),  getTotal(), getPersonne());
     }
 
     @Override
@@ -89,7 +79,6 @@ public class Commande {
         return "Commande{" +
                 "id=" + id +
                 ", dateCommande=" + dateCommande +
-                ", produit=" + produit +
                 ", total=" + total +
                 ", personne=" + personne +
                 '}';

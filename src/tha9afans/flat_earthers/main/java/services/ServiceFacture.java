@@ -2,6 +2,7 @@ package services;
 
 import entities.Evenement;
 import entities.Facture;
+import entities.Panier;
 import entities.Personne;
 import utils.DataSource;
 
@@ -100,5 +101,13 @@ public class ServiceFacture implements IService<Facture> {
     public List<Facture> getAllByUser(Personne personne) {
         List<Facture> list = new ArrayList<>();
         return list.stream().filter(e -> e.getCommande().getPersonne().getId() == personne.getId()).collect(Collectors.toList());
+    }
+
+
+    public List<Facture>  GetFActureByUser(Personne personne){
+        List<Facture> list = getAll();
+        list= list.stream().filter(e->e.getCommande().getPersonne().getId()==personne.getId()).collect(Collectors.toList());
+        System.out.println(list);
+        return list;
     }
 }

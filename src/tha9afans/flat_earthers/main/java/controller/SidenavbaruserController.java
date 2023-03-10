@@ -31,6 +31,7 @@ import javafx.util.Duration;
 import services.AuthResponseDTO;
 import services.ServicePersonne;
 import services.UserSession;
+import test.MainFx;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -185,8 +186,18 @@ public class SidenavbaruserController implements Initializable {
     }
 
     public void interfacepanier(MouseEvent event) throws IOException {
-        ap.setVisible(false);
-        loadPage("/test/panier-view");
+   /*     ap.setVisible(false);
+        loadPage("/test/panier-view");*/
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFx.class.getResource("panier-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1105, 660);
+
+        Stage stage = new Stage();
+
+        stage.setTitle("Panier");
+        stage.setScene(scene);
+
+        stage.show();
+
     }
     public void profile(MouseEvent event) throws IOException {
         ap.setVisible(false);

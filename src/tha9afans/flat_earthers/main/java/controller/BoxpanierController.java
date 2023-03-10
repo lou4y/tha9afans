@@ -75,7 +75,6 @@ public class BoxpanierController  {
         FXMLLoader fxmlLoader = new FXMLLoader(MainFx.class.getResource("panier-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1105, 660);
         Stage stage = (Stage)minus.getScene().getWindow();
-
         stage.setTitle("Panier");
         stage.setScene(scene);
 

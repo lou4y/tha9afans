@@ -27,7 +27,7 @@ public class ServicePanierProduit implements IService<PanierProduit> {
             ps.setInt(3, p.getQuantite());
 
             ps.executeUpdate();
-            System.out.println("Commande created ");
+           // System.out.println("Commande created ");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -41,7 +41,7 @@ public class ServicePanierProduit implements IService<PanierProduit> {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("produit deleted");
+           // System.out.println("produit deleted");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
@@ -59,7 +59,7 @@ public class ServicePanierProduit implements IService<PanierProduit> {
             ps.setInt(3, p.getQuantite());
             ps.setInt(4, p.getProduit().getId());
             ps.executeUpdate();
-            System.out.println("produit updated");
+           // System.out.println("produit updated");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -118,7 +118,7 @@ public class ServicePanierProduit implements IService<PanierProduit> {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("quantite updated");
+           // System.out.println("quantite updated");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
@@ -132,7 +132,7 @@ public class ServicePanierProduit implements IService<PanierProduit> {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("quantite updated");
+           // System.out.println("quantite updated");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
@@ -160,13 +160,13 @@ public class ServicePanierProduit implements IService<PanierProduit> {
                     PreparedStatement updateStatement = cnx.prepareStatement(updateQuery);
                     updateStatement.setInt(1, id);
                     updateStatement.executeUpdate();
-                    System.out.println("Quantité mise à jour");
+                   // System.out.println("Quantité mise à jour");
                 } else {
                     String deleteQuery = "DELETE FROM panierproduit WHERE id_produit = ?";
                     PreparedStatement deleteStatement = cnx.prepareStatement(deleteQuery);
                     deleteStatement.setInt(1, id);
                     deleteStatement.executeUpdate();
-                    System.out.println("Produit supprimé du panier");
+                   // System.out.println("Produit supprimé du panier");
                 }
             } else {
                 System.out.println("Aucun produit avec l'ID " + id + " n'a été trouvé dans le panier");
@@ -224,7 +224,7 @@ public class ServicePanierProduit implements IService<PanierProduit> {
         }
     }
 
-    public void supprimerLivrePanier(Produit produit) {
+    public void supprimerProduitPanier(Produit produit) {
         try {
             // Récupération de la quantité actuelle du livre dans le panier
             String selectQuery = "SELECT quantity FROM panierproduit WHERE id_produit = ?";
@@ -251,7 +251,7 @@ public class ServicePanierProduit implements IService<PanierProduit> {
                 updateStmt.executeUpdate();
             }
 
-            System.out.println("produit supprimé du panier avec succès !");
+            //System.out.println("produit supprimé du panier avec succès !");
 
         } catch (SQLException ex) {
             System.out.println("Erreur lors de la suppression du livre du panier: " + ex.getMessage());

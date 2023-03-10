@@ -35,7 +35,7 @@ public class FactureController implements Initializable {
         ServiceFacture sf = new ServiceFacture();
         ServicePersonne sp = new ServicePersonne();
 
-        ObservableList<Facture> factures = FXCollections.observableArrayList(sf.getAllByUser(sp.getOneById(userlogged.getIdUser())));
+        ObservableList<Facture> factures = FXCollections.observableArrayList(sf.GetFActureByUser(sp.getOneById(userlogged.getIdUser())));
         listview.setItems(factures);
         listview.setCellFactory(new Callback<ListView<Facture>, ListCell<Facture>>() {
             @Override
@@ -52,8 +52,12 @@ public class FactureController implements Initializable {
                                     + "\nAdresse: " + facture.getCommande().getPersonne().getAdresse()
                                     + "\nTéléphone: " + facture.getCommande().getPersonne().getTelephone()
                                     + "\nDate: " + facture.getDatefacture()
-                                    + "\nProduit: " + facture.getCommande().getProduit().getNom()
+
+                                   /* + "\nProduit: " + facture.getCommande().getProduit().getNom()
                                     + "\nPrix: " + facture.getCommande().getProduit().getPrix()
+                                    + "\nQuantité: " + facture.getCommande().getQuantite()*/
+
+                                    + "\nTVA: " + facture.getTva()
                                     + "\ntotal : " + facture.getCommande().getTotal()
                                     + "\ntotal avec tva: " + facture.getCommande().getTotal()*facture.getTva()
 

@@ -18,6 +18,14 @@ public class Facture {
         this.refrancefacture = refrancefacture;
         this.commande = commande;
     }
+
+
+    public Facture(Timestamp datefacture, double tva, String refrancefacture, Commande commande) {
+        this.datefacture = datefacture;
+        this.tva = tva;
+        this.refrancefacture = refrancefacture;
+        this.commande = commande;
+    }
     public Facture() {
     }
 

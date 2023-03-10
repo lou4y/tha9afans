@@ -27,8 +27,8 @@ public class GeneratePdf {
                     + "\nAdresse: " + facture.getCommande().getPersonne().getAdresse()
                     + "\nTéléphone: " + facture.getCommande().getPersonne().getTelephone()
                     + "\nDate: " + facture.getDatefacture()
-                    + "\nProduit: " + facture.getCommande().getProduit().getNom()
-                    + "\nPrix: " + facture.getCommande().getProduit().getPrix()
+               /*     + "\nProduit: " + facture.getCommande().getProduit().getNom()
+                    + "\nPrix: " + facture.getCommande().getProduit().getPrix()*/
                     + "\n\n";
             Paragraph paragraph = new Paragraph(text);
             paragraph.setAlignment(Element.ALIGN_LEFT);
