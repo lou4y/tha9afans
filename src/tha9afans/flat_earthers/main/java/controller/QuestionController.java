@@ -1,6 +1,9 @@
 package controller;
 
+import entities.Personne;
 import entities.Question;
+import entities.Quiz;
+import entities.Score;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -30,14 +33,15 @@ public class QuestionController {
 
     AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
 
+
+
+    private Quiz quiz;
     @FXML
     private Button firstPossibleAnswer;
 
     @FXML
     private ImageView image;
 
-    @FXML
-    private Button pauseGame;
 
     @FXML
     private Label question;
@@ -74,35 +78,29 @@ public class QuestionController {
 
     private boolean isPaused = false;
 
-    private Duration pausedTime;
     private boolean isGameOver = false;
 
+    private final Random rand = new Random();
 
+    private int quiz_id;
 
-    public void setQuestionsList(int id) {
-        this.id = id;
-        ServiceQuizQuestion sq = new ServiceQuizQuestion();
-        this.questions = sq.getAllByQuiz(id);
-        setQuestion(this.questions);
+//    public void setQuestionsList(int idd) {
+//
+//        id = idd;
+//        System.out.println("Quiz ID: " + id);
+//        ServiceQuizQuestion sq = new ServiceQuizQuestion();
+//        this.questions = sq.getAllByQuiz(id);
+//        setQuestion(this.questions);
+//    }
 
-    }
-
-
-    public void setQuestion(List<Question> questions){
+    public void setQuestion(List<Question> questions, int quiz_id) {
         this.questions = questions;
-        System.out.println(this.questions.size());
-        Random rand = new Random();
+        this.quiz_id = quiz_id;
+        System.out.println("Quiz ID: " + quiz_id);
+        System.out.println("Size:"+this.questions.size());
 
-        Question q = new Question();
-        if (this.questions.size() == 0){
-            q = this.questions.get(0);
-            nextButton.setDisable(true);
-            skipButton.setDisable(true);
-        } else {
-            int questionNumber = rand.nextInt(this.questions.size());
-            q = this.questions.get(questionNumber);
-            this.questions.remove(questionNumber);
-        }
+        int questionNumber = rand.nextInt(this.questions.size());
+        Question q = this.questions.remove(questionNumber);
 
         // Stop and reset the timeline
         if (timeline != null) {
@@ -110,13 +108,11 @@ public class QuestionController {
             timeline.getKeyFrames().clear();
         }
 
-        // Create an ArrayList to store the answer options and add them in the desired order
-        List<String> answerOptions = new ArrayList<>();
-        answerOptions.add(q.getFirst_possible_answer());
-        answerOptions.add(q.getSecond_possible_answer());
-        answerOptions.add(q.getThird_possible_answer());
-
-        // Shuffle the ArrayList to randomize the order of the answer options
+        // Create a List with the answer options and shuffle them
+        List<String> answerOptions = Arrays.asList(
+                q.getFirst_possible_answer(),
+                q.getSecond_possible_answer(),
+                q.getThird_possible_answer());
         Collections.shuffle(answerOptions, rand);
 
         // Set the text of the answer buttons according to the shuffled order
@@ -128,14 +124,18 @@ public class QuestionController {
         this.timer.setText(String.valueOf(q.getTimer()));
         startTimer();
         rightAnswer = q.getRight_answer();
-        InputStream inputStream = q.getQuestion_image();
-        Image image = new Image(inputStream);
-        this.image.setImage(image);
-        this.image.setPreserveRatio(false);
-        Rectangle clip = new Rectangle(this.image.getFitWidth(), this.image.getFitHeight());
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
-        this.image.setClip(clip);
+
+        try (InputStream inputStream = q.getQuestion_image()) {
+            Image image = new Image(inputStream);
+            this.image.setImage(image);
+            this.image.setPreserveRatio(false);
+            Rectangle clip = new Rectangle(this.image.getFitWidth(), this.image.getFitHeight());
+            clip.setArcWidth(20);
+            clip.setArcHeight(20);
+            this.image.setClip(clip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int timerDuration = q.getTimer();
         timeline = new Timeline(
@@ -158,6 +158,10 @@ public class QuestionController {
 
     public void startTimer() {
         if (!isPaused) {
+            if (timeline != null && timeline.getStatus() == Timeline.Status.RUNNING) {
+                // The timer is already running, so we don't need to start it again
+                return;
+            }
             AtomicInteger timeLimit = new AtomicInteger(Integer.parseInt(timer.getText()));
             timeline = new Timeline(new KeyFrame(Duration.seconds(1), evt -> {
                 timeLimit.getAndDecrement();
@@ -176,27 +180,27 @@ public class QuestionController {
         }
     }
 
+
     public void nextQuestionScene() throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/Question.fxml"));
         Parent root = loader.load();
         QuestionController qc = loader.getController();
-        qc.setQuestion(this.questions);
+        qc.setQuestion(this.questions, this.quiz_id);
         qc.setScore(this.scoreCount);
+
+
 
         // Get the current scene and set its root to the new content
         Scene scene = firstPossibleAnswer.getScene();
         scene.setRoot(root);
     }
-
-    public void setScore(int scoreCount) {
-        this.scoreCount = scoreCount;
-        this.score.setText("Score: " + this.scoreCount);
-    }
-
     @FXML
     void checkAnswer(ActionEvent event) throws IOException {
-        ServicePersonne sp = new ServicePersonne();
 
+        ServicePersonne sp = new ServicePersonne();
+        ServiceScore ss = new ServiceScore();
+        ServicesQuiz sq = new ServicesQuiz();
 
         Button clickedButton = (Button) event.getSource();
         String chosenAnswer = clickedButton.getText();
@@ -204,16 +208,20 @@ public class QuestionController {
         if (!isGameOver && chosenAnswer.equals(rightAnswer)) {
             this.scoreCount += 100;
             this.score.setText("Score: " + this.scoreCount);
-
         }
 
         // Disable all answer buttons
         this.firstPossibleAnswer.setDisable(true);
         this.secondPossibleAnswer.setDisable(true);
         this.thirdPossibleAnswer.setDisable(true);
-
         // Check if there are any questions remaining
-        if (this.questions.isEmpty()) {
+        Personne user = sp.getOneById(userlogged.getIdUser());
+
+        System.out.println("me before if "+ this.quiz_id);
+        if (this.questions.size() == 0) {
+            System.out.println("me after if "+this.quiz_id);
+
+
             // Game is over, show score alert and go back to PlayQuizHome.fxml
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Quiz Over");
@@ -221,15 +229,37 @@ public class QuestionController {
             alert.setContentText("Your score is: " + this.scoreCount);
             alert.showAndWait();
 
+            // Check if the user has played this quiz before
+            Score existingScore = ss.getByUserQuiz(user, sq.getById(this.quiz_id));
+
+            if (existingScore != null) {
+                // Update the existing score if the current score is higher
+                if (this.scoreCount > existingScore.getScore()) {
+                    existingScore.setScore(this.scoreCount);
+                    existingScore.setTimes_played(existingScore.getTimes_played() + 1);
+                    ss.update(existingScore);
+                }
+            } else {
+                Score newScore = new Score(user, sq.getById(this.quiz_id), this.scoreCount, 1);
+                ss.add(newScore);
+
+            }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/PlayQuizHome.fxml"));
             Parent root = loader.load();
             Scene scene = clickedButton.getScene();
             scene.setRoot(root);
         } else {
+            // There are more questions, load the next one
             nextQuestionScene();
         }
     }
+
+    public void setScore(int scoreCount) {
+        this.scoreCount = scoreCount;
+        this.score.setText("Score: " + this.scoreCount);
+    }
+
 
     @FXML
     void quitGame(ActionEvent event) throws IOException {
@@ -244,13 +274,10 @@ public class QuestionController {
     }
 
 
-
-
-
-
     @FXML
     void skipQuestion(ActionEvent event) throws IOException {
         nextQuestionScene();
+
 
     }
 

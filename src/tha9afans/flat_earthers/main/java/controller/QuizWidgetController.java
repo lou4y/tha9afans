@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import services.ServiceQuizQuestion;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,10 +76,12 @@ public class QuizWidgetController {
     @FXML
     void playQuizNow(ActionEvent event) throws IOException {
 
+        ServiceQuizQuestion sqq = new ServiceQuizQuestion();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/Question.fxml"));
         Parent root = loader.load();
         QuestionController qc = loader.getController();
-        qc.setQuestionsList(this.quiz.getQuiz_id());
+        qc.setQuestion(sqq.getAllByQuiz(quiz.getQuiz_id()), quiz.getQuiz_id());
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();

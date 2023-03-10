@@ -64,7 +64,7 @@ public class UpdateQuestionController implements Initializable {
         updateQuestion.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){
-                    Question ques = new Question(question_id ,question.getText(), firstPossibleAnswer.getText(), secondPossibleAnswer.getText(), thirdPossibleAnswer.getText(), rightAnswer.getText(), null, timer.getValue());
+                    Question ques = new Question(question_id ,question.getText(),  rightAnswer.getText(), timer.getValue(),firstPossibleAnswer.getText(), secondPossibleAnswer.getText(), thirdPossibleAnswer.getText(), null);
                     sq.update(ques);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Question updated successfully", ButtonType.OK);
                     alert.showAndWait();
