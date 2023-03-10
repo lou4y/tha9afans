@@ -76,7 +76,7 @@ public class EditEvenementListcontroller implements Initializable {
                     editcontroller nextController = loader.getController();
                     nextController.setevent(ev);
                     Stage stage = new Stage();
-                    scene=new Scene(root,1020,700);
+                    scene=new Scene(root,600,471);
                     stage.setScene(scene);
                     stage.show();
 
