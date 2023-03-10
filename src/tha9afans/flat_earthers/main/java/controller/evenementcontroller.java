@@ -164,12 +164,13 @@ public class evenementcontroller implements Initializable {
 
 
 
+
     }
 
     public void eventpage(Evenement e) throws IOException {
         this.ev=e;
         this.j= new jaime(sp.getOneById(userlogged.getIdUser()),ev);
-        InputStream stream = new FileInputStream("D:/resources/tha9afans1.png");
+        InputStream stream = new FileInputStream("src/tha9afans/flat_earthers/main/gui/test/images/logo.png");
         Image image = new Image(stream);
         image_ev.setImage(image);
         title.setText(e.getNom());
@@ -187,8 +188,7 @@ public class evenementcontroller implements Initializable {
             participate.setDisable(true);
             participate.setStyle("-fx-background-color: #f1faee; -fx-text-fill: #1d3557");
         }
-
-        else {
+        else{
             participate.setText("participate");
             participate.setDisable(false);
         }
