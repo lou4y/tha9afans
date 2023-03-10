@@ -145,7 +145,7 @@ public class ServiceReservation implements IService<Reservation> {
 
     public List<Reservation> getAllReservationsByUser(Personne user){
         List<Reservation> reservations = getAll().stream()
-                .filter(e -> e.getUser().getId() == user.getId())
+                .filter(e -> e.getUser().getId() == user.getId() && user.getId()!=e.getBillet().getEvenement().getcreateur().getId())
                 .sorted(new DateReservationComparator())
                 .collect(Collectors.toList());       //By RESERVATION DATE
         // .collect(Collectors.groupingBy(Collectors.groupingBy(reservation->))
