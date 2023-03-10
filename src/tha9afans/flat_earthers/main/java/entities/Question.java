@@ -18,7 +18,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(String question, String first_possible_answer, String second_possible_answer, String third_possible_answer, String right_answer, InputStream question_image, int timer) {
+    public Question(String question, String right_answer , int timer,  String first_possible_answer, String second_possible_answer, String third_possible_answer, InputStream question_image) {
         this.question = question;
         this.first_possible_answer = first_possible_answer;
         this.second_possible_answer = second_possible_answer;
@@ -28,7 +28,7 @@ public class Question {
         this.question_image = question_image;
     }
 
-    public Question(int question_id, String question, String first_possible_answer, String second_possible_answer, String third_possible_answer, String right_answer, InputStream question_image, int timer) {
+    public Question(int question_id, String question, String right_answer , int timer,  String first_possible_answer, String second_possible_answer, String third_possible_answer, InputStream question_image) {
         this.question_id = question_id;
         this.question = question;
         this.first_possible_answer = first_possible_answer;

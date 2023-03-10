@@ -48,7 +48,7 @@ public class AddQuestionController implements Initializable {
         } else {
             ServicesQuestion sq = new ServicesQuestion();
 
-            Question q = new Question(question.getText(), firstPossibleAnswer.getText(), secondPossibleAnswer.getText(), thirdPossibleAnswer.getText(), rightAnswer.getText(), null, timer.getValue());
+            Question q = new Question(question.getText(), rightAnswer.getText() , timer.getValue(), firstPossibleAnswer.getText(), secondPossibleAnswer.getText(), thirdPossibleAnswer.getText(), null);
 
             try {
                 FileInputStream fis = new FileInputStream(selectedImage);
