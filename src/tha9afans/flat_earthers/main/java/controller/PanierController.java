@@ -1,7 +1,6 @@
 package controller;
 
-import entities.Panier;
-import entities.PanierProduit;
+import entities.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,8 +17,10 @@ import services.*;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -61,10 +62,15 @@ public class PanierController implements Initializable {
     SendGrid mail = new SendGrid();
     private int counter = 0;
     private Panier p ;
+    private Facture f ;
 
 
     ServicePanier sp = new ServicePanier();
     ServiceFacture sf = new ServiceFacture();
+    ServiceCommandeProduit scp = new ServiceCommandeProduit();
+    ServicePanierProduit spp = new ServicePanierProduit();
+    ServicePersonne spersonne = new ServicePersonne();
+
 
     AuthResponseDTO userlogged=UserSession.getUser_LoggedIn();
 
@@ -74,6 +80,9 @@ public class PanierController implements Initializable {
         String cv = cvfield.getText();
         String exp = expfield.getText();
         String emailInput = email.getText();
+
+
+
         // Vérifie que le champ numberfield contient une valeur numérique à 16 chiffres qui commence par 4 ou 5
         if (!number.matches("^4[0-9]{15}$|^5[0-9]{15}$")) {
             JOptionPane.showMessageDialog(null, "Le numéro de carte est invalide.");
@@ -96,6 +105,9 @@ public class PanierController implements Initializable {
         }
         else {
             JOptionPane.showMessageDialog(null, "Paiement effectué avec succès.");
+
+            //scp.ajouterproduitcommande(sp.GetPanierByUser(UserSession.getUser_LoggedIn()));
+
             // nb3th email
             String cardNumber = numberfield.getText().trim();
             String maskedCardNumber = "**** **** **** " + cardNumber.substring(cardNumber.length() - 4);
@@ -104,6 +116,7 @@ public class PanierController implements Initializable {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             String formattedDate = currentDate.format(formatter);
 
+            gencommande();
 
             String message = "Bonjour, \n" +
                     "Nous vous confirmons que votre commande a bien été passe le . " + formattedDate +
@@ -123,7 +136,31 @@ public class PanierController implements Initializable {
     }
 
 
+public void gencommande(){
 
+List<PanierProduit> list = new ArrayList<>();
+    ServiceCommande scomande = new ServiceCommande();
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    Commande c = new Commande( timestamp,this.p.getTotal(),spersonne.getOneById(userlogged.getIdUser()));
+
+    scomande.ajouter(c);
+    System.out.println("this cc"+c);
+    list=spp.getproduitdanspanier(this.p);
+
+System.out.println("this "+c);
+    for (PanierProduit p : list){
+        CommandeProduit cp = new CommandeProduit(scomande.getOneById(scomande.getId(c)),p.getQuantite(),p.getProduit());
+        scp.ajouter(cp);
+        for (int i = 0; i < p.getQuantite(); i++) {
+            spp.supprimerProduitPanier(p.getProduit());
+        }
+
+    }
+
+    Facture f = new Facture(timestamp,12.6,"refdsqfqsd",scomande.getOneById(scomande.getId(c)));
+    sf.ajouter(f);
+
+}
 
 
 
@@ -174,15 +211,21 @@ public class PanierController implements Initializable {
 
         }
 
-        public void calculerTotal(){
+    public void calculerTotal(){
+
             ServicePanierProduit spp = new ServicePanierProduit();
             ServicePanier spanier = new ServicePanier();
             List<PanierProduit> list = spp.getproduitdanspanier(this.p);
-            int total = 0;
+            double totalpanier = 0;
             for (PanierProduit p : list){
-                total += p.getQuantite() * p.getProduit().getPrix();
+                totalpanier += p.getQuantite() * p.getProduit().getPrix();
+                sp.inserttotal(totalpanier,p.getPanier().getId());
             }
-            this.total.setText(String.valueOf(total));
+
+            this.total.setText(String.valueOf(totalpanier));
+
+
+
 
         }
 

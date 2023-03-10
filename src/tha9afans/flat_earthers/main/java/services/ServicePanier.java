@@ -40,7 +40,7 @@ public class ServicePanier implements IService<Panier> {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("Panier deleted!");
+            //System.out.println("Panier deleted!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -55,7 +55,7 @@ public class ServicePanier implements IService<Panier> {
             ps.setDouble(1, p.getTotal());
             ps.executeUpdate();
 
-            System.out.println("panier Updated !");
+            //System.out.println("panier Updated !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -105,6 +105,18 @@ public class ServicePanier implements IService<Panier> {
     }
 
 
+    public void inserttotal(double total, int id) {
+        try {
+            String req = "UPDATE panier SET total = ? WHERE id = ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setDouble(1, total);
+            ps.setInt(2, id); // replace cartId with the id of the cart you want to update
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            //System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+    }
 
 
     public void updatetotal(Panier panier , Double total){
@@ -115,7 +127,7 @@ public class ServicePanier implements IService<Panier> {
             ps.setInt(2, panier.getId());
             ps.executeUpdate();
 
-            System.out.println("panier Updated !");
+            //System.out.println("panier Updated !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -131,7 +143,7 @@ public class ServicePanier implements IService<Panier> {
             ps.executeUpdate();
             cnx.close();
         } catch (SQLException e) {
-            System.err.println("Got an exception!");
+            //System.err.println("Got an exception!");
             System.err.println(e.getMessage());
         }
     }
