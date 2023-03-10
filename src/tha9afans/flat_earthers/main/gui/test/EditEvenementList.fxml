@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -9,16 +12,26 @@
    <children>
       <VBox prefHeight="106.0" prefWidth="712.0">
          <children>
-            <Label prefHeight="114.0" prefWidth="487.0" text="Evenements ">
+            <Label prefHeight="100.0" prefWidth="322.0" text="EVENEMENTS" textFill="#1d3557">
                <font>
-                  <Font name="System Bold" size="42.0" />
+                  <Font name="Lucida Sans Demibold Italic" size="25.0" />
                </font>
+               <padding>
+                  <Insets left="22.0" />
+               </padding>
             </Label>
+            <Pane prefHeight="5.0" prefWidth="708.0" style="-fx-background-color: #001A23;" />
          </children></VBox>
-      <ScrollPane fx:id="spane" prefHeight="322.0" prefWidth="712.0">
-         <content>
-            <VBox fx:id="listev" prefHeight="316.0" prefWidth="670.0" />
-         </content>
-      </ScrollPane>
+      <HBox>
+         <children>
+            <VBox minWidth="150.0" prefHeight="322.0" prefWidth="298.0" />
+            <ScrollPane fx:id="spane" prefHeight="322.0" prefWidth="712.0">
+               <content>
+                  <VBox fx:id="listev" minWidth="300.0" prefHeight="316.0" prefWidth="400.0" />
+               </content>
+            </ScrollPane>
+            <VBox minWidth="150.0" prefHeight="322.0" prefWidth="197.0" />
+         </children>
+      </HBox>
    </children>
 </VBox>
