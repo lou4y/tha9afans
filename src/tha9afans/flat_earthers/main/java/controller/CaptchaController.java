@@ -42,10 +42,14 @@ public class CaptchaController implements Initializable {
             int userAnswer = Integer.parseInt(answerField.getText().trim());
             if (userAnswer == expectedAnswer) {
                 System.out.println("CAPTCHA verified!");
-                Parent playQuizHome = FXMLLoader.load(getClass().getResource("/test/PlayQuizHome.fxml"));
-                Stage window = (Stage) answerField.getScene().getWindow();
-                window.setScene(new Scene(playQuizHome, 1400, 700));
-                window.setTitle("");
+                Scene scene;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/PlayQuizHome.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                scene=new Scene(root,1020,700);
+                stage.setScene(scene);
+                stage.show();
+
             } else {
 
                 attempts++; // increment the attempts counter
@@ -56,10 +60,13 @@ public class CaptchaController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("You have failed to verify the CAPTCHA 3 times.");
                     alert.showAndWait();
-                    Parent quizHome = FXMLLoader.load(getClass().getResource("/test/QuizHome.fxml"));
-                    Stage window = (Stage) answerField.getScene().getWindow();
-                    window.setScene(new Scene(quizHome, 1400, 700));
-                    window.setTitle("");
+                    Scene scene;
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/QuizHome.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = new Stage();
+                    scene=new Scene(root,1400,700);
+                    stage.setScene(scene);
+                    stage.show();
                     attempts = 0; // reset the attempts counter
                 } else {
                     System.out.println("Incorrect CAPTCHA answer. Please try again. Attempt " + attempts + " of 3.");
