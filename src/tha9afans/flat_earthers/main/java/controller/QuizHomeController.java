@@ -51,23 +51,29 @@ public class QuizHomeController implements Initializable {
     }
 
     public void switchToAddQuiz() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/test/QuizQuestion.fxml"));
-        Stage window=(Stage) addQuestion.getScene().getWindow();
-        window.setScene(new Scene(root,1400, 700));
-        window.setTitle("");
+        Scene scene;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/QuizQuestion.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        scene=new Scene(root,1400,700);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
     public void switchToPlayQuiz() throws IOException {
+        Scene scene;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/captcha.fxml"));
         Parent root = loader.load();
+        Stage stage = new Stage();
+
         CaptchaController captchaController = loader.getController();
         captchaController.verifyButton.setOnAction(event -> {
             captchaController.verify();
         });
-        Stage window = (Stage) playQuizHome.getScene().getWindow();
-        window.setScene(new Scene(root, 1400, 700));
-        window.setTitle("");
+        scene=new Scene(root,1400,700);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
