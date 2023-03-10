@@ -180,7 +180,7 @@ public class evenementcontroller implements Initializable {
         like.setText(""+e.getNb_aime()+"");
         setSession();
         setlike();
-    setcomment();
+        setcomment();
 
         System.out.println(sr.ReservationDispon(this.ev));
         if (sr.ReservationDispon(this.ev)==0){
