@@ -1,5 +1,6 @@
 package controller;
 
+import entities.Panier;
 import entities.PanierProduit;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,7 @@ public class PanierController implements Initializable {
     private TextField cvfield;
     @FXML
     private TextField expfield;
-    @FXML
+     @FXML
     private TextField email;
     @FXML
     private Label qproduit;
@@ -41,30 +42,31 @@ public class PanierController implements Initializable {
     private Label produitname;
     @FXML
     private HBox panier;
-    @FXML
+     @FXML
     private VBox paniervbox;
-    @FXML
+     @FXML
     private Label prixprodu;
-    @FXML
+      @FXML
     private Label total;
-    @FXML
-    private VBox vboxpanier;
-    @FXML
-    private ScrollPane scroll;
+      @FXML
+      private VBox vboxpanier;
+      @FXML
+        private ScrollPane scroll;
 
     @FXML
     private GridPane gridpanier;
     @FXML
     private Button check;
-
+    MailSender sender = new MailSender();
     SendGrid mail = new SendGrid();
     private int counter = 0;
+    private Panier p ;
 
 
     ServicePanier sp = new ServicePanier();
     ServiceFacture sf = new ServiceFacture();
 
-
+    AuthResponseDTO userlogged=UserSession.getUser_LoggedIn();
 
     public void checkbutton() throws IOException {
         String number = numberfield.getText();
@@ -110,7 +112,6 @@ public class PanierController implements Initializable {
                     "Merci pour votre confiance. \n" +
                     "Cordialement, \n" +
                     "Tha9afans Team. \n" +" \n" ;
-
             mail.Sendgrid(emailInput.trim(), message);
             //sender.SendMail(emailInput.trim(), message);
             numberfield.clear();
@@ -119,7 +120,6 @@ public class PanierController implements Initializable {
             expfield.clear();
             email.clear();
         }
-
     }
 
 
@@ -133,7 +133,7 @@ public class PanierController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // application();
+      // application();
 
         try {
             setDate();
@@ -146,39 +146,51 @@ public class PanierController implements Initializable {
     }
 
     private void setDate () throws IOException {
+        ServicePersonne spp =new ServicePersonne();
         ServicePanierProduit sp = new ServicePanierProduit();
         ServicePanier spanier = new ServicePanier();
-        List<PanierProduit> list = sp.getproduitdanspanier(spanier.getOneById(2));
+/*
+        System.out.println(spp.getOneById(userlogged.getIdUser()));
+*/
         int row=0;
-        for (PanierProduit p : list){
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/test/boxpanier.fxml"));
-            HBox box = loader.load();
-            BoxpanierController controller = loader.getController();
-            controller.setProduit(p);
-            gridpanier.add(box, 0, row++);
-            GridPane.setMargin(box, new Insets(10));
+        if (spanier.panierexiste(spp.getOneById(userlogged.getIdUser()))){
+            Panier panier =spanier.GetPanierByUser(spp.getOneById(userlogged.getIdUser()));
+            this.p=panier;
+            List<PanierProduit> list = sp.getproduitdanspanier(panier);
+            for (PanierProduit p : list){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/test/boxpanier.fxml"));
+                HBox box = loader.load();
+                BoxpanierController controller = loader.getController();
+                controller.setProduit(p);
+                gridpanier.add(box, 0, row++);
+                GridPane.setMargin(box, new Insets(10));
+            }
+        }
+        else
+        {
+        spanier.ajouter(new Panier(0,spp.getOneById( userlogged.getIdUser()) ));
+        }
 
         }
-    }
 
-    public void calculerTotal(){
-        ServicePanierProduit spp = new ServicePanierProduit();
-        ServicePanier spanier = new ServicePanier();
-        List<PanierProduit> list = spp.getproduitdanspanier(spanier.getOneById(2));
-        int total = 0;
-        for (PanierProduit p : list){
-            total += p.getQuantite() * p.getProduit().getPrix();
+        public void calculerTotal(){
+            ServicePanierProduit spp = new ServicePanierProduit();
+            ServicePanier spanier = new ServicePanier();
+            List<PanierProduit> list = spp.getproduitdanspanier(this.p);
+            int total = 0;
+            for (PanierProduit p : list){
+                total += p.getQuantite() * p.getProduit().getPrix();
+            }
+            this.total.setText(String.valueOf(total));
+
         }
-        this.total.setText(String.valueOf(total));
+
+
+
+
 
     }
-
-
-
-
-
-}
 
 
 

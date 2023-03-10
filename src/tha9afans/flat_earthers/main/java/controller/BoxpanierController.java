@@ -71,6 +71,7 @@ public class BoxpanierController  {
 
 
     public void load()throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(MainFx.class.getResource("panier-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1105, 660);
         Stage stage = (Stage)minus.getScene().getWindow();

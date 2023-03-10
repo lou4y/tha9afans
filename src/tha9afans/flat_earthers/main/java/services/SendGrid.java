@@ -17,11 +17,11 @@ import java.util.Base64;
 
 
 public class SendGrid extends ServicePersonne {
-
+    final String apiKey = "";//api key
+    Email from = new Email("maroueneh5@gmail.com"); // Replace with your email address
     public void Sendgrid(String to, String body ) throws IOException {
 
-        final String apiKey = "";//api key
-        Email from = new Email("marwen.hammami@myu.universitecentrale.tn");
+
         String subject = "Order";
         Email toEmail = new Email(to);
         Content content = new Content("text/plain", body);
@@ -44,8 +44,7 @@ public class SendGrid extends ServicePersonne {
 
 
     public void sendWithAttachment(String to, String subject, String body, String filename) throws IOException {
-        final String apiKey = "";//api key
-        Email from = new Email("marwen.hammami@myu.universitecentrale.tn"); // Replace with your email address
+
 
         Email toEmail = new Email(to);
         Content content = new Content("text/plain", body);
