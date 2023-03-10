@@ -29,7 +29,6 @@ public class ServiceReservation implements IService<Reservation> {
             ps.setInt(4, 0);
             ps.setInt(5, p.getBillet().getId());
             ps.executeUpdate();
-            System.out.println("reservation ajoutée");
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -125,14 +124,12 @@ public class ServiceReservation implements IService<Reservation> {
                 .map(res -> res.getBillet())
                 .filter(billet -> billet.getEvenement().getId() == evenement.getId())
                 .collect(Collectors.toList());
-        System.out.println(billets);
         return billets.get(0);
     }
     public Reservation ReservationDispo(Evenement evenement) {
         List<Reservation> reservations =getAll().stream()
                 .filter(reservation -> reservation.getUser().getId() == 0 && reservation.getBillet().getEvenement().getId()==evenement.getId())
                 .collect(Collectors.toList());
-        System.out.println(reservations.get(0));
         return reservations.get(0);
     }
     public int ReservationDispon(Evenement evenement) {

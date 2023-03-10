@@ -182,7 +182,6 @@ public class evenementcontroller implements Initializable {
         setlike();
         setcomment();
 
-        System.out.println(sr.ReservationDispon(this.ev));
         if (sr.ReservationDispon(this.ev)==0){
             participate.setText("Sold out");
             participate.setDisable(true);
@@ -194,7 +193,7 @@ public class evenementcontroller implements Initializable {
             participate.setDisable(false);
         }
 
-        String address = this.ev.getLocalisation();
+        String address = "Tunisie "+this.ev.getLocalisation();
         String mapUrl = getMapUrl(address);
         WebEngine webEngine = map.getEngine();
         webEngine.load(mapUrl);
@@ -279,6 +278,11 @@ public class evenementcontroller implements Initializable {
     }
 
     public void participate(ActionEvent actionEvent) {
+        if (sr.ReservationDispon(this.ev)==1){
+            participate.setText("Sold out");
+            participate.setDisable(true);
+            participate.setStyle("-fx-background-color: #f1faee; -fx-text-fill: #1d3557");
+        }
 
         Billet b = new Billet();
         b.setEvenement(ev);

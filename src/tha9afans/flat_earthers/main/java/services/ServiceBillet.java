@@ -25,7 +25,6 @@ public class ServiceBillet implements IService<Billet>{
             ps.setDouble(3,p.getPrix());
             ps.setInt(4,p.getEvenement().getId());
             ps.executeUpdate();
-            System.out.println("Billet ajoutée");
         }catch(SQLException e){
             System.out.println(e);
         }
