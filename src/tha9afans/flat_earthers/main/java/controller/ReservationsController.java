@@ -84,13 +84,10 @@ public class ReservationsController implements Initializable {
         List<Reservation> list= serviceReservation.getAllReservationsByUser(serviceUser.getOneById(userlogged.getIdUser()));
 
         for (Reservation r: list) {
-            System.out.println(r);
             Date dateRes=r.getDate_reservation();
-            System.out.println(r.getBillet());
             String nomEvent=r.getBillet().getEvenement().getNom();
             String payment=(r.getIspPaid()) ? "FREE": String.valueOf(r.getBillet().getPrix()+" DT");
             Element row = new Element(nomEvent,dateRes,payment,r.getBillet(),r.getUser(),r);
-            System.out.println(row);
             list1.add(row);
         }
         ObservableList<Element> filteredList = FXCollections.observableArrayList(list1);

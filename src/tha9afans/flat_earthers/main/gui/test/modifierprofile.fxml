@@ -60,14 +60,6 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#storebutton" prefHeight="41.0" prefWidth="153.0" style="-fx-background-color: #F1FAEE; -fx-border-color: #001A23; -fx-border-width: 0px 0px 1px;" text="Store">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
                      </children>
                   </VBox>
                </children>

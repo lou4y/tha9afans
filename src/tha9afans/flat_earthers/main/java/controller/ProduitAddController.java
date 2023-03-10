@@ -18,6 +18,8 @@ import services.ServiceProduit;
 import services.UserSession;
 import utils.DataSource;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
@@ -107,6 +109,26 @@ public class ProduitAddController implements Initializable {
             a.showAndWait();}
 
         else{
+            File file = new File("src/tha9afans/flat_earthers/main/gui/test/images/defaulticon.png");
+            if (!file.exists()) {
+                throw new RuntimeException("File not found: " + file.getAbsolutePath());
+            }
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(file);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Convert the BufferedImage to an InputStream
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            try {
+                ImageIO.write(image, "png", os);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            InputStream is = new ByteArrayInputStream(os.toByteArray());
+
             String nom=txtAddProductName.getText();
             String description=produitdescription.getText();
             int libelle = Integer.parseInt(txtAddProductLibelle.getText());
@@ -115,7 +137,7 @@ public class ProduitAddController implements Initializable {
             Double remise=Double.parseDouble(produitremise.getText());
             Double rate=produitrating.getRating();
             ServiceProduit sp= new ServiceProduit();
-            Produit p = new Produit(nom,description,libelle,userlogged.getIdUser(),prix,null,categorie,remise,rate);
+            Produit p = new Produit(nom,description,libelle,userlogged.getIdUser(),prix,is,categorie,remise,rate);
             sp.ajouter(p);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "produit added !", ButtonType.OK);
             alert.showAndWait();

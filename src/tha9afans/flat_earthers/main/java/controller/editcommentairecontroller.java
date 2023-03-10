@@ -40,7 +40,8 @@ public class editcommentairecontroller implements Initializable {
     AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
 
     public void editcomment(Commentaire comment){
-        this.profile_photo.setImage(new Image(comment.getuser().getPhoto()));
+        Image image = new Image(comment.getuser().getPhoto());
+        this.profile_photo.setImage(image);
         this.commentaire =comment;
         this.comment.setText(comment.getCommentaire());
         this.comment_owner.setText(String.valueOf(comment.getuser().getNom()));
@@ -55,7 +56,7 @@ public class editcommentairecontroller implements Initializable {
         evenementcontroller nextController = loader.getController();
         nextController.eventpage(this.commentaire.getEvenement());
         Stage stage = (Stage) confirm.getScene().getWindow();
-        Scene scene=new Scene(root,1400,700);
+        Scene scene=new Scene(root,1020,700);
         stage.setScene(scene);
         stage.show();
     }
