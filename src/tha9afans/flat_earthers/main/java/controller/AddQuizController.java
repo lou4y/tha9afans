@@ -33,27 +33,6 @@ public class AddQuizController implements Initializable {
     @FXML
     private Button submitButton;
 
-
-//    @FXML
-//    private  void addQuiz(ActionEvent event) throws IOException {
-//        if (quizName.getText().isEmpty() || numberOfQuestions.getText().isEmpty() || description.getText().isEmpty() || selectedImage == null){
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Field should not be empty!", ButtonType.OK);
-//            alert.showAndWait();
-//        } else {
-//            ServicesQuiz sq = new ServicesQuiz();
-//            Quiz q = new Quiz(quizName.getText(),description.getText(), Integer.parseInt(numberOfQuestions.getText()), null);
-//            try {
-//                FileInputStream fis = new FileInputStream(selectedImage);
-//                q.setQuiz_cover(fis);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//            sq.add(q);
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Question added", ButtonType.OK);
-//            alert.showAndWait();
-//        }}
-
-
     @FXML
     private void addQuiz(ActionEvent event) throws IOException {
         if (quizName.getText().isEmpty() || numberOfQuestions.getText().isEmpty() || description.getText().isEmpty() || selectedImage == null){
