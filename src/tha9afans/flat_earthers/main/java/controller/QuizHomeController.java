@@ -61,6 +61,8 @@ public class QuizHomeController implements Initializable {
 
     }
 
+
+
     public void switchToShowRank() throws IOException{
         Scene scene;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/Rank.fxml"));
