@@ -8,7 +8,7 @@ import java.util.Properties;
 
 
 
-public class MailSender extends ServicePersonne{
+public class MailSender extends services.ServicePersonne {
     public void SendMail(String to, String body, String Subject)
     {
 
