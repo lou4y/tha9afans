@@ -157,7 +157,7 @@ System.out.println("this "+c);
 
     }
 
-    Facture f = new Facture(timestamp,12.6,"refdsqfqsd",scomande.getOneById(scomande.getId(c)));
+    Facture f = new Facture(scomande.getOneById(scomande.getId(c)),timestamp,12.6,"refdsqfqsd");
     sf.ajouter(f);
 
 }
@@ -190,6 +190,7 @@ System.out.println("this "+c);
         System.out.println(spp.getOneById(userlogged.getIdUser()));
 */
         int row=0;
+
         if (spanier.panierexiste(spp.getOneById(userlogged.getIdUser()))){
             Panier panier =spanier.GetPanierByUser(spp.getOneById(userlogged.getIdUser()));
             this.p=panier;

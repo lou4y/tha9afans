@@ -8,6 +8,8 @@ public class CommandeProduit {
     private int quantite ;
     private Produit produit;
 
+    private int id;
+
     public CommandeProduit() {
     }
 

@@ -7,9 +7,10 @@ public class Panier {
 
 
     private int id;
-
     private double total;
     private Personne personne;
+
+
 
 
 
