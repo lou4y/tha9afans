@@ -11,6 +11,7 @@ public class Personne {
     private String cin,nom,prenom,email,password,telephone,adresse,role;
     private Date dateNaissance;
     private InputStream photo;;
+
     public Personne(){}
 
     public Personne(int id, String cin, String nom, String prenom, String email, String password, String role, String telephone, String adresse, Date dateNaissance) {

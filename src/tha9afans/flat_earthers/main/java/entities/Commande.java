@@ -9,6 +9,9 @@ public class Commande {
     private Timestamp dateCommande;
 
 
+    private Produit produit;
+
+
     private Double total;
 
     private Personne personne;

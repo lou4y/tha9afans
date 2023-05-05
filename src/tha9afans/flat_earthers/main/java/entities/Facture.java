@@ -11,20 +11,22 @@ public class Facture {
     private Commande commande;
 
 
-    public Facture(int id, Timestamp datefacture, double tva, String refrancefacture, Commande commande) {
+    public Facture(int id,Commande commande, Timestamp datefacture, double tva, String refrancefacture) {
         this.id = id;
+        this.commande = commande;
         this.datefacture = datefacture;
         this.tva = tva;
         this.refrancefacture = refrancefacture;
-        this.commande = commande;
+
     }
 
 
-    public Facture(Timestamp datefacture, double tva, String refrancefacture, Commande commande) {
+    public Facture(Commande commande ,Timestamp datefacture, double tva, String refrancefacture) {
+        this.commande = commande;
         this.datefacture = datefacture;
         this.tva = tva;
         this.refrancefacture = refrancefacture;
-        this.commande = commande;
+
     }
     public Facture() {
     }

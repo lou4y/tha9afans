@@ -21,7 +21,7 @@ public class ServiceFacture implements IService<Facture> {
         try{
             String randomRef = RandomRef.randomString(8);
             p.setRefrancefacture(randomRef);
-            String req = "INSERT INTO `facture` ( `datefacture`,`tva`,`refrancefacture`, `id_commende`) VALUES ('" + p.getDatefacture()+"', '"+p.getTva()  +"', '" + randomRef +"', '"+ p.getCommande().getId()+ "')";
+            String req = "INSERT INTO `facture` (`id_commende`, `datefacture`,`tva`,`refrancefacture`, ) VALUES ('" + p.getDatefacture()+"', '"+p.getTva()  +"', '" + randomRef +"', '"+ p.getCommande().getId()+ "')";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Facture ajoutée");
@@ -60,10 +60,11 @@ public class ServiceFacture implements IService<Facture> {
             while (rs.next()) {
                 Facture e = new Facture(
                         rs.getInt(1),
-                        Timestamp.valueOf(rs.getString(2)),
-                        rs.getDouble(3),
-                        rs.getString(4),
-                        sc.getOneById(rs.getInt(5))
+                        sc.getOneById(rs.getInt(2)),
+                        Timestamp.valueOf(rs.getString(3)),
+                        rs.getDouble(4),
+                        rs.getString(5)
+
 
                 );
                 list.add(e);
@@ -85,10 +86,10 @@ public class ServiceFacture implements IService<Facture> {
             while (rs.next()) {
                 e = new Facture(
                         rs.getInt(1),
-                        Timestamp.valueOf(rs.getString(2)),
-                        rs.getDouble(3),
-                        rs.getString(4),
-                        sc.getOneById(rs.getInt(5))
+                        sc.getOneById(rs.getInt(2)),
+                        Timestamp.valueOf(rs.getString(3)),
+                        rs.getDouble(4),
+                        rs.getString(5)
 
                 );
             }

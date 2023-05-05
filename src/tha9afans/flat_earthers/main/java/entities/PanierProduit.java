@@ -7,6 +7,10 @@ public class PanierProduit {
     private  Produit produit;
     private int quantite;
 
+    private int id;
+
+    private float Subtotal ;
+
 
 
 
