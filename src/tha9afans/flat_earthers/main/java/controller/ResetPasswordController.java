@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -50,9 +51,10 @@ public class ResetPasswordController implements Initializable {
                 }else {
 
                     try{
-
+                        String salt = BCrypt.gensalt(13);
                         String password = passwordfield.getText();
-                        String sql = "update personnes set PASSWORD  = '"+password +"' where EMAIL ='"+email+"' ";
+                        String hashedPasswordUser = BCrypt.hashpw(password, salt);
+                        String sql = "update personnes set PASSWORD  = '"+hashedPasswordUser +"' where EMAIL ='"+email+"' ";
                         ps=cnx.prepareStatement(sql);
                         ps.execute(sql);
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre mot de passe est réintialisé", ButtonType.OK);

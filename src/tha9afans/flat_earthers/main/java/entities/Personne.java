@@ -14,7 +14,7 @@ public class Personne {
 
     public Personne(){}
 
-    public Personne(int id, String cin, String nom, String prenom, String email, String password, String role, String telephone, String adresse, Date dateNaissance) {
+    public Personne(int id,String email, String role, String password, String cin, String nom, String prenom,  String telephone, String adresse, Date dateNaissance) {
         this.id = id;
         this.cin = cin;
         this.nom = nom;
@@ -26,7 +26,7 @@ public class Personne {
         this.adresse = adresse;
         this.dateNaissance=dateNaissance;
     }
-    public Personne(String cin, String nom, String prenom, String email, String password, String telephone, String adresse,InputStream photo,Date dateNaissance) {
+    public Personne(String email, String password,String cin, String nom, String prenom,  String telephone, String adresse,InputStream photo,Date dateNaissance) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
@@ -38,7 +38,7 @@ public class Personne {
         this.dateNaissance=dateNaissance;
     }
 
-    public Personne(int id, String cin, String nom, String prenom, String email, String password, String role,  String telephone, String adresse,InputStream photo, Date dateNaissance) {
+    public Personne(int id, String email,String role, String password,  String cin, String nom, String prenom,  String telephone, String adresse,InputStream photo, Date dateNaissance) {
         this.id = id;
         this.cin = cin;
         this.nom = nom;
@@ -53,7 +53,7 @@ public class Personne {
 
     }
 
-    public Personne(int id, String cin, String nom, String prenom, String email, String password, String telephone, String adresse, Date dateNaissance) {
+    public Personne(int id, String email, String password, String cin, String nom, String prenom, String telephone, String adresse, Date dateNaissance) {
         this.id = id;
         this.cin = cin;
         this.nom = nom;
@@ -65,7 +65,7 @@ public class Personne {
         this.dateNaissance = dateNaissance;
     }
 
-    public Personne(String cin, String nom, String prenom, String email, String password, String role, String telephone, String adresse, Date dateNaissance) {
+    public Personne(String email,String role, String password,String cin, String nom, String prenom,  String telephone, String adresse, Date dateNaissance) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
@@ -78,7 +78,7 @@ public class Personne {
 
     }
 
-    public Personne(String cin, String nom, String prenom, String email, String password, String telephone, String adresse, Date dateNaissance) {
+    public Personne( String email, String password,String cin, String nom, String prenom, String telephone, String adresse, Date dateNaissance) {
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;

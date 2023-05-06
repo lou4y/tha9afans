@@ -6,24 +6,24 @@ import java.sql.Date;
 
 public class Utilisateur extends Personne{
 
-    public Utilisateur(String cin, String nom, String prenom, String email, String password, String role, String telephone, String adresse, Date dateNaissance) {
-        super(cin, nom, prenom, email, password, role, telephone, adresse, dateNaissance);
+    public Utilisateur(String email, String role,String password,String cin, String nom, String prenom,  String telephone, String adresse, Date dateNaissance) {
+        super( email, role, password, cin, nom, prenom, telephone, adresse, dateNaissance);
     }
 
-    public Utilisateur(int id, String cin, String nom, String prenom, String email, String password, String telephone, String adresse, Date dateNaissance) {
-        super(id, cin, nom, prenom, email, password, telephone, adresse, dateNaissance);
+    public Utilisateur(int id, String email,String password, String cin, String nom, String prenom, String telephone, String adresse, Date dateNaissance) {
+        super(id,email,password, cin, nom, prenom,   telephone, adresse, dateNaissance);
     }
-    public Utilisateur(int id, String cin, String nom, String prenom, String email, String password, String role, String telephone, String adresse, Date dateNaissance) {
-        super(id, cin, nom, prenom, email, password,role, telephone, adresse, dateNaissance);
+    public Utilisateur(int id,String email, String role,String password, String cin, String nom, String prenom, String telephone, String adresse, Date dateNaissance) {
+        super(id, email, role,password, cin, nom, prenom, telephone, adresse, dateNaissance);
     }
-    public Utilisateur(int id, String cin, String nom, String prenom, String email, String password, String role, String telephone, String adresse, InputStream photo, Date dateNaissance) {
-        super(id, cin, nom, prenom, email, password,role, telephone, adresse,photo, dateNaissance);
+    public Utilisateur(int id,String email, String role, String password, String cin, String nom, String prenom,  String telephone, String adresse, InputStream photo, Date dateNaissance) {
+        super(id, email, role, password, cin, nom, prenom, telephone, adresse,photo, dateNaissance);
     }
-    public Utilisateur(String cin, String nom, String prenom, String email, String password, String telephone, String adresse,Date dateNaissance) {
-        super(cin, nom, prenom, email, password,telephone, adresse,dateNaissance);
+    public Utilisateur(String email, String password,String cin, String nom, String prenom,  String telephone, String adresse,Date dateNaissance) {
+        super(email, password,cin, nom, prenom, telephone, adresse,dateNaissance);
     }
-    public Utilisateur(String cin, String nom, String prenom, String email, String password, String telephone, String adresse,InputStream photo,Date dateNaissance) {
-        super(cin, nom, prenom, email, password,telephone, adresse,photo ,dateNaissance);
+    public Utilisateur( String email, String password,String cin, String nom, String prenom, String telephone, String adresse,InputStream photo,Date dateNaissance) {
+        super( email, password,cin, nom, prenom,telephone, adresse,photo ,dateNaissance);
     }
 
 
