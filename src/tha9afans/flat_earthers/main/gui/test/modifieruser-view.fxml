@@ -84,19 +84,6 @@
                 </HBox>
             <HBox prefHeight="70.0" prefWidth="586.0">
                <children>
-                  <VBox prefHeight="70.0" prefWidth="176.0">
-                     <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" wrappingWidth="89.33666610717773">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="40.0" />
-                           </VBox.margin>
-                        </Text>
-                        <PasswordField fx:id="fieldmotdepasse" prefHeight="35.0" prefWidth="169.0" promptText="Mot de passe" style="-fx-background-radius: 50px;" />
-                     </children>
-                  </VBox>
                   <VBox prefHeight="70.0" prefWidth="166.0">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" wrappingWidth="72.53667831420898">

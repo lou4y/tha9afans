@@ -23,23 +23,23 @@ public class ServicePersonne implements IService<Personne>{
     public void ajouter(Personne p) {
         String role="";
         if(p instanceof Utilisateur){
-            role="utilisateur";
+            role="[]";
         }
         else if (p instanceof Administrateur){
-            role="administrateur";
+            role="[\"ROLE_ADMIN\"]";
         }
         try {
-            String req = "INSERT INTO `personnes` (`cin`,`nom`, `prenom`,`email`,`password`,`role`,`telephone`,`adresse`,`photo`,`dateNaissance`) " +
+            String req = "INSERT INTO `user` (`email`,`roles`, `password`,`cin`,`nom`,`prenom`,`telephone`,`adresse`,`photo`,`datenaissance`) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = cnx.prepareStatement(req);
 
             // Set the values of the query parameters
-            pst.setString(1, p.getCin());
-            pst.setString(2, p.getNom());
-            pst.setString(3, p.getPrenom());
-            pst.setString(4, p.getEmail());
-            pst.setString(5, p.getPassword());
-            pst.setString(6, role);
+            pst.setString(1, p.getEmail());
+            pst.setString(2, role);
+            pst.setString(3, p.getPassword());
+            pst.setString(4, p.getCin());
+            pst.setString(5, p.getNom());
+            pst.setString(6, p.getPrenom());
             pst.setString(7, p.getTelephone());
             pst.setString(8, p.getAdresse());
             pst.setBlob(9, p.getPhoto());
@@ -59,7 +59,7 @@ public class ServicePersonne implements IService<Personne>{
     @Override
     public void supprimer(int id) {
         try {
-            String req = "DELETE FROM `personnes` WHERE id = " + id;
+            String req = "DELETE FROM `user` WHERE id = " + id;
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Personne deleted !");
@@ -73,16 +73,16 @@ public class ServicePersonne implements IService<Personne>{
     public void modifier(Personne p) {
             try {
                 // Prepare the update query
-                String req = "UPDATE `personnes` SET `cin` = ?, `nom` = ?, `prenom` = ?, `email` = ?, `password` = ?, `role` = ?, `telephone` = ?, `adresse` = ?, `photo` = ?, `dateNaissance` = ? WHERE `personnes`.`id` = ?";
+                String req = "UPDATE `user` SET `email` = ?, `roles` = ?, `password` = ?, `cin` = ?, `nom` = ?, `prenom` = ?, `telephone` = ?, `adresse` = ?, `photo` = ?, `dateNaissance` = ? WHERE `user`.`id` = ?";
                 PreparedStatement pst = cnx.prepareStatement(req);
 
                 // Set the values of the query parameters
-                pst.setString(1, p.getCin());
-                pst.setString(2, p.getNom());
-                pst.setString(3, p.getPrenom());
-                pst.setString(4, p.getEmail());
-                pst.setString(5, p.getPassword());
-                pst.setString(6, p.getRole());
+                pst.setString(1, p.getEmail());
+                pst.setString(2, p.getRole());
+                pst.setString(3, p.getPassword());
+                pst.setString(4, p.getCin());
+                pst.setString(5, p.getNom());
+                pst.setString(6, p.getPrenom());
                 pst.setString(7, p.getTelephone());
                 pst.setString(8, p.getAdresse());
                 pst.setBlob(9, p.getPhoto());
@@ -106,21 +106,22 @@ public class ServicePersonne implements IService<Personne>{
         Personne p=null;
         List<Personne> list = new ArrayList<>();
         try {
-            String req = "Select * from personnes";
+            String req = "Select * from user";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                if (rs.getString("role").equals("utilisateur")){
-                    p=new Utilisateur(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
-                            rs.getString(8),rs.getString(9), rs.getDate(11));
-                }
-                else if(rs.getString("role").equals("administrateur")){
+
+                 if(rs.getString("roles").contains("ROLE_ADMIN")){
                     p =new Administrateur(rs.getInt(1),rs.getString(2),rs.getString(3),
                             rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
                             rs.getString(8),rs.getString(9),rs.getDate(11));
 
                 }
+                 else{
+                     p=new Utilisateur(rs.getInt(1),rs.getString(2),rs.getString(3),
+                             rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
+                             rs.getString(8),rs.getString(9), rs.getDate(11));
+                 }
                 list.add(p);
 
             }
@@ -135,22 +136,23 @@ public class ServicePersonne implements IService<Personne>{
     public Personne getOneById(int idu) {
         Personne p = null;
         try {
-            String req = "Select * from personnes WHERE `id`= '" + idu + "'";
+            String req = "Select * from user WHERE `id`= '" + idu + "'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 Blob blob = rs.getBlob(10);
                 InputStream inputStream = blob.getBinaryStream();
-                if(rs.getString("role").equals("utilisateur")){
+
+                if(rs.getString("roles").contains("ROLE_ADMIN")){
+                    p=new Administrateur(rs.getInt("id"),rs.getString("email"),rs.getString("roles"),
+                            rs.getString("password"),rs.getString("cin"),rs.getString("nom"), rs.getString("prenom"),
+                            rs.getString("telephone"),rs.getString("adresse"),inputStream,rs.getDate(11));
+
+                }
+                else{
                     p= new Utilisateur(rs.getInt(1),rs.getString(2),rs.getString(3),
                             rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
                             rs.getString(8),rs.getString(9),inputStream,rs.getDate(11));
-                }
-                else if(rs.getString("role").equals("administrateur")){
-                    p=new Administrateur(rs.getInt("id"),rs.getString("cin"),rs.getString("nom"),
-                            rs.getString("prenom"),rs.getString("email"),rs.getString("password"), rs.getString("role"),
-                            rs.getString("telephone"),rs.getString("adresse"),inputStream,rs.getDate(11));
-
                 }
             }
 
@@ -164,20 +166,20 @@ public class ServicePersonne implements IService<Personne>{
         Personne p = null;
         List<Personne> list = new ArrayList<>();
         try {
-            String req = "Select * from personnes WHERE `nom`= '" + name + "' OR  `prenom`='"+ name+ "'";
+            String req = "Select * from user WHERE `nom`= '" + name + "' OR  `prenom`='"+ name+ "'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                if(rs.getString("role").equals("utilisateur")){
-                    p= new Utilisateur(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
-                            rs.getString(8),rs.getString(9),Date.valueOf(rs.getString(10)));
-                }
-                else if(rs.getString("role").equals("administrateur")){
+                if(rs.getString("role").contains("ROLE_ADMIN")){
                     p=new Administrateur(rs.getInt(1),rs.getString(2),rs.getString(3),
                             rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
                             rs.getString(8),rs.getString(9),Date.valueOf(rs.getString(10)));
 
+                }
+                else{
+                    p= new Utilisateur(rs.getInt(1),rs.getString(2),rs.getString(3),
+                            rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
+                            rs.getString(8),rs.getString(9),Date.valueOf(rs.getString(10)));
                 }
                 list.add(p);
             }
@@ -192,21 +194,22 @@ public class ServicePersonne implements IService<Personne>{
         Personne p = null;
         List<Personne> list = new ArrayList<>();
         try {
-            String req = "Select * from personnes WHERE `adresse`= '" + adresse + "' ";
+            String req = "Select * from user WHERE `adresse`= '" + adresse + "' ";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                if(rs.getString("role").equals("utilisateur")){
-                    p= new Utilisateur(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
-                            rs.getString(8),rs.getString(9),Date.valueOf(rs.getString(10)));
-                }
-                else if(rs.getString("role").equals("administrateur")){
+                if(rs.getString("role").contains("ROLE_ADMIN")){
                     p=new Administrateur(rs.getInt(1),rs.getString(2),rs.getString(3),
                             rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
                             rs.getString(8),rs.getString(9),Date.valueOf(rs.getString(10)));
 
                 }
+                else{
+                    p= new Utilisateur(rs.getInt(1),rs.getString(2),rs.getString(3),
+                            rs.getString(4),rs.getString(5),rs.getString(6), rs.getString(7),
+                            rs.getString(8),rs.getString(9),Date.valueOf(rs.getString(10)));
+                }
+
                 list.add(p);
             }
 
@@ -218,7 +221,7 @@ public class ServicePersonne implements IService<Personne>{
     }
     public Map<String, Integer> getUserStatsByRegion() throws SQLException {
         Map<String, Integer> stats = new HashMap<>();
-        String req = "SELECT adresse, COUNT(*) FROM personnes GROUP BY adresse";
+        String req = "SELECT adresse, COUNT(*) FROM user GROUP BY adresse";
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(req);
 

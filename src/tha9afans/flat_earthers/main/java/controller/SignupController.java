@@ -103,7 +103,7 @@ public class SignupController implements Initializable {
             } else {
                 String salt =BCrypt.gensalt(13);
                 String hashedPassword = BCrypt.hashpw(motdepasse, salt);
-                Personne p=new Utilisateur(cin,nom,prenom,email,hashedPassword,telephone,adresse,is,new Date(date.getYear()-1900,date.getMonthValue(),date.getDayOfMonth()));
+                Personne p=new Utilisateur(email,hashedPassword,cin,nom,prenom,telephone,adresse,is,new Date(date.getYear()-1900,date.getMonthValue(),date.getDayOfMonth()));
                 sp.ajouter(p);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes inscrit avec succés", ButtonType.OK);
                 alert.showAndWait();

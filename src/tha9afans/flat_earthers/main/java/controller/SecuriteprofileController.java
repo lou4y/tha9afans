@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
+import org.mindrot.jbcrypt.BCrypt;
 import services.AuthResponseDTO;
 import services.ServicePersonne;
 import services.UserSession;
@@ -31,7 +32,8 @@ public class SecuriteprofileController implements Initializable {
     }
 
     public void modifiermotdepasse(ActionEvent event) {
-        if(!(fieldpasswordactuel.getText().equals(userlogged.getPassword()))){
+        String hashedPassword = userlogged.getPassword();
+        if(!(BCrypt.checkpw(fieldpasswordactuel.getText(), hashedPassword.replace("$2y$", "$2a$")))){
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre mot de passe actuel est incorrecte", ButtonType.OK);
             alert.showAndWait();
 
@@ -53,19 +55,23 @@ public class SecuriteprofileController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            if (userlogged.getRole().equals("utilisateur")){
-                Utilisateur u=new Utilisateur(userlogged.getIdUser(),userlogged.getCin(),userlogged.getNom(),userlogged.getPrenom(),userlogged.getEmail(),
-                        fieldpassword.getText(),"utilisateur",userlogged.getTelephone(),userlogged.getAdresse(),streamprofile,new Date(userlogged.getDateNaissance().getYear()-1900,
+            String salt = BCrypt.gensalt(13);
+            String password = fieldpassword.getText();
+            String hashedPasswordUser = BCrypt.hashpw(password, salt);
+            if(userlogged.getRole().contains("ROLE_ADMIN")) {
+                Administrateur a=new Administrateur(userlogged.getIdUser(),userlogged.getCin(),userlogged.getNom(),userlogged.getPrenom(),userlogged.getEmail(),
+                        hashedPasswordUser,"administrateur",userlogged.getTelephone(),userlogged.getAdresse(),streamprofile,new Date(userlogged.getDateNaissance().getYear()-1900,
                         userlogged.getDateNaissance().getMonth(),userlogged.getDateNaissance().getDay()));
-                sp.modifier(u);
+                sp.modifier(a);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre mot de passe est modifié", ButtonType.OK);
                 alert.showAndWait();
 
-            } else {
-                Administrateur a=new Administrateur(userlogged.getIdUser(),userlogged.getCin(),userlogged.getNom(),userlogged.getPrenom(),userlogged.getEmail(),
-                        fieldpassword.getText(),"administrateur",userlogged.getTelephone(),userlogged.getAdresse(),streamprofile,new Date(userlogged.getDateNaissance().getYear()-1900,
+            }
+            else{
+                Utilisateur u=new Utilisateur(userlogged.getIdUser(),userlogged.getCin(),userlogged.getNom(),userlogged.getPrenom(),userlogged.getEmail(),
+                        hashedPasswordUser,"[]",userlogged.getTelephone(),userlogged.getAdresse(),streamprofile,new Date(userlogged.getDateNaissance().getYear()-1900,
                         userlogged.getDateNaissance().getMonth(),userlogged.getDateNaissance().getDay()));
-                sp.modifier(a);
+                sp.modifier(u);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre mot de passe est modifié", ButtonType.OK);
                 alert.showAndWait();
 

@@ -45,7 +45,7 @@ public class LoginController implements Initializable {
 
         }else{
             try {
-                String req = "select * from personnes where email=?";
+                String req = "select * from user where email=?";
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setString(1, email);
                 ResultSet rs = ps.executeQuery();
@@ -53,16 +53,17 @@ public class LoginController implements Initializable {
 
                 if(rs.next()){
                     String hashedPassword = rs.getString("password");
-                    if (BCrypt.checkpw(password, hashedPassword)) {
+                    if ((BCrypt.checkpw(password, hashedPassword.replace("$2y$", "$2a$")))) {
                         Blob blob = rs.getBlob(10);
                         InputStream inputStream = blob.getBinaryStream();
-                        userLoggedIn = new AuthResponseDTO(rs.getInt("id"),rs.getString("cin"),rs.getString("nom"),
-                                rs.getString("prenom"),rs.getString("email"),hashedPassword,rs.getString("role"),
+                        userLoggedIn = new AuthResponseDTO(rs.getInt("id"),rs.getString("email"),rs.getString("roles"),
+                                hashedPassword,rs.getString("cin"),rs.getString("nom"),
+                                rs.getString("prenom"),
                                 rs.getString("telephone"),rs.getString("adresse"),rs.getDate(11), inputStream);
                         UserSession.getSameInstance(userLoggedIn);
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes authentifié avec succés", ButtonType.OK);
                         alert.showAndWait();
-                        Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("/test/listevenement.fxml"));
                         Stage window=(Stage) loginbutton.getScene().getWindow();
                         window.setScene(new Scene(root,1400,700));
                     } else {
