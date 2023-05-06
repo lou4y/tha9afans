@@ -80,7 +80,7 @@ public class QuizHomeController implements Initializable {
         Parent root = loader.load();
         Stage stage = new Stage();
 
-        CaptchaController captchaController = loader.getController();
+        controller.CaptchaController captchaController = loader.getController();
         captchaController.verifyButton.setOnAction(event -> {
             captchaController.verify();
         });

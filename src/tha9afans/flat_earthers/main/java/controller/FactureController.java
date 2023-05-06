@@ -57,10 +57,9 @@ public class FactureController implements Initializable {
                                     + "\nPrix: " + facture.getCommande().getProduit().getPrix()
                                     + "\nQuantité: " + facture.getCommande().getQuantite()*/
 
-                                    + "\nTVA: " + facture.getTva()
+                                    + "\nTVA: " + 12.0/100.0
                                     + "\ntotal : " + facture.getCommande().getTotal()
-                                    + "\ntotal avec tva: " + facture.getCommande().getTotal()*facture.getTva()
-
+                                    + "\ntotal avec tva: " + facture.getCommande().getTotal()*12.0/100.0
                                     + "\n\n");
                         } else {
                             setText(null);

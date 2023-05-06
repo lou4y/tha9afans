@@ -17,7 +17,7 @@ import java.util.Base64;
 
 
 public class SendGrid extends ServicePersonne {
-    final String apiKey = "";//api key
+    final String apiKey = " ";//api key
     Email from = new Email("maroueneh5@gmail.com"); // Replace with your email address
     public void Sendgrid(String to, String body ) throws IOException {
 

@@ -30,7 +30,7 @@ public class ServicePersonne implements IService<Personne>{
         }
         try {
             String req = "INSERT INTO `personnes` (`cin`,`nom`, `prenom`,`email`,`password`,`role`,`telephone`,`adresse`,`photo`,`dateNaissance`) " +
-                    "VALUES (?, ?, ?, ?, ?, role, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = cnx.prepareStatement(req);
 
             // Set the values of the query parameters
@@ -39,16 +39,17 @@ public class ServicePersonne implements IService<Personne>{
             pst.setString(3, p.getPrenom());
             pst.setString(4, p.getEmail());
             pst.setString(5, p.getPassword());
-            //pst.setString(6, role);
-            pst.setString(6, p.getTelephone());
-            pst.setString(7, p.getAdresse());
-            pst.setBlob(8, p.getPhoto());
-            pst.setDate(9, p.getDateNaissance());
+            pst.setString(6, role);
+            pst.setString(7, p.getTelephone());
+            pst.setString(8, p.getAdresse());
+            pst.setBlob(9, p.getPhoto());
+            pst.setDate(10, p.getDateNaissance());
 
 
             // Execute the update query
             pst.executeUpdate();
             System.out.println("Personne created !");
+            System.out.println(role);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

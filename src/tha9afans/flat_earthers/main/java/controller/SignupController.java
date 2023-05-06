@@ -22,6 +22,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
+//cryptage des mots de passe
+import org.mindrot.jbcrypt.BCrypt;
+
 
 public class SignupController implements Initializable {
     ServicePersonne sp=new ServicePersonne();
@@ -98,11 +101,12 @@ public class SignupController implements Initializable {
 
 
             } else {
+                String salt =BCrypt.gensalt(13);
+                String hashedPassword = BCrypt.hashpw(motdepasse, salt);
+                Personne p=new Utilisateur(cin,nom,prenom,email,hashedPassword,telephone,adresse,is,new Date(date.getYear()-1900,date.getMonthValue(),date.getDayOfMonth()));
+                sp.ajouter(p);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes inscrit avec succés", ButtonType.OK);
                 alert.showAndWait();
-
-                sp.ajouter(new Utilisateur(cin,nom,prenom,email,motdepasse,telephone,adresse,is,new Date(date.getYear()-1900,date.getMonthValue(),date.getDayOfMonth())));
-                System.out.println(date);
                 System.out.println(dateString);
 
             }

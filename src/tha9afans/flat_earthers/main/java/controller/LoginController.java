@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 import services.AuthResponseDTO;
 import services.UserSession;
 import utils.DataSource;
@@ -44,26 +45,33 @@ public class LoginController implements Initializable {
 
         }else{
             try {
-                String req="select * from personnes where email=? and password=?";
+                String req = "select * from personnes where email=?";
                 PreparedStatement ps = cnx.prepareStatement(req);
-                ps.setString(1,email);
-                ps.setString(2,password);
+                ps.setString(1, email);
+                ResultSet rs = ps.executeQuery();
 
-                rs=ps.executeQuery();
 
                 if(rs.next()){
-                    Blob blob = rs.getBlob(10);
-                    InputStream inputStream = blob.getBinaryStream();
-                    userLoggedIn = new AuthResponseDTO(rs.getInt("id"),rs.getString("cin"),rs.getString("nom"),
-                            rs.getString("prenom"),rs.getString("email"),rs.getString("password"),rs.getString("role"),
-                            rs.getString("telephone"),rs.getString("adresse"),rs.getDate(11), inputStream);
-                    UserSession.getSameInstance(userLoggedIn);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes authentifié avec succés", ButtonType.OK);
-                    alert.showAndWait();
-                    Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
-                    Stage window=(Stage) loginbutton.getScene().getWindow();
-                    window.setScene(new Scene(root,1400,700));
-
+                    String hashedPassword = rs.getString("password");
+                    if (BCrypt.checkpw(password, hashedPassword)) {
+                        Blob blob = rs.getBlob(10);
+                        InputStream inputStream = blob.getBinaryStream();
+                        userLoggedIn = new AuthResponseDTO(rs.getInt("id"),rs.getString("cin"),rs.getString("nom"),
+                                rs.getString("prenom"),rs.getString("email"),hashedPassword,rs.getString("role"),
+                                rs.getString("telephone"),rs.getString("adresse"),rs.getDate(11), inputStream);
+                        UserSession.getSameInstance(userLoggedIn);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes authentifié avec succés", ButtonType.OK);
+                        alert.showAndWait();
+                        Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
+                        Stage window=(Stage) loginbutton.getScene().getWindow();
+                        window.setScene(new Scene(root,1400,700));
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Veuillez vérifier votre email et/ou mot de passe", ButtonType.OK);
+                        alert.showAndWait();
+                        emailfield.setText("");
+                        passwordfield.setText("");
+                        emailfield.requestFocus();
+                    }
                 }else{
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Veuillez vérifier votre email et/ou mot de passe", ButtonType.OK);
                     alert.showAndWait();
@@ -82,6 +90,7 @@ public class LoginController implements Initializable {
 
 
     }
+
     //naviguer à l'interface Sign up
     public void passerinscrire() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/test/signup.fxml"));

@@ -9,10 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicesQuiz implements Services<Quiz> {
+public class ServicesQuiz implements services.Services<Quiz> {
 
     Connection cnx = DataSource.getInstance().getCnx();
-    ServicesQuestion servicesQuestion = new ServicesQuestion();
+    services.ServicesQuestion servicesQuestion = new services.ServicesQuestion();
 
 
     public void add(Quiz p) {
@@ -121,6 +121,7 @@ public class ServicesQuiz implements Services<Quiz> {
         return q;
     }
 
+    /////////////////////////////////////api stream//////////////////////////////////////////////
     public int getId(Quiz quiz) {
         List<Quiz> list = getAll();
         Quiz q = list.stream()
