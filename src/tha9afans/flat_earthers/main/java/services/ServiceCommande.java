@@ -72,9 +72,10 @@ public class ServiceCommande implements IService<Commande> {
             while (rs.next()) {
                 Commande e = new Commande(
                         rs.getInt(1),
-                        Timestamp.valueOf(rs.getString(2)),
-                        rs.getDouble(3),
-                        sp.getOneById(rs.getInt(4)));
+                        sp.getOneById(rs.getInt(2)),
+                        Timestamp.valueOf(rs.getString(3)),
+                        rs.getDouble(4));
+
                 list.add(e);
             }
         } catch (SQLException ex) {
@@ -93,10 +94,11 @@ public class ServiceCommande implements IService<Commande> {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 e = new Commande(
+
                         rs.getInt(1),
-                        Timestamp.valueOf(rs.getString(2)),
-                        rs.getDouble(3),
-                        sp.getOneById(rs.getInt(4)));
+                        sp.getOneById(rs.getInt(2)),
+                        Timestamp.valueOf(rs.getString(3)),
+                        rs.getDouble(4));
 
             }
         } catch (SQLException ex) {
