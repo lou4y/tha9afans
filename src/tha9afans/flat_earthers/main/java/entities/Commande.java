@@ -5,31 +5,29 @@ import java.util.Objects;
 
 public class Commande {
     private int id;
-
     private Timestamp dateCommande;
-
-
-    private Produit produit;
-
-
     private Double total;
-
     private Personne personne;
 
     public Commande() {
     }
 
-    public Commande(int id, Timestamp dateCommande, Double total, Personne personne) {
+    public Commande(int id, Personne personne,Timestamp dateCommande, Double total ) {
         this.id = id;
+        this.personne = personne;
+
         this.dateCommande = dateCommande;
         this.total = total;
-        this.personne = personne;
+
+
     }
 
-    public Commande(Timestamp dateCommande,  Double total, Personne personne) {
+    public Commande( Personne personne,Timestamp dateCommande, Double total ) {
+        this.personne = personne;
+
         this.dateCommande = dateCommande;
         this.total = total;
-        this.personne = personne;
+
     }
 
     public int getId() {
@@ -49,6 +47,7 @@ public class Commande {
     }
 
 
+
     public Double getTotal() {
         return total;
     }
@@ -65,16 +64,19 @@ public class Commande {
         this.personne = personne;
     }
 
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Commande commande)) return false;
-        return getId() == commande.getId() && Objects.equals(getDateCommande(), commande.getDateCommande()) && Objects.equals(getTotal(), commande.getTotal()) && Objects.equals(getPersonne(), commande.getPersonne());
+        return getId() == commande.getId() && Objects.equals(getDateCommande(), commande.getDateCommande())&& Objects.equals(getTotal(), commande.getTotal()) && Objects.equals(getPersonne(), commande.getPersonne());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDateCommande(),  getTotal(), getPersonne());
+        return Objects.hash(getId(), getDateCommande(), getTotal(), getPersonne());
     }
 
     @Override

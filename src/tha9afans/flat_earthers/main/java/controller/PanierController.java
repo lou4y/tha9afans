@@ -70,6 +70,7 @@ public class PanierController implements Initializable {
     ServiceCommandeProduit scp = new ServiceCommandeProduit();
     ServicePanierProduit spp = new ServicePanierProduit();
     ServicePersonne spersonne = new ServicePersonne();
+    ServiceProduit sproduit = new ServiceProduit();
 
 
     AuthResponseDTO userlogged=UserSession.getUser_LoggedIn();
@@ -141,7 +142,7 @@ public void gencommande(){
 List<PanierProduit> list = new ArrayList<>();
     ServiceCommande scomande = new ServiceCommande();
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-    Commande c = new Commande( timestamp,this.p.getTotal(),spersonne.getOneById(userlogged.getIdUser()));
+    Commande c = new Commande(spersonne.getOneById(userlogged.getIdUser()) ,timestamp,this.p.getTotal());
 
     scomande.ajouter(c);
     System.out.println("this cc"+c);

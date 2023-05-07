@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class FactureController implements Initializable {
 @FXML
-        private TextField textref;
+    private TextField textref;
     SendGrid mail = new SendGrid();
 
 
@@ -53,9 +53,7 @@ public class FactureController implements Initializable {
                                     + "\nTéléphone: " + facture.getCommande().getPersonne().getTelephone()
                                     + "\nDate: " + facture.getDatefacture()
 
-                                   /* + "\nProduit: " + facture.getCommande().getProduit().getNom()
-                                    + "\nPrix: " + facture.getCommande().getProduit().getPrix()
-                                    + "\nQuantité: " + facture.getCommande().getQuantite()*/
+
 
                                     + "\nTVA: " + 12.0/100.0
                                     + "\ntotal : " + facture.getCommande().getTotal()
