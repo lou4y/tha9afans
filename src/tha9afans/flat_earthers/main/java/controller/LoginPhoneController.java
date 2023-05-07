@@ -51,18 +51,18 @@ public class LoginPhoneController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre code est correcte", ButtonType.OK);
             alert.showAndWait();
-            if (userlogged.getRole().equals("utilisateur")){
-                Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbaruser.fxml"));
-
-                Stage window=(Stage) verifcodesmsbutton.getScene().getWindow();
-                window.setScene(new Scene(root,1400,700));
-            }
-            else if(userlogged.getRole().equals("administrateur")){
+            if(userlogged.getRole().contains("ROLE_ADMIN")){
                 Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
 
                 Stage window=(Stage) verifcodesmsbutton.getScene().getWindow();
                 window.setScene(new Scene(root,1400,700));
 
+            }
+            else{
+                Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbaruser.fxml"));
+
+                Stage window=(Stage) verifcodesmsbutton.getScene().getWindow();
+                window.setScene(new Scene(root,1400,700));
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Veuillez vérifier votre code Sms", ButtonType.OK);

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 
-<ScrollPane prefHeight="700.0" prefWidth="1282.0" style="-fx-background-color: #faf1ee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayQuizHome">
+<ScrollPane prefHeight="700.0" prefWidth="1282.0" style="-fx-background-color: #faf1ee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DeleteQuiz">
    <content>
       <AnchorPane prefHeight="677.0" prefWidth="1258.0" style="-fx-background-color: #f1faee;">
          <children>

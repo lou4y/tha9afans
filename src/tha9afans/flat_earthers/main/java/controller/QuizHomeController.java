@@ -61,6 +61,8 @@ public class QuizHomeController implements Initializable {
 
     }
 
+
+
     public void switchToShowRank() throws IOException{
         Scene scene;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test/Rank.fxml"));
@@ -78,7 +80,7 @@ public class QuizHomeController implements Initializable {
         Parent root = loader.load();
         Stage stage = new Stage();
 
-        CaptchaController captchaController = loader.getController();
+        controller.CaptchaController captchaController = loader.getController();
         captchaController.verifyButton.setOnAction(event -> {
             captchaController.verify();
         });

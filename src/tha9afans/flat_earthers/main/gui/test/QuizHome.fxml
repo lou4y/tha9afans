@@ -16,10 +16,6 @@
          <font>
             <Font size="28.0" />
          </font></Button>
-      <Button layoutX="454.0" layoutY="242.0" mnemonicParsing="false" onAction="#switchToDeleteQuiz" prefHeight="43.0" prefWidth="250.0" style="-fx-background-color: #F1FAEE; -fx-background-radius: 20;" text="Show All" textFill="#001423">
-         <font>
-            <Font size="28.0" />
-         </font></Button>
       <Label layoutX="180.0" layoutY="324.0" prefHeight="95.0" prefWidth="413.0" text="Question" textFill="#f1faee">
          <font>
             <Font name="Helvetica Neue" size="65.0" />

@@ -32,8 +32,8 @@ public class ModifierUserController implements Initializable {
     TextField fieldnom;
     @FXML
     TextField fieldprenom, fieldemail, fieldadresse, fieldtelephone,cinfield;
-    @FXML
-    PasswordField fieldmotdepasse;
+   /* @FXML
+    PasswordField fieldmotdepasse;*/
     @FXML
     DatePicker fielddate;
     @FXML
@@ -61,7 +61,7 @@ public class ModifierUserController implements Initializable {
         fieldprenom.setText(p.getPrenom());
         fieldemail.setText(p.getEmail());
         fieldadresse.setText(p.getAdresse());
-        fieldmotdepasse.setText(p.getPassword());
+        /*fieldmotdepasse.setText(p.getPassword());*/
         fieldtelephone.setText(p.getTelephone());
         fielddate.setValue(p.getDateNaissance().toLocalDate());
         cinfield.setText(p.getCin());
@@ -108,16 +108,17 @@ public class ModifierUserController implements Initializable {
                     throw new RuntimeException(e);
                 }
                 if (p instanceof Utilisateur){
-                    Utilisateur u=new Utilisateur(userId,cinfield.getText(),fieldnom.getText(),fieldprenom.getText(),fieldemail.getText(),
-                            fieldmotdepasse.getText(),"utilisateur",fieldtelephone.getText(),fieldadresse.getText(),streamprofile,new Date(fielddate.getValue().getYear()-1900,
+                    Utilisateur u=new Utilisateur(userId,fieldemail.getText(),"[]",
+                            p.getPassword(),cinfield.getText(),fieldnom.getText(),fieldprenom.getText(),fieldtelephone.getText(),fieldadresse.getText(),streamprofile,new Date(fielddate.getValue().getYear()-1900,
                             fielddate.getValue().getMonthValue(),fielddate.getValue().getDayOfMonth()));
                     sp.modifier(u);
+                    System.out.println(u);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre utilisateur est modifié avec succés", ButtonType.OK);
                     alert.showAndWait();
 
                 } else {
-                    Administrateur a=new Administrateur(userId,cinfield.getText(),fieldnom.getText(),fieldprenom.getText(),fieldemail.getText(),
-                            fieldmotdepasse.getText(),"administrateur",fieldtelephone.getText(),fieldadresse.getText(),streamprofile,new Date(fielddate.getValue().getYear()-1900,
+                    Administrateur a=new Administrateur(userId,fieldemail.getText(),"[\"ROLE_ADMIN\"]",
+                            p.getPassword(),cinfield.getText(),fieldnom.getText(),fieldprenom.getText(),fieldtelephone.getText(),fieldadresse.getText(),streamprofile,new Date(fielddate.getValue().getYear()-1900,
                             fielddate.getValue().getMonthValue(),fielddate.getValue().getDayOfMonth()));
                     sp.modifier(a);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre administrateur est modifié avec succés", ButtonType.OK);

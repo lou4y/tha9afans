@@ -9,7 +9,7 @@ public class AuthResponseDTO {
     private Date dateNaissance;
     private InputStream image;
 
-    public AuthResponseDTO(int idUser, String cin, String nom, String prenom, String email, String password,String role, String telephone, String adresse,  Date dateNaissance,InputStream image) {
+    public AuthResponseDTO(int idUser, String email,String role, String password, String cin, String nom, String prenom, String telephone, String adresse,  Date dateNaissance,InputStream image) {
         this.idUser = idUser;
         this.cin = cin;
         this.nom = nom;

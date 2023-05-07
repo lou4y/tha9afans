@@ -33,16 +33,12 @@ public class QuestionController {
 
     AuthResponseDTO userlogged= UserSession.getUser_LoggedIn();
 
-
-
     private Quiz quiz;
     @FXML
     private Button firstPossibleAnswer;
 
     @FXML
     private ImageView image;
-
-
     @FXML
     private Label question;
 
@@ -83,16 +79,6 @@ public class QuestionController {
     private final Random rand = new Random();
 
     private int quiz_id;
-
-//    public void setQuestionsList(int idd) {
-//
-//        id = idd;
-//        System.out.println("Quiz ID: " + id);
-//        ServiceQuizQuestion sq = new ServiceQuizQuestion();
-//        this.questions = sq.getAllByQuiz(id);
-//        setQuestion(this.questions);
-//    }
-
     public void setQuestion(List<Question> questions, int quiz_id) {
         this.questions = questions;
         this.quiz_id = quiz_id;
@@ -159,7 +145,6 @@ public class QuestionController {
     public void startTimer() {
         if (!isPaused) {
             if (timeline != null && timeline.getStatus() == Timeline.Status.RUNNING) {
-                // The timer is already running, so we don't need to start it again
                 return;
             }
             AtomicInteger timeLimit = new AtomicInteger(Integer.parseInt(timer.getText()));
