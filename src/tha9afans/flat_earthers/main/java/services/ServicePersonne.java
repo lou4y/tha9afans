@@ -140,13 +140,13 @@ public class ServicePersonne implements IService<Personne>{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Blob blob = rs.getBlob(10);
+                Blob blob = rs.getBlob("photo");
                 InputStream inputStream = blob.getBinaryStream();
 
                 if(rs.getString("roles").contains("ROLE_ADMIN")){
                     p=new Administrateur(rs.getInt("id"),rs.getString("email"),rs.getString("roles"),
                             rs.getString("password"),rs.getString("cin"),rs.getString("nom"), rs.getString("prenom"),
-                            rs.getString("telephone"),rs.getString("adresse"),inputStream,rs.getDate(11));
+                            rs.getString("telephone"),rs.getString("adresse"),inputStream,rs.getDate("datenaissance"));
 
                 }
                 else{
