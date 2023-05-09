@@ -110,14 +110,14 @@ public class ServiceReservation implements IService<Reservation> {
 //TODO //////// METIER \\\\\\\\\\\\
 
 
-    public boolean billetDisponible(Evenement evenement) {
+   /* public boolean billetDisponible(Evenement evenement) {
         List<Billet> billets =getAll().stream()
                 .filter(reservation -> reservation.getUser().getId() == 0)
                 .map(res -> res.getBillet())
                 .filter(billet -> billet.getEvenement().getId() == evenement.getId())
                 .collect(Collectors.toList());
         return  billets.size() > evenement.getNb_participants() ;
-    }
+    }*/
     public Billet billetDispo(Evenement evenement) {
         List<Billet> billets =getAll().stream()
                 .filter(reservation -> reservation.getUser().getId() == 0)
@@ -128,13 +128,13 @@ public class ServiceReservation implements IService<Reservation> {
     }
     public Reservation ReservationDispo(Evenement evenement) {
         List<Reservation> reservations =getAll().stream()
-                .filter(reservation -> reservation.getUser().getId() == evenement.getcreateur().getId() && reservation.getBillet().getEvenement().getId()==evenement.getId())
+                .filter(reservation -> reservation.getUser().getId() == evenement.getCreateur().getId() && reservation.getBillet().getEvenement().getId()==evenement.getId())
                 .collect(Collectors.toList());
         return reservations.get(0);
     }
     public int ReservationDispon(Evenement evenement) {
         List<Reservation> reservations =getAll().stream()
-                .filter(reservation -> reservation.getUser().getId() == evenement.getcreateur().getId() && reservation.getBillet().getEvenement().getId()==evenement.getId())
+                .filter(reservation -> reservation.getUser().getId() == evenement.getCreateur().getId() && reservation.getBillet().getEvenement().getId()==evenement.getId())
                 .collect(Collectors.toList());
         if (reservations.size() == 0)
             return 0;
@@ -145,7 +145,7 @@ public class ServiceReservation implements IService<Reservation> {
 
     public List<Reservation> getAllReservationsByUser(Personne user){
         List<Reservation> reservations = getAll().stream()
-                .filter(e -> e.getUser().getId() == user.getId() && user.getId()!=e.getBillet().getEvenement().getcreateur().getId())
+                .filter(e -> e.getUser().getId() == user.getId() && user.getId()!=e.getBillet().getEvenement().getCreateur().getId())
                 .sorted(new DateReservationComparator())
                 .collect(Collectors.toList());       //By RESERVATION DATE
         // .collect(Collectors.groupingBy(Collectors.groupingBy(reservation->))
@@ -174,7 +174,7 @@ public class ServiceReservation implements IService<Reservation> {
             return eventIsPresent.get().getId();
     }
 
-    public void setAllBillet(int id) {
+   /*public void setAllBillet(int id) {
         ServiceEvenement se= new ServiceEvenement();
 
         if (id == 0) {
@@ -186,8 +186,8 @@ public class ServiceReservation implements IService<Reservation> {
             serviceBillet.ajouter(b);
            int  idb=serviceBillet.getId(b);
             Reservation r = new Reservation(Date.valueOf("1990-01-01"), false, "ok", se.getOneById(id).getcreateur(),serviceBillet.getOneById(idb));
-            /*new User(0, "null"), b)*/
+            /*new User(0, "null"), b)
             ajouter(r);
         }
-    }
+    }*/
 }

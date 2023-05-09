@@ -25,17 +25,18 @@ public class ServiceEvenement implements IService<Evenement> {
     @Override
     public void ajouter(Evenement e) {
         try {
-            String req = "INSERT INTO `evenement`(`nom`, `description`, `id_categorie`, `date`, `id_createur`, `localisation`,`nb_participants`,`nb_aime`,`prix`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO `evenement`(`createur_id`, `categorie_id`, `nom`, `description`, `date`, `localisation`, `freeorpaid`, `online`, `link`, `addresse`) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, e.getNom());
-            ps.setString(2, e.getDescription());
-            ps.setInt(3, e.getCategorie().getId());
-            ps.setDate(4, e.getDate());
-            ps.setInt(5, e.getcreateur().getId());
+            ps.setInt(1, e.getCreateur().getId());
+            ps.setInt(2, e.getCategorieEvenement().getId());
+            ps.setString(3, e.getNom());
+            ps.setString(4, e.getDescription());
+            ps.setDate(5, e.getDate());
             ps.setString(6, e.getLocalisation());
-            ps.setInt(7, e.getNb_participants());
-            ps.setInt(8, e.getNb_aime());
-            ps.setInt(9, e.getPrix());
+            ps.setBoolean(7, e.isFreeorpaid());
+            ps.setBoolean(8, e.isOnline());
+            ps.setString(9, e.getLink());
+            ps.setString(10,e.getAddress());
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -45,7 +46,7 @@ public class ServiceEvenement implements IService<Evenement> {
     @Override
     public void modifier(Evenement e) {
         try {
-            String req = "UPDATE `evenement` SET `nom`='" + e.getNom() + "',`description`='" + e.getDescription() + "',`id_categorie`='" + e.getCategorie().getId() + "',`date`='" + e.getDate() + "',`id_createur`='" + e.getcreateur().getId() + "',`localisation`='" + e.getLocalisation() + "',`nb_participants`='" + e.getNb_participants() + "',`nb_aime`='" + e.getNb_aime() + "',`prix`='" + e.getPrix() + "' WHERE `Evenement`.`id` = " + e.getId();
+            String req = "UPDATE `evenement` SET `createur_id`='" + e.getCreateur().getId()  + "',`categorie_id`='" + e.getCategorieEvenement().getId() +"',`nom`='" + e.getNom() +"',`description`='" + e.getDescription() + "',`date`='" + e.getDate() + "',`localisation`='" + e.getLocalisation() + "',`freeorpaid`='" + e.isFreeorpaid() + "',`online`='" + e.isOnline() + "',`link`='" + e.getLink() +"',`addresse`='" + e.getAddress() + "' WHERE `Evenement`.`id` = " + e.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("evenement updated !");
@@ -75,7 +76,7 @@ public class ServiceEvenement implements IService<Evenement> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Evenement e = new Evenement(rs.getInt(1), rs.getString("nom"), rs.getString(3), sc.getOneById(rs.getInt(4)), rs.getDate(5), sp.getOneById(rs.getInt(6)), rs.getString(7), rs.getInt(8), rs.getInt(9),rs.getInt(10));
+                Evenement e = new Evenement(rs.getInt(1), rs.getString("nom"), rs.getString("description"), sc.getOneById(rs.getInt("categorie_id")), rs.getDate("date"), sp.getOneById(rs.getInt("createur_id")), rs.getString("localisation"), rs.getString("addresse"), rs.getBoolean("freeorpaid"),rs.getBoolean("online"),rs.getString("link"));
                 list.add(e);
             }
         } catch (SQLException ex) {
@@ -93,7 +94,7 @@ public class ServiceEvenement implements IService<Evenement> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                e = new Evenement(rs.getInt(1), rs.getString("nom"), rs.getString(3), sc.getOneById(rs.getInt(4)), rs.getDate(5), sp.getOneById(rs.getInt(6)), rs.getString(7), rs.getInt(8), rs.getInt(9),rs.getInt(10));
+                 e = new Evenement(rs.getInt(1), rs.getString("nom"), rs.getString("description"), sc.getOneById(rs.getInt("categorie_id")), rs.getDate("date"), sp.getOneById(rs.getInt("createur_id")), rs.getString("localisation"), rs.getString("addresse"), rs.getBoolean("freeorpaid"),rs.getBoolean("online"),rs.getString("link"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -107,14 +108,14 @@ public class ServiceEvenement implements IService<Evenement> {
         return list.stream().filter(e -> e.getNom().contains(nom)).collect(Collectors.toList());
 }
     public List<Evenement> getAllByUser(Personne personne, List<Evenement> list) {
-        return list.stream().filter(e -> e.getcreateur().getId()==personne.getId()).collect(Collectors.toList());
+        return list.stream().filter(e -> e.getCreateur().getId()==personne.getId()).collect(Collectors.toList());
     }
 public int getId(Evenement evenement) {
     List<Evenement> list = getAll();
     Evenement ev = list.stream()
             .filter(e -> e.getNom().equals(evenement.getNom()) &&
                     e.getDate().equals(evenement.getDate()) &&
-                    e.getCategorie().equals(evenement.getCategorie()) &&
+                    e.getCategorieEvenement().equals(evenement.getCategorieEvenement()) &&
                     e.getDescription().equals(evenement.getDescription()) &&
                     e.getLocalisation().equals(evenement.getLocalisation()))
             .findFirst()
@@ -126,7 +127,7 @@ public int getId(Evenement evenement) {
         Evenement ev = list.stream()
                 .filter(e -> e.getNom().equals(evenement.getNom()) &&
                         e.getDate().equals(evenement.getDate()) &&
-                        e.getCategorie().equals(evenement.getCategorie()) &&
+                        e.getCategorieEvenement().equals(evenement.getCategorieEvenement()) &&
                         e.getDescription().equals(evenement.getDescription()) &&
                         e.getLocalisation().equals(evenement.getLocalisation()))
                 .findFirst()
@@ -138,7 +139,7 @@ public int getId(Evenement evenement) {
         return list.stream().filter(e -> e.getLocalisation().contains(localisation)).collect(Collectors.toList());
     }
     public List<Evenement> getAllByCategorie(String categorie,List<Evenement> list) {
-        return list.stream().filter(e -> e.getCategorie().getNom().contains(categorie)).collect(Collectors.toList());
+        return list.stream().filter(e -> e.getCategorieEvenement().getNom().contains(categorie)).collect(Collectors.toList());
     }
 
     public List<Evenement> tri(List<Evenement> list) {

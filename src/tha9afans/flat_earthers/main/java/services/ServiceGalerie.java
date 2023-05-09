@@ -62,13 +62,13 @@ public class ServiceGalerie  {
         ServiceEvenement se = new ServiceEvenement();
         List<Galerie> list = new ArrayList<>();
         try {
-            String req = "SELECT * FROM `Galerie` WHERE id_event = " + id;
+            String req = "SELECT * FROM `Galerie` WHERE event_id = " + id;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 Blob blob = rs.getBlob("photo");
                 InputStream inputStream = blob.getBinaryStream();
-                list.add(new Galerie(se.getOneById(rs.getInt("id_event")), inputStream) );
+                list.add(new Galerie(se.getOneById(rs.getInt("event_id")), inputStream) );
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

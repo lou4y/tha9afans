@@ -1,5 +1,7 @@
 package entities;
 import java.sql.Date;
+import java.util.Objects;
+
 /**
  *
  * @author ghazo
@@ -13,26 +15,29 @@ public class Evenement {
 
     private Personne createur;
     private String localisation;
-    private int nb_participants;
+private String address;
+    private boolean freeorpaid;
 
-    private int nb_aime;
-    private int prix;
+    private boolean online;
+    private String link;
+
     public Evenement() {
     }
 
-    public Evenement(String nom, String description, CategorieEvenement categorieEvenement, Date date, Personne createur, String localisation, int nb_participants, int nb_aime, int prix) {
+    public Evenement(String nom, String description, CategorieEvenement categorieEvenement, Date date, Personne createur, String localisation, String address, boolean freeorpaid, boolean online, String link) {
         this.nom = nom;
         this.description = description;
         this.categorieEvenement = categorieEvenement;
         this.date = date;
         this.createur = createur;
         this.localisation = localisation;
-        this.nb_participants = nb_participants;
-        this.nb_aime = nb_aime;
-        this.prix=prix;
+        this.address = address;
+        this.freeorpaid = freeorpaid;
+        this.online = online;
+        this.link = link;
     }
 
-    public Evenement(int id, String nom, String description, CategorieEvenement categorieEvenement, Date date, Personne createur, String localisation, int nb_participants, int nb_aime, int prix) {
+    public Evenement(int id, String nom, String description, CategorieEvenement categorieEvenement, Date date, Personne createur, String localisation, String address, boolean freeorpaid, boolean online, String link) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -40,13 +45,18 @@ public class Evenement {
         this.date = date;
         this.createur = createur;
         this.localisation = localisation;
-        this.nb_participants = nb_participants;
-        this.nb_aime = nb_aime;
-        this.prix=prix;
+        this.address = address;
+        this.freeorpaid = freeorpaid;
+        this.online = online;
+        this.link = link;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -65,9 +75,13 @@ public class Evenement {
         this.description = description;
     }
 
-    public CategorieEvenement getCategorie() {return categorieEvenement;}
+    public CategorieEvenement getCategorieEvenement() {
+        return categorieEvenement;
+    }
 
-    public void setCategorie(CategorieEvenement categorieEvenement) {this.categorieEvenement = categorieEvenement;}
+    public void setCategorieEvenement(CategorieEvenement categorieEvenement) {
+        this.categorieEvenement = categorieEvenement;
+    }
 
     public Date getDate() {
         return date;
@@ -77,11 +91,11 @@ public class Evenement {
         this.date = date;
     }
 
-    public Personne getcreateur() {
+    public Personne getCreateur() {
         return createur;
     }
 
-    public void setcreateur(Personne createur) {
+    public void setCreateur(Personne createur) {
         this.createur = createur;
     }
 
@@ -93,70 +107,65 @@ public class Evenement {
         this.localisation = localisation;
     }
 
-    public int getNb_participants() {
-        return nb_participants;
+    public String getAddress() {
+        return address;
     }
 
-    public void setNb_participants(int nb_participants) {
-        this.nb_participants = nb_participants;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public int getNb_aime() {
-        return nb_aime;
+    public boolean isFreeorpaid() {
+        return freeorpaid;
     }
 
-    public void setNb_aime(int nb_aime) {
-        this.nb_aime = nb_aime;
+    public void setFreeorpaid(boolean freeorpaid) {
+        this.freeorpaid = freeorpaid;
     }
 
-    public int getPrix() {
-        return prix;
+    public boolean isOnline() {
+        return online;
     }
 
-    public void setPrix(int prix) {
-        this.prix = prix;
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Evenement evenement = (Evenement) o;
+        return id == evenement.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Evenement{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
-                ", categorie=" + categorieEvenement +
+                ", categorieEvenement=" + categorieEvenement +
                 ", date=" + date +
                 ", createur=" + createur +
                 ", localisation='" + localisation + '\'' +
-                ", nb_participants=" + nb_participants +
-                ", nb_aime=" + nb_aime +
-                ", prix=" + prix +
+                ", address='" + address + '\'' +
+                ", freeorpaid=" + freeorpaid +
+                ", online=" + online +
+                ", link='" + link + '\'' +
                 '}';
     }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Evenement other = (Evenement) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.id;
-        return hash;
-    }
-
-
 }
