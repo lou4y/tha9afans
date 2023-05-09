@@ -16,7 +16,7 @@ public class ServiceJaime  {
 
     public void ajouter(Jaime jaime) {
     try {
-            String req = "INSERT INTO `jaime` (`id_user`, `id_event`) VALUES (?, ?)";
+            String req = "INSERT INTO `jaime` (`user_id`, `event_id`) VALUES (?, ?)";
         PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, jaime.getUser().getId());
             ps.setInt(2, jaime.getEvenement().getId());
@@ -29,7 +29,7 @@ public class ServiceJaime  {
 
     public void supprimer(Jaime jaime) {
         try {
-            String req = "DELETE FROM `jaime` WHERE id_user = " + jaime.getUser().getId() + " AND id_event = " + jaime.getEvenement().getId();
+            String req = "DELETE FROM `jaime` WHERE user_id = " + jaime.getUser().getId() + " AND event_id = " + jaime.getEvenement().getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("jaime deleted !");
@@ -45,7 +45,7 @@ public class ServiceJaime  {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                list.add(new Jaime(sp.getOneById(rs.getInt("id_user")), se.getOneById(rs.getInt("id_event"))) );
+                list.add(new Jaime(rs.getInt("id"),sp.getOneById(rs.getInt("user_id")), se.getOneById(rs.getInt("event_id"))) );
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

@@ -1,4 +1,4 @@
-package tha9afans.flat_earthers.main.java.services;
+package services;
 
 import entities.Question;
 import entities.Quiz;

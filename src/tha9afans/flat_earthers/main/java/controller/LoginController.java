@@ -63,7 +63,7 @@ public class LoginController implements Initializable {
                         UserSession.getSameInstance(userLoggedIn);
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Vous etes authentifié avec succés", ButtonType.OK);
                         alert.showAndWait();
-                        Parent root = FXMLLoader.load(getClass().getResource("/test/PlayQuizHome.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("/test/sidenavbar.fxml"));
                         Stage window=(Stage) loginbutton.getScene().getWindow();
                         window.setScene(new Scene(root,1400,700));
                     } else {
@@ -111,8 +111,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        emailfield.setText("test@gmail.com");
-        passwordfield.setText("test");
+        emailfield.setText("user0@gmail.com");
+        passwordfield.setText("user");
 
 
 
