@@ -13,13 +13,14 @@ public class Produit {
 
     private Double rating;
     private Double prixapresremise;
+    private int qt;
 
 
 
     public Produit() {
     }
 
-    public Produit(int id, String nom, String description, int libelle, int id_vendeur, double prix, Categorie categorie,Double remise,Double rating) {
+    public Produit(int id, int vendeur_id, String nom, String description, int libelle, double prix, Categorie categorie,Double remise,Double rating) {
         this.id = id;
         this.nom = nom;
         this.description = description;
