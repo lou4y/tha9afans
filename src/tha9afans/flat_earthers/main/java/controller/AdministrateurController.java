@@ -100,7 +100,7 @@ public class AdministrateurController implements Initializable {
             row.createCell(5).setCellValue(p.getAdresse());
         }
         LocalDate currentDate = LocalDate.now();
-        FileOutputStream outputStream = new FileOutputStream("D:/Projects/javafx/tha9afansOns/src/tha9afans/flat_earthers/main/java/excel/Listedesutilisateurs"+ currentDate.toString() +".xlsx");
+        FileOutputStream outputStream = new FileOutputStream("D:/3A13/tha9afans-main/src/tha9afans/flat_earthers/main/java/excel/Listedesutilisateurs"+ currentDate.toString() +".xlsx");
         workbook.write(outputStream);
         workbook.close();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre fichier excel est téléchargé", ButtonType.OK);
@@ -112,6 +112,7 @@ public class AdministrateurController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ServicePersonne sp = new ServicePersonne();
         ObservableList<Personne> personnes = FXCollections.observableArrayList(sp.getAll());
+        System.out.println(personnes);
 
 
 // Step 2: Create a FilteredList with a predicate that matches Personne objects by name
@@ -149,8 +150,8 @@ public class AdministrateurController implements Initializable {
                     return true;
                 }
                 String lowerCaseNom = personne.getNom().toLowerCase();
-                String lowerCasePrenom = personne.getPrenom().toLowerCase();
-                return (lowerCaseNom.contains(searchText) || lowerCasePrenom.contains(searchText));
+                //String lowerCasePrenom = personne.getPrenom().toLowerCase();
+                return (lowerCaseNom.contains(searchText));
             };
             filteredPersonnes.setPredicate(predicate);
         });
