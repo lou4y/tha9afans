@@ -32,12 +32,10 @@ import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
 public class editcontroller implements Initializable {
-
     @FXML
     private Button ev_add;
-
     @FXML
-    private ComboBox<CategorieEvenement> ev_cat;
+    private TextField link;
 
     @FXML
     private DatePicker ev_date;
@@ -52,14 +50,16 @@ public class editcontroller implements Initializable {
     private TextField ev_name;
 
     @FXML
-    private Spinner<Integer> ev_pnb;
+    private HBox evname;
 
     @FXML
-    private TextField ev_price;
+    private ComboBox<String> fop;
 
     @FXML
-    private ComboBox<String> ev_region;
+    private ComboBox<String> oof;
 
+    @FXML
+    private ComboBox<CategorieEvenement> ev_cat1;
 
     @FXML
     private Button br;
@@ -77,17 +77,10 @@ public class editcontroller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ServiceCategorieEvenement sc = new ServiceCategorieEvenement();
         List<CategorieEvenement> listc =sc.getAll();
-        ObservableList obsCategories = FXCollections.observableArrayList();
-        String[] regions={"Tunis", "Ariana", " Ben Arous"," Mannouba"," Bizerte", "Nabeul", "Béja", "Jendouba", "Zaghouan", "Siliana", "Le Kef", "Sousse", "Monastir", "Mahdia", "Kasserine", "Sidi Bouzid", "Kairouan", "Gafsa", "Sfax", "Gabès", "Médenine", "Tozeur", "Kebili" , "Ttataouine"};
-        for ( String c : regions){
-            obsCategories.add(c);
-        }
-        ev_region.setItems(obsCategories);
-
         for (CategorieEvenement cat : listc) {
-            ev_cat.getItems().add(cat);
+            ev_cat1.getItems().add(cat);
         }
-        ev_cat.setConverter(new StringConverter<CategorieEvenement>() {
+        ev_cat1.setConverter(new StringConverter<CategorieEvenement>() {
             @Override
             public String toString(CategorieEvenement c) {
                 return c.getNom();
@@ -98,57 +91,38 @@ public class editcontroller implements Initializable {
                 return null;
             }
         });
+        ObservableList obsfor = FXCollections.observableArrayList();
+        String[] fop1 = {"Free","Paid"};
+        for (String c : fop1) {
+            obsfor.add(c);
+        }
+        fop.setItems(obsfor);
+
+        ObservableList obsoof = FXCollections.observableArrayList();
+        String[] oof1 = {"Online","Offline"};
+        for (String c : oof1) {
+            obsoof.add(c);
+        }
+        oof.setItems(obsoof);
+
+
     }
 
 
-    public void setevent(Evenement e){
-        ServiceSession ss=new ServiceSession();
-        this.ev=e;
-        this.listsession=ss.getAllByEvent(e);
+    public void setevent(Evenement e) {
+        ServiceSession ss = new ServiceSession();
+        this.ev = e;
+        this.listsession = ss.getAllByEvent(e);
         ev_name.setText(e.getNom());
         ev_description.setText(e.getDescription());
-        ev_cat.setValue(e.getCategorie());
+        ev_cat1.setValue(e.getCategorieEvenement());
         ev_date.setValue(e.getDate().toLocalDate());
-        ev_location.setText(e.getLocalisation().split(",")[1].trim());
-        ev_pnb.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 1000, e.getNb_participants()));
-        ev_price.setText(String.valueOf(e.getPrix()));
-        ev_region.setValue(e.getLocalisation().split(",")[0].trim());
-
-        this.listsdb=ss.getAllByEvent(ev);
+        ev_location.setText(e.getAddress());
+        link.setText(e.getLink());
+        oof.setValue(e.isOnline() == true ? "Offline" : "Online");
+        fop.setValue(e.isFreeorpaid() == false ? "Free" : "Paid");
+        this.listsdb = ss.getAllByEvent(ev);
         System.out.println(listsdb);
-
-        UnaryOperator<TextFormatter.Change> filter = change -> {
-            String text = change.getText();
-            if (text.matches("[0-9]*")) {
-                return change;
-            }
-            return null;
-        };
-        StringConverter<Integer> converter = new StringConverter<Integer>() {
-            @Override
-            public Integer fromString(String s) {
-                try {
-                    return Integer.valueOf(s);
-                } catch (NumberFormatException e) {
-                    return 0;
-                }
-            }
-
-            @Override
-            public String toString(Integer integer) {
-                return integer.toString();
-            }
-        };
-
-        TextFormatter<Integer> numericFilter = new TextFormatter<Integer>(converter, 0, change -> {
-            if (change.getText().matches("[0-9]*")) {
-                return change;
-            } else {
-                return null;
-            }
-        });
-        ev_price.setTextFormatter(numericFilter);
-        setsessions();
     }
 
     private void setsessions() {
@@ -260,17 +234,16 @@ public class editcontroller implements Initializable {
                 ev_date.getValue().toString().isEmpty() ||
                 ev_description.getText().isEmpty() ||
                 ev_location.getText().isEmpty() ||
-                ev_pnb.getValue().toString().isEmpty() ||
-                ev_price.getText().isEmpty() ||
-                ev_region.getValue().toString().isEmpty() ||
-                ev_cat.getValue().toString().isEmpty()) {
+                link.getText().isEmpty() ||
+
+                ev_cat1.getValue().toString().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.WARNING, "Complete event details ", ButtonType.OK);
             a.showAndWait();
         } else {
             ServiceEvenement se = new ServiceEvenement();
 
-            Evenement E = new Evenement(ev.getId(),ev_name.getText(),ev_description.getText(),ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString()+", "+ ev_location.getText(),Integer.parseInt(ev_pnb.getValue().toString()),40,Integer.parseInt(ev_price.getText()));
-                se.modifier(E);
+            Evenement E = new Evenement(ev.getId(),ev_name.getText(), ev_description.getText(), ev_cat1.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()),"" ,ev_location.getText(), fop.getValue()=="Free"?false:true, oof.getValue()=="Offline"?true:false, link.getText());
+            se.modifier(E);
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "event edited !", ButtonType.OK);
 
                 a.showAndWait();

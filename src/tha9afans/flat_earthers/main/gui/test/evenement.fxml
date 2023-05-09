@@ -42,15 +42,15 @@
                                           <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="165.0" text="like" textFill="#f1faee" />
                                        </children>
                                     </HBox>
-                                    <Label fx:id="desc" alignment="TOP_LEFT" prefHeight="172.0" prefWidth="423.0" text="DES" textFill="#f1faee">
+                                    <Label fx:id="desc" alignment="TOP_LEFT" prefHeight="637.0" prefWidth="398.0" text="DES" textFill="#f1faee">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
                                     <HBox>
                                        <children>
-                                          <Label prefHeight="18.0" prefWidth="54.0" text="location:" textFill="#f1faee" />
-                                          <Label fx:id="location" prefHeight="18.0" prefWidth="131.0" text="loc" textFill="#f1faee" />
+                                          <Label prefHeight="18.0" prefWidth="77.0" text="location:" textFill="#f1faee" />
+                                          <Label fx:id="location" prefHeight="197.0" prefWidth="336.0" text="loc" textFill="#f1faee" />
                                        </children>
                                     </HBox>
                                     <HBox>
@@ -61,9 +61,7 @@
                                     </HBox>
                                     <HBox>
                                        <children>
-                                          <Label prefHeight="18.0" prefWidth="54.0" text="Price:" textFill="#f1faee" />
-                                          <Label fx:id="price" prefHeight="18.0" prefWidth="22.0" text="pr" textFill="#f1faee" />
-                                          <Label prefHeight="18.0" prefWidth="25.0" text="DT" textFill="#f1faee" />
+                                          <Label fx:id="price" prefHeight="18.0" prefWidth="251.0" text="pr" textFill="#f1faee" />
                                        </children>
                                     </HBox>
                                  </children>

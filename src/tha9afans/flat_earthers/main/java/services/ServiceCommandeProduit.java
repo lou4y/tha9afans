@@ -12,6 +12,16 @@ public class ServiceCommandeProduit  implements IService<CommandeProduit>{
     ServiceCommande sc = new ServiceCommande();
     ServiceProduit sp = new ServiceProduit();
 
+    ServicePersonne spersonne = new ServicePersonne();
+    AuthResponseDTO userlogged=UserSession.getUser_LoggedIn();
+
+
+
+
+
+
+
+
     @Override
     public void ajouter(CommandeProduit p) {
         try {
@@ -115,7 +125,7 @@ public class ServiceCommandeProduit  implements IService<CommandeProduit>{
             Commande commande;
             if (rs.next()) {
                 Timestamp date = rs.getTimestamp("date");
-                commande = new Commande(date, 0.0, personne);
+                commande = new Commande(spersonne.getOneById(userlogged.getIdUser()) ,date,0.0);
             } else {
                 PreparedStatement ps2 = cnx.prepareStatement("INSERT INTO commande (id_user) VALUES (?)",
                         Statement.RETURN_GENERATED_KEYS);
@@ -124,7 +134,7 @@ public class ServiceCommandeProduit  implements IService<CommandeProduit>{
                 rs = ps2.getGeneratedKeys();
                 rs.next();
                 Timestamp date = rs.getTimestamp("date");
-                commande = new Commande (date, 0.0, personne);
+                commande = new Commande (spersonne.getOneById(userlogged.getIdUser()) ,date,0.0);
             }
             PreparedStatement ps3 = cnx
                     .prepareStatement("SELECT * FROM commandeproduit WHERE id_commende = ? AND id_produit  = ?");

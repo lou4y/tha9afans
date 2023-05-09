@@ -13,7 +13,7 @@ public class ServiceSession implements IService<Session>{
     @Override
     public void ajouter(Session session) {
         try {
-            String req = "INSERT INTO `session` (`id_evenement`,`titre`,`description`,`parlant`,`debit`,`fin`) VALUES (?,?,?, ?, ?, ?)";
+            String req = "INSERT INTO `session` (`evenement_id`,`titre`,`description`,`parlant`,`debit`,`fin`) VALUES (?,?,?, ?, ?, ?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, session.getEvenement().getId());
             ps.setString(2, session.getTitre());
@@ -30,7 +30,7 @@ public class ServiceSession implements IService<Session>{
     @Override
     public void modifier(Session session) {
         try {
-            String req = "UPDATE `session` SET `id_evenement`='" + session.getEvenement().getId() + "',`titre`='" + session.getTitre() + "',`description`='" + session.getDescription() + "',`parlant`='" + session.getParlant() + "',`debit`='" + session.getDebit() + "',`fin`='" + session.getFin() + "' WHERE `Session`.`id` = " + session.getId();
+            String req = "UPDATE `session` SET `evenement_id`='" + session.getEvenement().getId() + "',`titre`='" + session.getTitre() + "',`description`='" + session.getDescription() + "',`parlant`='" + session.getParlant() + "',`debit`='" + session.getDebit() + "',`fin`='" + session.getFin() + "' WHERE `Session`.`id` = " + session.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Session updated !");
@@ -61,7 +61,7 @@ public class ServiceSession implements IService<Session>{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                list.add(new Session(rs.getInt("id"), se.getOneById(rs.getInt("id_evenement")), rs.getString("titre"), rs.getString("description"), rs.getString("parlant"), rs.getTime("debit"), rs.getTime("fin")));
+                list.add(new Session(rs.getInt("id"), se.getOneById(rs.getInt("evenement_id")), rs.getString("titre"), rs.getString("description"), rs.getString("parlant"), rs.getTime("debit"), rs.getTime("fin")));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -77,7 +77,7 @@ public class ServiceSession implements IService<Session>{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                s = new Session(rs.getInt("id"), se.getOneById(rs.getInt("id_evenement")), rs.getString("titre"), rs.getString("description"), rs.getString("parlant"), rs.getTime("debit"), rs.getTime("fin"));
+                s = new Session(rs.getInt("id"), se.getOneById(rs.getInt("evenement_id")), rs.getString("titre"), rs.getString("description"), rs.getString("parlant"), rs.getTime("debit"), rs.getTime("fin"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

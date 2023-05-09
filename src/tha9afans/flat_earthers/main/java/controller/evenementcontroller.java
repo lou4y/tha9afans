@@ -105,25 +105,12 @@ public class evenementcontroller implements Initializable {
         String apiUrl = "https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&addressdetails=1&limit=1";
 
         try {
-            URL apiUrlObj = new URL(apiUrl);
-            HttpURLConnection con = (HttpURLConnection) apiUrlObj.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            JSONArray jsonArray = new JSONArray(response.toString());
+            JSONArray jsonArray = new JSONArray(ev.getLocalisation());
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
             String lat = jsonObject.getString("lat");
-            String lon = jsonObject.getString("lon");
+            String lon = jsonObject.getString("lng");
 
             double latitude = Double.parseDouble(lat);
             double longitude = Double.parseDouble(lon);
@@ -143,7 +130,7 @@ public class evenementcontroller implements Initializable {
             // Add a marker for the exact location
             url += "&marker=" + latitude + "," + longitude + ",red";
 
-        } catch (IOException | JSONException e) {
+        } catch ( JSONException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,17 +160,18 @@ public class evenementcontroller implements Initializable {
 
         if (sg.getallbyevent(e.getId()).size()!=0){
             stream=sg.getallbyevent(e.getId()).get(0).getPhoto();
+            stream.reset();
         }
-        stream.reset();
+
 
         Image image = new Image(stream);
         image_ev.setImage(image);
         title.setText(e.getNom());
         desc.setText(e.getDescription());
         date.setText(e.getDate().toString());
-        location.setText(e.getLocalisation());
-        price.setText(""+e.getPrix()+"");
-        like.setText(""+e.getNb_aime()+"");
+        location.setText(e.getAddress());
+        price.setText(e.isOnline()==true?"online":"offline");
+        like.setText("");
         setSession();
         setlike();
         setcomment();
@@ -288,12 +276,6 @@ public class evenementcontroller implements Initializable {
             participate.setDisable(true);
             participate.setStyle("-fx-background-color: #f1faee; -fx-text-fill: #1d3557");
         }
-
-        Billet b = new Billet();
-        b.setEvenement(ev);
-        Reservation r = new Reservation();
-        r=sr.ReservationDispo(this.ev);
-        sr.modifier(new Reservation(r.getId(), Date.valueOf(LocalDate.now()),ev.getPrix()>0?true:false,String.valueOf(ev.getPrix()),sp.getOneById(userlogged.getIdUser()),r.getBillet()));
 
     }
 }
