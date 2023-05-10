@@ -16,23 +16,27 @@ public class Panier {
 
 
 
+
+
     public Panier() {
     }
 
-    public Panier(int id, double total,Personne personne) {
+    public Panier(int id, double total,Personne personne ) {
         this.id = id;
 
         this.total = total;
 
         this.personne = personne;
 
+
     }
 
 
-    public Panier( double total, Personne personne) {
+    public Panier( double total, Personne personne ) {
         this.total = total;
 
         this.personne = personne;
+
 
     }
 
@@ -70,16 +74,17 @@ public class Panier {
 
 
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Panier panier)) return false;
-        return getId() == panier.getId() && Double.compare(panier.getTotal(), getTotal()) == 0   && Objects.equals(getPersonne(), panier.getPersonne());
+        return getId() == panier.getId() && Double.compare(panier.getTotal(), getTotal()) == 0 && Objects.equals(getPersonne(), panier.getPersonne());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),  getTotal(), getPersonne());
+        return Objects.hash(getId(), getTotal(), getPersonne());
     }
 
     @Override
