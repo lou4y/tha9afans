@@ -1,6 +1,7 @@
 package entities;
 
 public class Jaime {
+    private int id;
     private Personne user;
     private Evenement evenement;
 
@@ -8,6 +9,12 @@ public class Jaime {
     }
 
     public Jaime(Personne user, Evenement evenement) {
+        this.user = user;
+        this.evenement = evenement;
+    }
+
+    public Jaime(int id, Personne user, Evenement evenement) {
+        this.id = id;
         this.user = user;
         this.evenement = evenement;
     }

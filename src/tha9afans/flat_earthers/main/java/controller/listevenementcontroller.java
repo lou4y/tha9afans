@@ -47,13 +47,13 @@ public class listevenementcontroller implements Initializable {
     private TextField ev_name;
 
     @FXML
-    private Spinner<Integer> ev_pnb;
+    private ComboBox<String> fop;
 
     @FXML
-    private TextField ev_price;
+    private TextField link;
 
     @FXML
-    private TextField image;
+    private ComboBox<String> oof;
     @FXML
     private GridPane event_grid;
 
@@ -110,10 +110,6 @@ public class listevenementcontroller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ////////////////////////////spinner/////////////////////////////////////////////////////////////////////////////
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000);
-        valueFactory.setValue(0);
-        ev_pnb.setValueFactory(valueFactory);
         ////////////////////////////combobox////////////////////////////////////////////////////////////////////////////
         List<CategorieEvenement> listc = sc.getAll();
         ObservableList obsCategories = FXCollections.observableArrayList();
@@ -155,43 +151,27 @@ public class listevenementcontroller implements Initializable {
 
         }
         filter_categorie_b.setValue("All");
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ObservableList obsfor = FXCollections.observableArrayList();
+        String[] fop1 = {"Free","Paid"};
+        for (String c : fop1) {
+            obsfor.add(c);
+        }
+        fop.setItems(obsfor);
+        fop.setValue("Free");
+        ObservableList obsoof = FXCollections.observableArrayList();
+        String[] oof1 = {"Online","Offline"};
+        for (String c : oof1) {
+            obsoof.add(c);
+        }
+        oof.setItems(obsoof);
+        oof.setValue("Offline");
         /////////////////////////////scrollpane/////////////////////////////////////////////////////////////////////////
         SPane.setStyle("-fx-background:  #f1faee; -fx-background-color:  #f1faee");
         ;
         /////////////////////////////text area//////////////////////////////////////////////////////////////////////////
         ev_description.setWrapText(true);
 
-        UnaryOperator<TextFormatter.Change> filter = change -> {
-            String text = change.getText();
-            if (text.matches("[0-9]*")) {
-                return change;
-            }
-            return null;
-        };
-        StringConverter<Integer> converter = new StringConverter<Integer>() {
-            @Override
-            public Integer fromString(String s) {
-                try {
-                    return Integer.valueOf(s);
-                } catch (NumberFormatException e) {
-                    return 0;
-                }
-            }
-
-            @Override
-            public String toString(Integer integer) {
-                return integer.toString();
-            }
-        };
-
-        TextFormatter<Integer> numericFilter = new TextFormatter<Integer>(converter, 0, change -> {
-            if (change.getText().matches("[0-9]*")) {
-                return change;
-            } else {
-                return null;
-            }
-        });
-        ev_price.setTextFormatter(numericFilter);
     }
 
 
@@ -221,11 +201,11 @@ public class listevenementcontroller implements Initializable {
     }
 
     private void ajouterevenement(ActionEvent event) throws IOException {
-        if (ev_name.getText().isEmpty() || ev_description.getText().isEmpty() || ev_location.getText().isEmpty() || ev_price.getText().isEmpty() || ev_cat.getValue() == null || ev_region.getValue() == null || ev_pnb.getValue() == null || ev_date.getValue() == null) {
+        if (ev_name.getText().isEmpty() || ev_description.getText().isEmpty() || ev_location.getText().isEmpty() || ev_cat.getValue() == null || oof.getValue() == null ||fop.getValue() == null || ev_date.getValue() == null) {
             InputTest();
         } else {
             ServiceEvenement se = new ServiceEvenement();
-            Evenement E = new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40, Integer.parseInt(ev_price.getText()));
+            Evenement E = new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()),"" ,ev_location.getText(), fop.getValue()=="Free"?false:true, oof.getValue()=="Offline"?true:false, link.getText());
             this.ev = E;
             if (se.existe(E) == 1) {
                 Alert a = new Alert(Alert.AlertType.ERROR, "event already exists ", ButtonType.OK);
@@ -251,26 +231,22 @@ public class listevenementcontroller implements Initializable {
             a.showAndWait();
 
         }
-        if (ev_region.getValue() == null) {
+        if (oof.getValue() == null ) {
+            Alert a = new Alert(Alert.AlertType.WARNING, "Select region ", ButtonType.OK);
+            a.showAndWait();
+
+        }
+        if (fop.getValue() == null ) {
             Alert a = new Alert(Alert.AlertType.WARNING, "Select region ", ButtonType.OK);
             a.showAndWait();
 
         }
         if (ev_location.getText().isEmpty()) {
-            Alert a = new Alert(Alert.AlertType.WARNING, "add location ", ButtonType.OK);
+            Alert a = new Alert(Alert.AlertType.WARNING, "add address ", ButtonType.OK);
             a.showAndWait();
 
         }
-        if (ev_price.getText().isEmpty()) {
-            Alert a = new Alert(Alert.AlertType.WARNING, "add price ", ButtonType.OK);
-            a.showAndWait();
 
-        }
-        if (ev_pnb.getValue() == null) {
-            Alert a = new Alert(Alert.AlertType.WARNING, "add number of participants ", ButtonType.OK);
-            a.showAndWait();
-
-        }
         if (ev_cat.getValue() == null) {
             Alert a = new Alert(Alert.AlertType.WARNING, "Select category ", ButtonType.OK);
             a.showAndWait();
@@ -296,7 +272,6 @@ public class listevenementcontroller implements Initializable {
 
             this.liste = se.getAll();
             load();
-            sr.setAllBillet(id);
         } catch (IOException ex) {
             Alert a = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
             a.showAndWait();
@@ -400,7 +375,7 @@ public class listevenementcontroller implements Initializable {
     }
 
     private void savesession() {
-        int id = se.getId(new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()), ev_region.getValue().toString() + ", " + ev_location.getText(), Integer.parseInt(ev_pnb.getValue().toString()), 40, Integer.parseInt(ev_price.getText())));
+        int id = se.getId(new Evenement(ev_name.getText(), ev_description.getText(), ev_cat.getValue(), Date.valueOf(ev_date.getValue()), sp.getOneById(userlogged.getIdUser()),"",ev_location.getText(),false , false, ""));
         for (Session s : listsession) {
             s.setEvenement(se.getOneById(id));
             ss.ajouter(s);
@@ -471,27 +446,6 @@ public class listevenementcontroller implements Initializable {
 
         }
     }
-
-    public void ButtonAction(ActionEvent actionEvent) {
-
-        FileChooser fileChooser = new FileChooser();
-        selectedImage = fileChooser.showOpenDialog(null);
-        if (selectedImage != null) {
-            image.setText(selectedImage.getAbsolutePath());
-        } else {
-            image.setText("File is not valid!");
-        }
-
-        fileChooser.getExtensionFilters().addAll(
-        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
-         File selectedFile = fileChooser.showOpenDialog(null);
-            if (selectedImage != null) {
-            image.setText(selectedImage.getAbsolutePath());
-            } else {
-            image.setText("File is not valid!");
-            }
-        }
 }
 
 
